@@ -11,7 +11,10 @@ NOTE: main() function should hold a loop that keeps us on the menu
 until the game is exited
 */
 class GameEngine {
-	// private methods and fields
+
+private:
+	int[][] map;
+	Character mainCharacter;
 	void go(string dir);
 	void foundTrainer(void);
 	void foundWildPokemon(void);
@@ -70,9 +73,12 @@ class Character {
 public:
 	// public
 	// create accessors for the items
+	Character(string name);
+	Character(string name, int gender);
 	string getName(void);
 	Pokemon getPokemon(int num); // takes number 1-6 of desired Pokemon in party
 	int getBadges(void);
 };
+
 
 #endif
