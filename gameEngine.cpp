@@ -11,13 +11,39 @@ GameEngine()
 	int genderChoice;
 	string nameChoice;
 
-	cout << "Welcome to Pokemon Orange and Blue!" << endl;
-	cout << "What is your gender? 1. Female 2. Male" << endl;
-	genderChoice = getInt();
-	cout << "What is your name: ";
+	cout << "You wake up dazed and confused with bright white walls burning your eyes." << endl;
+	cout << "You see a large green figure in a white lab coat staring down at you. 'Hello!' it says." << endl;
+	cout << "Yes, the big green alligator is talking to you.";
+	cout << "'My name is professor Albert. Yes, I am an alligator, no your not dreaming, yes I am gald you woke up." << endl;
+	cout << " I found you passed out in Turlington. What is your name?' " << endl;
+	cout << "Your name: ";
 	nameChoice = getString();
+	cout << "'Thats a great name. It is nice to meet you " << mainCharacter.getName() << ". " << endl;
+	cout << "I'm sorry I have to ask this but my eyesight is not the best, but what is your gender?'" << endl;
+	cout << "Your gender (1. Female, 2. Male): ";
+	genderChoice = getInt();
 	
 	mainCharacter = new Character(nameChoice, genderChoice);
+	
+	cout << "'Thats great! I'm happy to meet you. I just wish it was under better circumstances. " << endl;
+	cout << "Like I said, I found you passed out in th middle of Turlington so I brought you back to my lab to patch you up." << endl;
+	cout << "Turns out I can heal you and Pokemon! Do you remeber what happened?'" << endl;
+	string ans = getString();
+	
+	if(ans.compare("No") == 0 || ans.compare("NO") == 0 || ans.compare("no") == 0)
+	{
+		cout << "Okay, then I will fill you in. ";
+	}
+	else if(ans.compare("YES") == 0 || ans.compare("Yes") == 0 || ans.compare("yes") == 0)
+	{
+		cout << "Then what happened? " << endl;
+		getString();
+		cout << "Yeah, thats not right, let me give you the real story.";
+	}
+	else
+	{
+		cout << "Yeah, you've got a concussion so I will just fill you in. ";
+	}
 	
 	
 	/** The map will hold ints and the ints will represent as fallows: 
