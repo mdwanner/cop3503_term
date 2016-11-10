@@ -20,6 +20,7 @@ private:
 	void foundWildPokemon(void);
 	void foundTown(void);
 	void foundItem(void);
+	void createMap();
 public:
 	//public ones
 	GameEngine(void); // Constructor, sequence to create character and choose initial pokemon
