@@ -30,11 +30,11 @@ GameEngine()
 	* 5: town		Example output: You have found (blank) town
 	*/
 	
-	map = int[][] createMap();
+	createMap();
 	
 }
 
-int[][] createMap()
+void createMap()
 {
 	int[][] newmap = int[100][100];
 	for(int i = 0; i < 100; i++)
