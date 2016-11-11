@@ -3,6 +3,10 @@
 #include <iostream>
 #include <string>
 #include "battle.cpp"
+#define MAP_SIZE 100
+#define SWAMP 4
+#define FOREST 3
+#define DESERT 1
 
 using namespace std;
 
@@ -13,7 +17,7 @@ until the game is exited
 class GameEngine {
 
 private:
-	int[][] map;
+	int[MAP_SIZE][MAP_SIZE] newmap;
 	Character mainCharacter;
 	void go(string dir);
 	void foundTrainer(void);

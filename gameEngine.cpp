@@ -3,7 +3,24 @@
 // Define functions from header
 int main() 
 {
-	
+	GameEngine game = new GameEngine();
+	cout << "\tWhat do you want to do?\n\t\t1) Explore\n\t\t2) Pokedex\n\t\t3) Pokemon\n\t\t4) Bag\n\t\t5) Quit\n\n\tchoice: ";
+	int choice = getInt();
+	while (choice != 5) {
+		switch (choice) {
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		}
+		cout << "\tWhat do you want to do?\n\t\t1) Explore\n\t\t2) Pokedex\n\t\t3) Pokemon\n\t\t4) Bag\n\t\t5) Quit\n\n\tchoice: ";
+		choice = getInt();
+	}
+	cout << "Goodbye!" << endl;
 }
 
 GameEngine()
@@ -48,10 +65,9 @@ GameEngine()
 	
 	/** The map will hold ints and the ints will represent as fallows: 
 	* 0: wall		Example output: Its a 40 foot tall concrete wall with barbwire on top. aka Trump's wall
-	* 1: trainer spot 	Example output: Trainer (blank) wants to battle.
 	* 2: tree/cactus	Example output: There is a tree north of you... go north... you hit a tree
 	* 3: forest 		Example output: You are in a forest
-	* 3: desert		Example output: You are in a desert
+	* 1: desert		Example output: You are in a desert
 	* 4: swamp		Example output: ...
 	* 5: town		Example output: You have found (blank) town
 	*/
@@ -62,7 +78,37 @@ GameEngine()
 
 void createMap()
 {
-	int[][] newmap = int[100][100];
+	for (int i = 0; i < MAP_SIZE / 2; i++) {
+		for (int j = 0; j < MAP_SIZE / 2; j++) {
+			newmap[i][j] = SWAMP;
+		}
+	}
+
+	for (int i = 0; i < MAP_SIZE / 2; i++) {
+		for (int j = 50; j < MAP_SIZE; j++) {
+			newmap[i][j] = FOREST;
+		}
+	}
+
+	for (int i = 50; i < MAP_SIZE; i++) {
+		for (int j = 0; j < MAP_SIZE / 2; j++) {
+			newmap[i][j] = SWAMP;
+		}
+	}
+
+	for (int i = 50; i < MAP_SIZE; i++) {
+		for (int j = 50; j < MAP_SIZE; j++) {
+			newmap[i][j] = DESERT;
+		}
+	}
+
+	for (int i = 0; i < 20; i++) {
+		for (int j = 0; j < 20; j++) {
+			newmap[i+39][j+39] = FOREST;
+		}
+	}
+
+
 	for(int i = 0; i < 100; i++)
 	{
 		newmap[0][i] = 0;
