@@ -58,12 +58,21 @@ private:
 	int health; // health cap
 	int currentHealth;
 	int attack;
-	int defense;
-	int level;
-	int experience;
+	int defense; //chance to dodge out of 100%. higher for lower health pokemon. Does not increase with level.
+	int level; //currently no level cap, i'll fix that.
+	int experience; //experience per level starts at 50 and increases by 10 per level.
 public:
-	// public
-	// need accessors and modifiers
+	Pokemon(int level); //creates randomized pokemon with stats/evolution based on level
+    	string getName();
+    	string getType();
+    	int getHealth();
+    	int getCurrentHealth();
+    	int getAttack();
+    	int getDefense();
+    	int getLevel();
+    	int getExperience();
+    	void giveExperience(int exp); //handles leveling up, but doesn't print anything right now
+    	void changeCurrentHealth(int healthChange); //healthChange is how much to ADD to currentHealth
 };
 
 class Character {
