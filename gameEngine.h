@@ -49,22 +49,18 @@ public:
 	buyItems(void); // open store interface
 };
 
-class Pokemon { // Should we have subclasses of each Pokemon we implement?
-	// private
+class Pokemon { // No subclasses, just one basic attack, at least for now.
+private:
 	int pokedex;
-	string type; // string?
+	string type;
+	static const string pokeMen[11][4]; //this is an array containing the names of all the pokemen in indexes 0-2, and type in index 3. Eventually it will be [150][4]
+	string name; //this is which pokemon it is, e.g. Squirtle.
 	int health; // health cap
 	int currentHealth;
 	int attack;
 	int defense;
 	int level;
 	int experience;
-	/*
-	If we are just using one basic attack to keep things simpler for us, then
-	we don't need the following two things
-	*/
-	string ability[4]; // moves currently known
-	string abilityIndex[10]; // types of moves that can be learned by this pokemon
 public:
 	// public
 	// need accessors and modifiers
