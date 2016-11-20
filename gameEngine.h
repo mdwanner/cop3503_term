@@ -90,5 +90,19 @@ public:
 	int getBadges(void);
 };
 
+//Marco: I made an int function to make sure responses are taken as ints.
+int getInt() {
+	int response;
+	string input = " ";
+	while (true) {
+		getline(cin, input);
+		// This code converts from string to number safely.
+		stringstream myStream(input);
+		if (myStream >> response)
+			break;
+		cout << "Invalid choice, please try again: ";
+	}
+	return response;
+}
 
 #endif
