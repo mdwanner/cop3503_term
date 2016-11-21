@@ -48,41 +48,19 @@ public:
 	buyItems(void); // open store interface
 };
 
-class Pokemon { // Should we have subclasses of each Pokemon we implement?
-	// private
-	int pokedex;
-	string type; // string?
-	int health; // health cap
-	int currentHealth;
-	int attack;
-	int defense;
-	int level;
-	int experience;
-	/*
-	If we are just using one basic attack to keep things simpler for us, then
-	we don't need the following two things
-	*/
-	string ability[4]; // moves currently known
-	string abilityIndex[10]; // types of moves that can be learned by this pokemon
-public:
-	// public
-	// need accessors and modifiers
-};
-
-class Character {
-	// private
-	string name;
-	Pokemon party[6];
-	int badges = 0; // increment this as gyms beaten
-public:
-	// public
-	// create accessors for the items
-	Character(string name);
-	Character(string name, int gender);
-	string getName(void);
-	Pokemon getPokemon(int num); // takes number 1-6 of desired Pokemon in party
-	int getBadges(void);
-};
-
+//Marco: I made an int function to make sure responses are taken as ints.
+int getInt() {
+	int response;
+	string input = " ";
+	while (true) {
+		getline(cin, input);
+		// This code converts from string to number safely.
+		stringstream myStream(input);
+		if (myStream >> response)
+			break;
+		cout << "Invalid choice, please try again: ";
+	}
+	return response;
+}
 
 #endif
