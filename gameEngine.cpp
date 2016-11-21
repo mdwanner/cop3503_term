@@ -6,8 +6,10 @@ int main()
 	GameEngine game = new GameEngine();
 	cout << "\tWhat do you want to do?\n\t\t1) Explore\n\t\t2) Pokedex\n\t\t3) Pokemon\n\t\t4) Bag\n\t\t5) Quit\n\n\tchoice: ";
 	int choice = getInt();
-	while (choice != 5) {
-		switch (choice) {
+	while (choice != 5) 
+	{
+		switch (choice) 
+		{
 		case 1:
 			break;
 		case 2:
@@ -72,6 +74,7 @@ GameEngine()
 	* 5: town		Example output: You have found (blank) town
 	*/
 	
+	//should be done now
 	createMap();
 	
 }
@@ -158,7 +161,6 @@ void createMap()
 		}
 	}
 	
-	//need to fill in a lot more here
 }
 
 string getString()

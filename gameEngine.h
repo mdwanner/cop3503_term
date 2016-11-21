@@ -28,7 +28,6 @@ private:
 public:
 	//public ones
 	GameEngine(void); // Constructor, sequence to create character and choose initial pokemon
-	void explore(void);
 	void viewPokedex(void);
 	void viewBag(void); // calls accessors of player Character to see inventory counts
 	void viewTeam(void);
