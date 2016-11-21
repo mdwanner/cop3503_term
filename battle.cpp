@@ -210,3 +210,17 @@ Battle::Battle(Character player, Character opponent) {
 	}
 }
 
+int getInt() {
+	//This method makes sure that the response is an int. 
+	int response;
+	string input = " ";
+	while (true) {
+		getline(cin, input);
+		// This code converts from string to number safely.
+		stringstream myStream(input);
+		if (myStream >> response)
+			break;
+		cout << "Invalid choice, please try again: ";
+	}
+	return response;
+}

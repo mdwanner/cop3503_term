@@ -16,18 +16,6 @@ public:
 };
 
 //Marco: Same getInt function as in gameEngine.h. (May not be needed since it's a duplicate).
-int getInt() {
-	//This method makes sure that the response is an int. 
-	int response;
-	string input = " ";
-	while (true) {
-		getline(cin, input);
-		// This code converts from string to number safely.
-		stringstream myStream(input);
-		if (myStream >> response)
-			break;
-		cout << "Invalid choice, please try again: ";
-	}
-	return response;
-}
+int getInt();
+
 #endif
