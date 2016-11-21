@@ -14,7 +14,7 @@ private:
 	int health; // health cap
 	int currentHealth;
 	int attack;
-	int defense; //chance to dodge out of 100%. higher for lower health pokemon. Does not increase with level.
+	int dodge; //chance to dodge out of 100%. higher for lower health pokemon. Does not increase with level.
 	int level; //currently no level cap, i'll fix that.
 	int experience; //experience per level starts at 50 and increases by 10 per level.
 public:
@@ -24,7 +24,7 @@ public:
 	int getHealth();
 	int getCurrentHealth();
 	int getAttack();
-	int getDefense();
+	int getDodge();
 	int getLevel();
 	int getExperience();
 	void giveExperience(int exp); //handles leveling up, but doesn't print anything right now
@@ -35,6 +35,7 @@ class Character {
 	// private
 	string name;
 	Pokemon party[6];
+	Pokemon currentPokemon; //Marco: The current pokemon the player holds.
 	int badges = 0; // increment this as gyms beaten
 public:
 	// public
@@ -43,5 +44,8 @@ public:
 	Character(string name, int gender);
 	string getName(void);
 	Pokemon getPokemon(int num); // takes number 1-6 of desired Pokemon in party
+	Pokemon getCurrentPokemon(); //Marco: for getting the currentPokemon the player has.
+	Pokemon setCurrentPokemon(int numChange); //Marco: for setting up the currentPokemon. 
+											  //might help to use getPokemon(numChange) in it to set the current Pokemon.
 	int getBadges(void);
 };
