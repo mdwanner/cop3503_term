@@ -67,10 +67,10 @@ GameEngine()
 	
 	
 	/** The map will hold ints and the ints will represent as fallows: 
-	* 0: wall		Example output: Its a 40 foot tall concrete wall with barbwire on top. aka Trump's wall
-	* 2: tree/cactus	Example output: There is a tree north of you... go north... you hit a tree
-	* 3: forest 		Example output: You are in a forest
-	* 1: desert		Example output: You are in a desert
+	* 0: Character
+	* 1: wall		Example output: Its a 40 foot tall concrete wall with barbwire on top. aka Trump's wall
+	* 2: forest 		Example output: You are in a forest
+	* 3: desert		Example output: You are in a desert
 	* 4: swamp		Example output: ...
 	* 5: town		Example output: You have found (blank) town
 	*/
@@ -128,7 +128,7 @@ void createMap()
 		for(int j = 0; j < 3; j++)
 		{
 			//top left corner of town is at corordinate (15,15)
-			newmap[i + 15][j + 15] = 5;
+			newmap[i + 15][j + 15] = TOWN;
 		}
 	}
 		
@@ -138,7 +138,7 @@ void createMap()
 		for(int j = 0; j < 4; j++)
 		{
 			//top left corner of town is at corordinate (57,57)? i guess, idk, maybe it should be moved
-			newmap[i + 57][j + 57] = 5;
+			newmap[i + 57][j + 57] = TOWN;
 		}
 	}
 		
@@ -148,7 +148,7 @@ void createMap()
 		for(int j = 0; j < 4; j++)
 		{
 			//top left corner of town is at corordinate (79,20)? i guess, idk, maybe it should be moved
-			newmap[i + 79][j + 20] = 5;
+			newmap[i + 79][j + 20] = TOWN;
 		}
 	}
 		
@@ -158,10 +158,9 @@ void createMap()
 		for(int j = 0; j < 7; j++)
 		{
 			//top left corner of town is at corordinate (10,60)? i guess, idk, maybe it should be moved
-			newmap[i + 10][j + 60] = 5;
+			newmap[i + 10][j + 60] = TOWN;
 		}
 	}
-	
 }
 
 string getString()

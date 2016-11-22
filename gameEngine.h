@@ -4,9 +4,11 @@
 #include <string>
 #include "battle.cpp"
 #define MAP_SIZE 100
+#define WALL 1
+#define FOREST 2
+#define DESERT 3
 #define SWAMP 4
-#define FOREST 3
-#define DESERT 1
+#define TOWN 5
 
 using namespace std;
 
@@ -15,6 +17,8 @@ NOTE: main() function should hold a loop that keeps us on the menu
 until the game is exited
 */
 class GameEngine {
+
+	friend class explore;
 
 private:
 	int[MAP_SIZE][MAP_SIZE] newmap;

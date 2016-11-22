@@ -32,20 +32,23 @@ public:
 };
 
 class Character {
-	// private
+
+	friend class explore;						//From joey, needed in explore function, wanted to limit access to 
+												//all other classes
+private:
 	string name;
 	Pokemon party[6];
-	Pokemon currentPokemon; //Marco: The current pokemon the player holds.
-	int badges = 0; // increment this as gyms beaten
+	Pokemon currentPokemon;						//Marco: The current pokemon the player holds.
+	int xPosition;								//From joey, needed in explore function
+	int yPosition;
+	int badges = 0;								// increment this as gyms beaten
 public:
-	// public
-	// create accessors for the items
-	Character(string name);
+	Character(string name);						// create accessors for the items
 	Character(string name, int gender);
 	string getName(void);
-	Pokemon getPokemon(int num); // takes number 1-6 of desired Pokemon in party
-	Pokemon getCurrentPokemon(); //Marco: for getting the currentPokemon the player has.
-	Pokemon setCurrentPokemon(int numChange); //Marco: for setting up the currentPokemon. 
-											  //might help to use getPokemon(numChange) in it to set the current Pokemon.
+	Pokemon getPokemon(int num);				// takes number 1-6 of desired Pokemon in party
+	Pokemon getCurrentPokemon();				//Marco: for getting the currentPokemon the player has.
+	Pokemon setCurrentPokemon(int numChange);	//Marco: for setting up the currentPokemon. 
+												//might help to use getPokemon(numChange) in it to set the current Pokemon.
 	int getBadges(void);
 };
