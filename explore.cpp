@@ -143,7 +143,7 @@ void explore::foundTown()
 
 void explore::foundWall()
 {
-	cout << "You have found a 40 foot wall concrete that is insermountable. The word TRUMP is written on the side."
+	cout << "You have found a 40 foot wall concrete that is insermountable. The word TRUMP is written on the side.";
 }
 
 string explore::getString()
