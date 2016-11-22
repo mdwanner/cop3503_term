@@ -46,7 +46,7 @@ bool explore::trySpace(int i, int j)
 	if (i > MAP_SIZE || j > MAP_SIZE)
 	{
 		cout << "Error: explore.cpp trySpace out of bounds exception" << endl;
-		return;
+		return false;
 	}
 
 	int nextSpace = newmap[i][j];
