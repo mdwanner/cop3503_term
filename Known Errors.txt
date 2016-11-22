@@ -1,0 +1,1789 @@
+stormx:3% g++ -o p.out *.cpp
+In file included from battle.cpp:1:0:
+battle.h:1:15: warning: extra tokens at end of #ifndef directive [enabled by default]
+ #ifndef BATTLE.H
+               ^
+battle.h:2:15: warning: missing whitespace after the macro name [enabled by default]
+ #define BATTLE.H
+               ^
+battle.h:7:2: error: ‘Pokemon’ does not name a type
+  Pokemon owned; // Player's pokemon that is in play
+  ^
+battle.h:8:2: error: ‘Pokemon’ does not name a type
+  Pokemon enemy; // Enemy pokemon in play
+  ^
+battle.h:12:19: error: expected ‘)’ before ‘player’
+  Battle(Character player, Pokemon enemy); // select the first pokemon from your party to fight, for wild battle scenarios
+                   ^
+battle.h:13:19: error: expected ‘)’ before ‘player’
+  Battle(Character player, Character opponent); // for Trainer vs. Trainer scenarios
+                   ^
+battle.h:14:24: error: ‘Character’ has not been declared
+  void attack(bool turn,Character thePlayer, Character theEnemyPlayer);
+                        ^
+battle.h:14:45: error: ‘Character’ has not been declared
+  void attack(bool turn,Character thePlayer, Character theEnemyPlayer);
+                                             ^
+battle.h:15:25: error: ‘Character’ has not been declared
+  void attack(bool turn, Character thePlayer, Pokemon wildPokemon);
+                         ^
+battle.h:15:46: error: ‘Pokemon’ has not been declared
+  void attack(bool turn, Character thePlayer, Pokemon wildPokemon);
+                                              ^
+battle.h:15:7: error: ‘void Battle::attack(bool, int, int)’ cannot be overloaded
+  void attack(bool turn, Character thePlayer, Pokemon wildPokemon);
+       ^
+battle.h:14:7: error: with ‘void Battle::attack(bool, int, int)’
+  void attack(bool turn,Character thePlayer, Character theEnemyPlayer);
+       ^
+battle.h:16:21: error: ‘Character’ has not been declared
+  void switchPokemon(Character trainer);
+                     ^
+battle.cpp:8:25: error: ‘Character’ has not been declared
+ void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+                         ^
+battle.cpp:8:46: error: ‘Character’ has not been declared
+ void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+                                              ^
+battle.cpp: In function ‘void attack(bool, int, int)’:
+battle.cpp:9:2: error: ‘Pokemon’ was not declared in this scope
+  Pokemon currEnemyPok = theEnemyPlayer.getCurrentPokemon();
+  ^
+battle.cpp:9:10: error: expected ‘;’ before ‘currEnemyPok’
+  Pokemon currEnemyPok = theEnemyPlayer.getCurrentPokemon();
+          ^
+battle.cpp:10:10: error: expected ‘;’ before ‘currMyPok’
+  Pokemon currMyPok = thePlayer.getCurrentPokemon();
+          ^
+battle.cpp:14:17: error: ‘currMyPok’ was not declared in this scope
+   dodgechance = currMyPok.getDodge();
+                 ^
+battle.cpp:16:17: error: ‘currEnemyPok’ was not declared in this scope
+   dodgechance = currEnemyPok.getDodge();
+                 ^
+battle.cpp:17:23: error: ‘rand’ was not declared in this scope
+  int dodgeroll = rand() % 100;
+                       ^
+battle.cpp:24:13: error: ‘currMyPok’ was not declared in this scope
+    damage = currMyPok.getAttack() * 0.5;
+             ^
+battle.cpp:27:20: error: ‘typeMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    ^
+battle.cpp:27:35: error: ‘mypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                   ^
+battle.cpp:27:57: error: ‘enemypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                                         ^
+battle.cpp:31:13: error: ‘currEnemyPok’ was not declared in this scope
+    damage = currEnemyPok.getAttack() * 0.5;
+             ^
+battle.cpp:32:20: error: ‘typeMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    ^
+battle.cpp:32:35: error: ‘mypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                   ^
+battle.cpp:32:57: error: ‘enemypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                                         ^
+battle.cpp:38:6: error: ‘currMyPok’ was not declared in this scope
+  if (currMyPok.getCurrentHealth() <= 0) {
+      ^
+battle.cpp:42:26: error: ‘switchPokemon’ was not declared in this scope
+   switchPokemon(thePlayer);
+                          ^
+battle.cpp:44:6: error: ‘currEnemyPok’ was not declared in this scope
+  if (currEnemyPok.getCurrentHealth() <= 0) {
+      ^
+battle.cpp:47:32: error: ‘switchPokemon’ was not declared in this scope
+    switchPokemon(theEnemyPlayer);
+                                ^
+battle.cpp: At global scope:
+battle.cpp:51:25: error: ‘Character’ has not been declared
+ void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+                         ^
+battle.cpp:51:46: error: ‘Pokemon’ has not been declared
+ void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+                                              ^
+battle.cpp: In function ‘void attack(bool, int, int)’:
+battle.cpp:51:6: error: redefinition of ‘void attack(bool, int, int)’
+ void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+      ^
+battle.cpp:8:6: error: ‘void attack(bool, int, int)’ previously defined here
+ void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+      ^
+battle.cpp:52:2: error: ‘Pokemon’ was not declared in this scope
+  Pokemon currEnemyPok = wildPokemon;
+  ^
+battle.cpp:52:10: error: expected ‘;’ before ‘currEnemyPok’
+  Pokemon currEnemyPok = wildPokemon;
+          ^
+battle.cpp:53:10: error: expected ‘;’ before ‘currMyPok’
+  Pokemon currMyPok = thePlayer.getCurrentPokemon();
+          ^
+battle.cpp:57:17: error: ‘currMyPok’ was not declared in this scope
+   dodgechance = currMyPok.getDodge();
+                 ^
+battle.cpp:59:17: error: ‘currEnemyPok’ was not declared in this scope
+   dodgechance = currEnemyPok.getDodge();
+                 ^
+battle.cpp:60:23: error: ‘rand’ was not declared in this scope
+  int dodgeroll = rand() % 100;
+                       ^
+battle.cpp:67:13: error: ‘currMyPok’ was not declared in this scope
+    damage = currMyPok.getAttack() * 0.5;
+             ^
+battle.cpp:70:20: error: ‘typeMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    ^
+battle.cpp:70:35: error: ‘mypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                   ^
+battle.cpp:70:57: error: ‘enemypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                                         ^
+battle.cpp:74:13: error: ‘currEnemyPok’ was not declared in this scope
+    damage = currEnemyPok.getAttack() * 0.5;
+             ^
+battle.cpp:75:20: error: ‘typeMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    ^
+battle.cpp:75:35: error: ‘mypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                   ^
+battle.cpp:75:57: error: ‘enemypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                                         ^
+battle.cpp:81:6: error: ‘currMyPok’ was not declared in this scope
+  if (currMyPok.getCurrentHealth() <= 0) {
+      ^
+battle.cpp:85:26: error: ‘switchPokemon’ was not declared in this scope
+   switchPokemon(thePlayer);
+                          ^
+battle.cpp:87:6: error: ‘currEnemyPok’ was not declared in this scope
+  if (currEnemyPok.getCurrentHealth() <= 0)
+      ^
+battle.cpp: At global scope:
+battle.cpp:91:1: error: ‘Pokemon’ does not name a type
+ Pokemon switchPokemon(Character trainer){
+ ^
+battle.cpp:103:1: error: ‘Pokemon’ does not name a type
+ Pokemon switchPokemon(int numPokemon, Character trainer){
+ ^
+battle.cpp:117:15: error: expected constructor, destructor, or type conversion before ‘(’ token
+ Battle::Battle(Character player, Pokemon enemy) {
+               ^
+explore.cpp:2:8: error: ‘explore’ does not name a type
+ static explore::exploreNow(Character main)
+        ^
+explore.cpp:37:6: error: ‘explore’ has not been declared
+ bool explore::trySpace(int i, int j)
+      ^
+explore.cpp: In function ‘bool trySpace(int, int)’:
+explore.cpp:39:10: error: ‘MAP_SIZE’ was not declared in this scope
+  if (i > MAP_SIZE || j > MAP_SIZE)
+          ^
+explore.cpp:41:3: error: ‘cout’ was not declared in this scope
+   cout << "Error: explore.cpp trySpace out of bounds exception" << endl;
+   ^
+explore.cpp:41:68: error: ‘endl’ was not declared in this scope
+   cout << "Error: explore.cpp trySpace out of bounds exception" << endl;
+                                                                    ^
+explore.cpp:42:3: error: return-statement with no value, in function returning ‘bool’ [-fpermissive]
+   return;
+   ^
+explore.cpp:45:18: error: ‘newmap’ was not declared in this scope
+  int nextSpace = newmap[i][j];
+                  ^
+explore.cpp:49:8: error: ‘WALL’ was not declared in this scope
+   case WALL:
+        ^
+explore.cpp:51:14: error: ‘foundWall’ was not declared in this scope
+    foundWall();
+              ^
+explore.cpp:55:8: error: ‘FOREST’ was not declared in this scope
+   case FOREST:
+        ^
+explore.cpp:57:16: error: ‘foundForest’ was not declared in this scope
+    foundForest();
+                ^
+explore.cpp:61:8: error: ‘DESERT’ was not declared in this scope
+   case DESERT:
+        ^
+explore.cpp:63:16: error: ‘foundDesert’ was not declared in this scope
+    foundDesert();
+                ^
+explore.cpp:67:8: error: ‘SWAMP’ was not declared in this scope
+   case SWAMP:
+        ^
+explore.cpp:69:15: error: ‘foundSwamp’ was not declared in this scope
+    foundSwamp();
+               ^
+explore.cpp:73:8: error: ‘TOWN’ was not declared in this scope
+   case TOWN:
+        ^
+explore.cpp:75:14: error: ‘foundTown’ was not declared in this scope
+    foundTown();
+              ^
+explore.cpp:81:4: error: ‘cout’ was not declared in this scope
+    cout << "Error : explore.cpp trySpace mislabled space in map" << endl;
+    ^
+explore.cpp:81:69: error: ‘endl’ was not declared in this scope
+    cout << "Error : explore.cpp trySpace mislabled space in map" << endl;
+                                                                     ^
+explore.cpp: At global scope:
+explore.cpp:88:6: error: ‘explore’ has not been declared
+ void explore::whatHappened()
+      ^
+explore.cpp: In function ‘void whatHappened()’:
+explore.cpp:90:13: error: ‘NULL’ was not declared in this scope
+  srand(time(NULL));
+             ^
+explore.cpp:90:17: error: ‘time’ was not declared in this scope
+  srand(time(NULL));
+                 ^
+explore.cpp:90:18: error: ‘srand’ was not declared in this scope
+  srand(time(NULL));
+                  ^
+explore.cpp:92:21: error: ‘rand’ was not declared in this scope
+  int whatHappened = rand % 100;
+                     ^
+explore.cpp:96:3: error: ‘cout’ was not declared in this scope
+   cout << "A pokemon has appeared from seemingly nowhere to fight!" << endl;
+   ^
+explore.cpp:96:72: error: ‘endl’ was not declared in this scope
+   cout << "A pokemon has appeared from seemingly nowhere to fight!" << endl;
+                                                                        ^
+explore.cpp:101:3: error: ‘cout’ was not declared in this scope
+   cout << "A trainer has spotted you! They want to battle!" << endl;
+   ^
+explore.cpp:101:64: error: ‘endl’ was not declared in this scope
+   cout << "A trainer has spotted you! They want to battle!" << endl;
+                                                                ^
+explore.cpp: At global scope:
+explore.cpp:110:6: error: ‘explore’ has not been declared
+ void explore::foundForest()
+      ^
+explore.cpp: In function ‘void foundForest()’:
+explore.cpp:112:2: error: ‘cout’ was not declared in this scope
+  cout << "You are in a forest." << endl;
+  ^
+explore.cpp:112:36: error: ‘endl’ was not declared in this scope
+  cout << "You are in a forest." << endl;
+                                    ^
+explore.cpp: At global scope:
+explore.cpp:116:6: error: ‘explore’ has not been declared
+ void explore::foundDesert()
+      ^
+explore.cpp: In function ‘void foundDesert()’:
+explore.cpp:118:2: error: ‘cout’ was not declared in this scope
+  cout << "You are in a desert." << endl;
+  ^
+explore.cpp:118:36: error: ‘endl’ was not declared in this scope
+  cout << "You are in a desert." << endl;
+                                    ^
+explore.cpp: At global scope:
+explore.cpp:122:6: error: ‘explore’ has not been declared
+ void explore::foundSwamp()
+      ^
+explore.cpp: In function ‘void foundSwamp()’:
+explore.cpp:124:2: error: ‘cout’ was not declared in this scope
+  cout << "You are in a Swamp." << endl;
+  ^
+explore.cpp:124:35: error: ‘endl’ was not declared in this scope
+  cout << "You are in a Swamp." << endl;
+                                   ^
+explore.cpp: At global scope:
+explore.cpp:127:6: error: ‘explore’ has not been declared
+ void explore::foundTown()
+      ^
+explore.cpp: In function ‘void foundTown()’:
+explore.cpp:129:2: error: ‘cout’ was not declared in this scope
+  cout << "You have found a town!" << endl;
+  ^
+explore.cpp:129:38: error: ‘endl’ was not declared in this scope
+  cout << "You have found a town!" << endl;
+                                      ^
+explore.cpp: At global scope:
+explore.cpp:133:6: error: ‘explore’ has not been declared
+ void explore::foundWall()
+      ^
+explore.cpp: In function ‘void foundWall()’:
+explore.cpp:135:2: error: ‘cout’ was not declared in this scope
+  cout << "You have found a 40 foot wall concrete that is insermountable. The word TRUMP is written on the side."
+  ^
+explore.cpp:136:1: error: expected ‘;’ before ‘}’ token
+ }
+ ^
+explore.cpp: At global scope:
+explore.cpp:138:1: error: ‘string’ does not name a type
+ string explore::getString()
+ ^
+In file included from gameEngine.cpp:1:0:
+gameEngine.h:1:19: warning: extra tokens at end of #ifndef directive [enabled by default]
+ #ifndef GAMEENGINE.H
+                   ^
+gameEngine.h:2:19: warning: missing whitespace after the macro name [enabled by default]
+ #define GAMEENGINE.H
+                   ^
+In file included from battle.cpp:1:0,
+                 from gameEngine.h:5,
+                 from gameEngine.cpp:1:
+battle.h:1:15: warning: extra tokens at end of #ifndef directive [enabled by default]
+ #ifndef BATTLE.H
+               ^
+battle.h:2:15: warning: missing whitespace after the macro name [enabled by default]
+ #define BATTLE.H
+               ^
+battle.h:7:2: error: ‘Pokemon’ does not name a type
+  Pokemon owned; // Player's pokemon that is in play
+  ^
+battle.h:8:2: error: ‘Pokemon’ does not name a type
+  Pokemon enemy; // Enemy pokemon in play
+  ^
+battle.h:12:19: error: expected ‘)’ before ‘player’
+  Battle(Character player, Pokemon enemy); // select the first pokemon from your party to fight, for wild battle scenarios
+                   ^
+battle.h:13:19: error: expected ‘)’ before ‘player’
+  Battle(Character player, Character opponent); // for Trainer vs. Trainer scenarios
+                   ^
+battle.h:14:24: error: ‘Character’ has not been declared
+  void attack(bool turn,Character thePlayer, Character theEnemyPlayer);
+                        ^
+battle.h:14:45: error: ‘Character’ has not been declared
+  void attack(bool turn,Character thePlayer, Character theEnemyPlayer);
+                                             ^
+battle.h:15:25: error: ‘Character’ has not been declared
+  void attack(bool turn, Character thePlayer, Pokemon wildPokemon);
+                         ^
+battle.h:15:46: error: ‘Pokemon’ has not been declared
+  void attack(bool turn, Character thePlayer, Pokemon wildPokemon);
+                                              ^
+battle.h:15:7: error: ‘void Battle::attack(bool, int, int)’ cannot be overloaded
+  void attack(bool turn, Character thePlayer, Pokemon wildPokemon);
+       ^
+battle.h:14:7: error: with ‘void Battle::attack(bool, int, int)’
+  void attack(bool turn,Character thePlayer, Character theEnemyPlayer);
+       ^
+battle.h:16:21: error: ‘Character’ has not been declared
+  void switchPokemon(Character trainer);
+                     ^
+In file included from gameEngine.h:5:0,
+                 from gameEngine.cpp:1:
+battle.cpp:8:25: error: ‘Character’ has not been declared
+ void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+                         ^
+battle.cpp:8:46: error: ‘Character’ has not been declared
+ void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+                                              ^
+battle.cpp: In function ‘void attack(bool, int, int)’:
+battle.cpp:9:2: error: ‘Pokemon’ was not declared in this scope
+  Pokemon currEnemyPok = theEnemyPlayer.getCurrentPokemon();
+  ^
+battle.cpp:9:10: error: expected ‘;’ before ‘currEnemyPok’
+  Pokemon currEnemyPok = theEnemyPlayer.getCurrentPokemon();
+          ^
+battle.cpp:10:10: error: expected ‘;’ before ‘currMyPok’
+  Pokemon currMyPok = thePlayer.getCurrentPokemon();
+          ^
+battle.cpp:14:17: error: ‘currMyPok’ was not declared in this scope
+   dodgechance = currMyPok.getDodge();
+                 ^
+battle.cpp:16:17: error: ‘currEnemyPok’ was not declared in this scope
+   dodgechance = currEnemyPok.getDodge();
+                 ^
+battle.cpp:17:23: error: ‘rand’ was not declared in this scope
+  int dodgeroll = rand() % 100;
+                       ^
+battle.cpp:24:13: error: ‘currMyPok’ was not declared in this scope
+    damage = currMyPok.getAttack() * 0.5;
+             ^
+battle.cpp:27:20: error: ‘typeMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    ^
+battle.cpp:27:35: error: ‘mypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                   ^
+battle.cpp:27:57: error: ‘enemypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                                         ^
+battle.cpp:31:13: error: ‘currEnemyPok’ was not declared in this scope
+    damage = currEnemyPok.getAttack() * 0.5;
+             ^
+battle.cpp:32:20: error: ‘typeMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    ^
+battle.cpp:32:35: error: ‘mypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                   ^
+battle.cpp:32:57: error: ‘enemypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                                         ^
+battle.cpp:38:6: error: ‘currMyPok’ was not declared in this scope
+  if (currMyPok.getCurrentHealth() <= 0) {
+      ^
+battle.cpp:42:26: error: ‘switchPokemon’ was not declared in this scope
+   switchPokemon(thePlayer);
+                          ^
+battle.cpp:44:6: error: ‘currEnemyPok’ was not declared in this scope
+  if (currEnemyPok.getCurrentHealth() <= 0) {
+      ^
+battle.cpp:47:32: error: ‘switchPokemon’ was not declared in this scope
+    switchPokemon(theEnemyPlayer);
+                                ^
+battle.cpp: At global scope:
+battle.cpp:51:25: error: ‘Character’ has not been declared
+ void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+                         ^
+battle.cpp:51:46: error: ‘Pokemon’ has not been declared
+ void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+                                              ^
+battle.cpp: In function ‘void attack(bool, int, int)’:
+battle.cpp:51:6: error: redefinition of ‘void attack(bool, int, int)’
+ void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+      ^
+battle.cpp:8:6: error: ‘void attack(bool, int, int)’ previously defined here
+ void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+      ^
+battle.cpp:52:2: error: ‘Pokemon’ was not declared in this scope
+  Pokemon currEnemyPok = wildPokemon;
+  ^
+battle.cpp:52:10: error: expected ‘;’ before ‘currEnemyPok’
+  Pokemon currEnemyPok = wildPokemon;
+          ^
+battle.cpp:53:10: error: expected ‘;’ before ‘currMyPok’
+  Pokemon currMyPok = thePlayer.getCurrentPokemon();
+          ^
+battle.cpp:57:17: error: ‘currMyPok’ was not declared in this scope
+   dodgechance = currMyPok.getDodge();
+                 ^
+battle.cpp:59:17: error: ‘currEnemyPok’ was not declared in this scope
+   dodgechance = currEnemyPok.getDodge();
+                 ^
+battle.cpp:60:23: error: ‘rand’ was not declared in this scope
+  int dodgeroll = rand() % 100;
+                       ^
+battle.cpp:67:13: error: ‘currMyPok’ was not declared in this scope
+    damage = currMyPok.getAttack() * 0.5;
+             ^
+battle.cpp:70:20: error: ‘typeMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    ^
+battle.cpp:70:35: error: ‘mypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                   ^
+battle.cpp:70:57: error: ‘enemypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                                         ^
+battle.cpp:74:13: error: ‘currEnemyPok’ was not declared in this scope
+    damage = currEnemyPok.getAttack() * 0.5;
+             ^
+battle.cpp:75:20: error: ‘typeMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    ^
+battle.cpp:75:35: error: ‘mypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                   ^
+battle.cpp:75:57: error: ‘enemypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                                         ^
+battle.cpp:81:6: error: ‘currMyPok’ was not declared in this scope
+  if (currMyPok.getCurrentHealth() <= 0) {
+      ^
+battle.cpp:85:26: error: ‘switchPokemon’ was not declared in this scope
+   switchPokemon(thePlayer);
+                          ^
+battle.cpp:87:6: error: ‘currEnemyPok’ was not declared in this scope
+  if (currEnemyPok.getCurrentHealth() <= 0)
+      ^
+battle.cpp: At global scope:
+battle.cpp:91:1: error: ‘Pokemon’ does not name a type
+ Pokemon switchPokemon(Character trainer){
+ ^
+battle.cpp:103:1: error: ‘Pokemon’ does not name a type
+ Pokemon switchPokemon(int numPokemon, Character trainer){
+ ^
+battle.cpp:117:15: error: expected constructor, destructor, or type conversion before ‘(’ token
+ Battle::Battle(Character player, Pokemon enemy) {
+               ^
+Pokemon.cpp:1:24: fatal error: gameEngine.h: No such file or directory
+ #include <gameEngine.h>
+                        ^
+compilation terminated.
+stormx:4% battle.h:1:15: warning: extra tokens at end of #ifndef directive [enabled by default]
+battle.h:1:15:: Too many arguments.
+stormx:5%  #ifndef BATTLE.H
+#ifndef: Command not found.
+stormx:6%                ^
+No previous left hand side.
+stormx:7% battle.h:2:15: warning: missing whitespace after the macro name [enabled by default]
+battle.h:2:15:: Too many arguments.
+stormx:8%  #define BATTLE.H
+#define: Command not found.
+stormx:9%                ^
+No previous left hand side.
+stormx:10% battle.h:7:2: error: ‘Pokemon’ does not name a type
+battle.h:7:2:: Too many arguments.
+stormx:11%   Pokemon owned; // Player's pokemon that is in play
+Unmatched '.
+stormx:12%   ^
+No previous left hand side.
+stormx:13% battle.h:8:2: error: ‘Pokemon’ does not name a type
+battle.h:8:2:: Too many arguments.
+stormx:14%   Pokemon enemy; // Enemy pokemon in play
+Pokemon: Command not found.
+//: Permission denied.
+stormx:15%   ^
+No previous left hand side.
+stormx:16% battle.h:12:19: error: expected ‘)’ before ‘player’
+Too many )'s.
+stormx:17%   Battle(Character player, Pokemon enemy); // select the first pokemon from your party to fight, for wild battle scenarios
+Badly placed ()'s.
+stormx:18%                    ^
+No previous left hand side.
+stormx:19% battle.h:13:19: error: expected ‘)’ before ‘player’
+Too many )'s.
+stormx:20%   Battle(Character player, Character opponent); // for Trainer vs. Trainer scenarios
+Badly placed ()'s.
+stormx:21%                    ^
+No previous left hand side.
+stormx:22% battle.h:14:24: error: ‘Character’ has not been declared
+battle.h:14:24:: Too many arguments.
+stormx:23%   void attack(bool turn,Character thePlayer, Character theEnemyPlayer);
+Badly placed ()'s.
+stormx:24%                         ^
+No previous left hand side.
+stormx:25% battle.h:14:45: error: ‘Character’ has not been declared
+battle.h:14:45:: Too many arguments.
+stormx:26%   void attack(bool turn,Character thePlayer, Character theEnemyPlayer);
+Badly placed ()'s.
+stormx:27%                                              ^
+No previous left hand side.
+stormx:28% battle.h:15:25: error: ‘Character’ has not been declared
+battle.h:15:25:: Too many arguments.
+stormx:29%   void attack(bool turn, Character thePlayer, Pokemon wildPokemon);
+Badly placed ()'s.
+stormx:30%                          ^
+No previous left hand side.
+stormx:31% battle.h:15:46: error: ‘Pokemon’ has not been declared
+battle.h:15:46:: Too many arguments.
+stormx:32%   void attack(bool turn, Character thePlayer, Pokemon wildPokemon);
+Badly placed ()'s.
+stormx:33%                                               ^
+No previous left hand side.
+stormx:34% battle.h:15:7: error: ‘void Battle::attack(bool, int, int)’ cannot be overloaded
+Badly placed ()'s.
+stormx:35%   void attack(bool turn, Character thePlayer, Pokemon wildPokemon);
+Badly placed ()'s.
+stormx:36%        ^
+No previous left hand side.
+stormx:37% battle.h:14:7: error: with ‘void Battle::attack(bool, int, int)’
+Badly placed ()'s.
+stormx:38%   void attack(bool turn,Character thePlayer, Character theEnemyPlayer);
+Badly placed ()'s.
+stormx:39%        ^
+No previous left hand side.
+stormx:40% battle.h:16:21: error: ‘Character’ has not been declared
+battle.h:16:21:: Too many arguments.
+stormx:41%   void switchPokemon(Character trainer);
+Badly placed ()'s.
+stormx:42%                      ^
+No previous left hand side.
+stormx:43% battle.cpp:8:25: error: ‘Character’ has not been declared
+battle.cpp:8:25:: Too many arguments.
+stormx:44%  void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+Badly placed ()'s.
+stormx:45%                          ^
+No previous left hand side.
+stormx:46% battle.cpp:8:46: error: ‘Character’ has not been declared
+battle.cpp:8:46:: Too many arguments.
+stormx:47%  void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+Badly placed ()'s.
+stormx:48%                                               ^
+No previous left hand side.
+stormx:49% battle.cpp: In function ‘void attack(bool, int, int)’:
+Badly placed ()'s.
+stormx:50% battle.cpp:9:2: error: ‘Pokemon’ was not declared in this scope
+battle.cpp:9:2:: Too many arguments.
+stormx:51%   Pokemon currEnemyPok = theEnemyPlayer.getCurrentPokemon();
+Badly placed ()'s.
+stormx:52%   ^
+No previous left hand side.
+stormx:53% battle.cpp:9:10: error: expected ‘;’ before ‘currEnemyPok’
+battle.cpp:9:10:: Too many arguments.
+’: Command not found.
+stormx:54%   Pokemon currEnemyPok = theEnemyPlayer.getCurrentPokemon();
+Badly placed ()'s.
+stormx:55%           ^
+No previous left hand side.
+stormx:56% battle.cpp:10:10: error: expected ‘;’ before ‘currMyPok’
+battle.cpp:10:10:: Too many arguments.
+battle.cpp:17:23: error: ‘rand’ was not declared in this scope
+  int dodgeroll = rand() % 100;
+                       ^
+battle.cpp:24:13: error: ‘currMyPok’ was not declared in this scope
+    damage = currMyPok.getAttack() * 0.5;
+             ^
+battle.cpp:27:20: error: ‘typeMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    ^
+battle.cpp:27:35: error: ‘mypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                   ^
+battle.cpp:27:57: error: ‘enemypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[myp’: Command not found.
+okemon.typeNumber][enemypokemon.typeNumber];
+stormx:57%   Pokemon currMyPok = thePlayer.getCurrentPokemon();
+Badly placed ()'s.
+stormx:58%           ^
+No previous left hand side.
+stormx:59% battle.cpp:14:17: error: ‘currMyPok’ was not declared in this scope
+battle.cpp:14:17:: Too many arguments.
+stormx:60%    dodgechance = currMyPok.getDodge();
+Badly placed ()'s.
+stormx:61%                  ^
+No previous left hand side.
+stormx:62% battle.cpp:16:17: error: ‘currEnemyPok’ was not declared in this scope
+battle.cpp:16:17:: Too many arguments.
+stormx:63%    dodgechance = currEnemyPok.getDodge();
+Badly placed ()'s.
+stormx:64%                  ^
+No previous left hand side.
+stormx:65% battle.cpp:17:23: error: ‘rand’ was not declared in this scope
+battle.cpp:17:23:: Too many arguments.
+stormx:66%   int dodgeroll = rand() % 100;
+Badly placed ()'s.
+stormx:67%                        ^
+No previous left hand side.
+stormx:68% battle.cpp:24:13: error: ‘currMyPok’ was not declared in this scope
+battle.cpp:24:13:: Too many arguments.
+stormx:69%     damage = currMyPok.getAttack() * 0.5;
+Badly placed ()'s.
+stormx:70%              ^
+No previous left hand side.
+stormx:71% battle.cpp:27:20: error: ‘typeMultiplier’ was not declared in this scope
+battle.cpp:27:20:: Too many arguments.
+stormx:72%     damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                                         ^
+battle.cpp:31:13: error: ‘currEnemyPok’ was not declared in this scope
+    damage = currEnemyPok.getAttack() * 0.5;
+             ^
+battle.cpp:32:20: error: ‘typeMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    ^
+battle.cpp:32:35: error: ‘mypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                   ^
+battle.cpp:32:57: error: ‘enemypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                                         ^
+battle.cpp:38:6: error: ‘currMyPok’ was not declared in this scope
+  if (currMyPok.getCurrentHealth() <= 0) {
+      ^
+battle.cpp:42:26: error: ‘switchPokemon’ was not declared in this scope
+   switchPokemon(thePlayer);
+                          ^
+battle.cpp:44:6: error: ‘currEnemyPok’ was not declared in this scope
+  if (currEnemyPok.getCurrentHealth() <= 0) {
+      ^
+battle.cpp:47:32: error: ‘switchPokemon’ was not declared in this scope
+    switchPokemon(theEnemyPlayer);
+                                ^
+battle.cpp: At global scope:
+battle.cpp:51:25: error: ‘Character’ has not been declared
+ void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+                         ^
+battle.cpp:51:46: error: ‘Pokemon’ has not been declared
+ void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+                                              ^
+battle.cpp: In function ‘void attack(bool, int, int)’:
+battle.cpp:51:6: error: redefinition of ‘void attack(bool, int, int)’
+ void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+      ^
+battle.cpp:8:6: error: ‘void attack(bool, int, int)’ previously defined here
+ void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+      ^
+battle.cpp:52:2: error: ‘Pokemon’ was not declared in this scope
+  Pokemon currEnemyPok = wildPokemon;
+  ^
+battle.cpp:52:10: error: expected ‘;’ before ‘currEnemyPok’
+  Pokemon currEnemyPok = wildPokemon;
+          ^
+battle.cpp:53:10: error: expected ‘;’ before ‘currMyPok’
+  Pokemon currMyPok = thePlayer.getCurrentPokemon();
+          ^
+battle.cpp:57:17: error: ‘currMyPok’ was not declared in this scope
+   dodgechance = currMyPok.getDodge();
+                 ^
+battle.cpp:59:17: error: ‘currEnemyPok’ was not declared in this scope
+   dodgechance = currEnemyPok.getDodge();
+                 ^
+battle.cpp:60:23: error: ‘rand’ was not declared in this scope
+  int dodgeroll = rand() % 100;
+                       ^
+battle.cpp:67:13: error: ‘currMyPok’ was not declared in this scope
+    damage = currMyPok.getAttack() * 0.5;
+             ^
+battle.cpp:70:20: error: ‘typeMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    ^
+battle.cpp:70:35: error: ‘mypokemon’ was not declared in this scope
+damage: No match.
+stormx:73%                     ^
+No previous left hand side.
+stormx:74% battle.cpp:27:35: error: ‘mypokemon’ was not declared in this scope
+battle.cpp:27:35:: Too many arguments.
+stormx:75%     damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+damage: No match.
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                   ^
+battle.cpp:70:57: error: ‘enemypokemon’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                                                         ^
+battle.cpp:74:13: error: ‘currEnemyPok’ was not declared in this scope
+    damage = currEnemyPok.getAttack() * 0.5;
+             ^
+battle.cpp:75:20: error: ‘typeMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    ^
+battle.cpp:75:35: error: ‘mypokemon’ was not declared in thstormx:76%  is scope
+    damage = damage*typeMult                                  ^
+No previous left hand side.
+stormx:77% iplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    battle.cpp:27:57: error: ‘enemypokemon’ was not declared in this scope
+battle.cpp:27:57:: Too many arguments.
+stormx:78%                ^
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+damage: No match.
+battle.cpp:75:57: error: ‘enemypokemon’ was not declared in thstormx:79% is scope
+    damage = damage*typeMultiplier[mypokemon.typeN                                                         ^
+No previous left hand side.
+stormx:80% umber][enemypokemon.typeNumber];
+                                          battle.cpp:31:13: error: ‘currEnemyPok’ was not declared in this scope
+battle.cpp:31:13:: Too many arguments.
+stormx:81%                ^
+battle.cpp:81:6: error: ‘c    damage = currEnemyPok.getAttack() * 0.5;
+Badly placed ()'s.
+stormx:82%   urrMyPok’ was           ^
+No previous left hand side.
+stormx:83%  not declared in this scope
+  if (currMyPok.getCurrentHealth() <= 0) {
+      battle.cpp:32:20: error: ‘typeMultiplier’ was not declared in this scope
+battle.cpp:32:20:: Too many arguments.
+stormx:84% ^
+battle.cpp:85:26: error: ‘switchPokemon’ was not declared in this scope
+   sw    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+damage: No match.
+stormx:85% itchPokemon(thePlayer)                    ^
+No previous left hand side.
+stormx:86% ;
+                          ^
+battle.cpp:87:6: error: ‘currEnemyPok’battle.cpp:32:35: error: ‘mypokemon’ was not declared in this scope
+battle.cpp:32:35:: Too many arguments.
+stormx:87%  was not declared in this scope
+  if (currEnemyPok.getCurrentHealth() <= 0)
+      ^    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+damage: No match.
+stormx:88%
+battle.cpp: At global scope:
+battle.                                   ^
+No previous left hand side.
+stormx:89% cpp:91:1: error: ‘Pokemon’ does not name a type
+ Pokemon switchPokemon(battle.cpp:32:57: error: ‘enemypokemon’ was not declared in this scope
+battle.cpp:32:57:: Too many arguments.
+stormx:90% Character trainer){
+  ^
+battle.cpp:103:1: error: ‘Pokemon’ does not name a type
+   damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+damage: No match.
+stormx:91%  Pokemon switchPokemon(int numPokemon, Character trainer){
+                                                         ^
+No previous left hand side.
+stormx:92%  ^
+battle.cpp:117:15: error: expected constructor, destructor, or type battle.cpp:38:6: error: ‘currMyPok’ was not declared in this scope
+battle.cpp:38:6:: Too many arguments.
+stormx:93% conversion before ‘(’ token
+ Battle::Ba  if (currMyPok.getCurrentHealth() <= 0) {
+if: Expression Syntax.
+stormx:94%   ttle(Cha    ^
+No previous left hand side.
+stormx:95% racter player, Pokemon enemy) {
+               ^
+explore.cpp:2:8: error: ‘battle.cpp:42:26: error: ‘switchPokemon’ was not declared in this scope
+battle.cpp:42:26:: Too many arguments.
+stormx:96% explore’  does not name a ty  switchPokemon(thePlayer);
+Badly placed ()'s.
+stormx:97% pe
+ static explore::exploreN                          ^
+No previous left hand side.
+stormx:98% ow(Character main)
+        ^
+explore.cpp:37:6: error: ‘explore’ has nobattle.cpp:44:6: error: ‘currEnemyPok’ was not declared in this scope
+battle.cpp:44:6:: Too many arguments.
+stormx:99% t been declared
+ bool explore::trySpace(int i,  if (currEnemyPok.getCurrentHealth() <= 0) {
+if: Expression Syntax.
+stormx:100%    int j)
+    ^
+No previous left hand side.
+stormx:101%       ^
+explore.cpp: In function ‘bool trySpace(int, int)’:
+explore.cpp:battle.cpp:47:32: error: ‘switchPokemon’ was not declared in this scope
+battle.cpp:47:32:: Too many arguments.
+stormx:102% 39:10: error: ‘MAP_SIZE’ was no    switchPokemon(theEnemyPlayer);
+Badly placed ()'s.
+stormx:103% t declared in this scope
+  if (i >                                ^
+No previous left hand side.
+stormx:104%  MAP_SIZE || j > MAP_SIZE)
+  battle.cpp: At global scope:
+battle.cpp:: Too many arguments.
+stormx:105%         ^
+explore.cpp:41:3: error: ‘cout’ was not declared battle.cpp:51:25: error: ‘Character’ has not been declared
+battle.cpp:51:25:: Too many arguments.
+stormx:106% in this scope
+   cout << "Error: explore.cpp trySpace out of bounds e void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+Badly placed ()'s.
+stormx:107%  xception" << endl;
+   ^
+exp                        ^
+No previous left hand side.
+stormx:108% lore.cpp:41:68: error: ‘endl’ was not declared in this scbattle.cpp:51:46: error: ‘Pokemon’ has not been declared
+battle.cpp:51:46:: Too many arguments.
+stormx:109% ope
+   cout << "Error: explore.cpp trySpace out of bounds exception"  void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+Badly placed ()'s.
+stormx:110% << endl;
+                                                                                     ^
+No previous left hand side.
+stormx:111%                              ^
+explore.cpp:42:3: error: retbattle.cpp: In function ‘void attack(bool, int, int)’:
+Badly placed ()'s.
+stormx:112% urn-statement with no value, in function returning ‘bool’ [-fpermissivbattle.cpp:51:6: error: redefinition of ‘void attack(bool, int, int)’
+Badly placed ()'s.
+stormx:113% e]
+   return;
+   ^
+explore.cpp:45:18: error: ‘newmap’ was not dec void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+Badly placed ()'s.
+stormx:114%   lared in    ^
+No previous left hand side.
+stormx:115%  this scope
+  int nextSpace = newmap[i][j];
+                  ^
+explore.cpp:49:8:battle.cpp:8:6: error: ‘void attack(bool, int, int)’ previously defined here
+Badly placed ()'s.
+stormx:116%  error: ‘WALL’ was not declared in this scope
+   case WALL:
+        ^ void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+Badly placed ()'s.
+stormx:117%
+explore  ^
+No previous left hand side.
+stormx:118% .cpp:51:14: error: ‘foundWall’ was not declared in this scope
+   battle.cpp:52:2: error: ‘Pokemon’ was not declared in this scope
+battle.cpp:52:2:: Too many arguments.
+stormx:119%  foundWall();
+              ^
+explore . Pokemon currEnemyPok = wildPokemon;
+Pokemon: Command not found.
+stormx:120% cpp:  ^
+No previous left hand side.
+stormx:121% 55:8: error: ‘FOREST’ was not declared in this scope
+   case FORbattle.cpp:52:10: error: expected ‘;’ before ‘currEnemyPok’
+battle.cpp:52:10:: Too many arguments.
+’: Command not found.
+stormx:122% EST:
+        ^
+explore.cpp:57:16: erro  Pokemon currEnemyPok = wildPokemon;
+Pokemon: Command not found.
+stormx:123% r: ‘foundF          ^
+No previous left hand side.
+stormx:124% orest’ was not declared in this scope
+    foundForest();
+      battle.cpp:53:10: error: expected ‘;’ before ‘currMyPok’
+battle.cpp:53:10:: Too many arguments.
+’: Command not found.
+stormx:125%           ^
+explore.cpp:61:8: error: ‘DESERT’ was  Pokemon currMyPok = thePlayer.getCurrentPokemon();
+Badly placed ()'s.
+stormx:126%   not declare         ^
+No previous left hand side.
+stormx:127% d in this scope
+   case DESERT:
+        ^
+explore.cpp:63:16: error: ‘fbattle.cpp:57:17: error: ‘currMyPok’ was not declared in this scope
+battle.cpp:57:17:: Too many arguments.
+stormx:128% oundDesert’ was not declared in this    dodgechance = currMyPok.getDodge();
+Badly placed ()'s.
+stormx:129%  scope
+    foundDese                ^
+No previous left hand side.
+stormx:130% rt();
+                ^
+explore.cpp:67:8: error: ‘SWAMP’ was not declarbattle.cpp:59:17: error: ‘currEnemyPok’ was not declared in this scope
+battle.cpp:59:17:: Too many arguments.
+stormx:131%    dodgechanceed in this scope
+   case SWAMP:
+        ^
+ = currEnemyPok.getDodge();
+Badly placed ()'s.
+stormx:132%      explore.cpp:69:15:             ^
+No previous left hand side.
+stormx:133% error: ‘foundSwamp’ was not declared in this scope
+    foundSwabattle.cpp:60:23: error: ‘rand’ was not declared in this scope
+battle.cpp:60:23:: Too many arguments.
+stormx:134% mp();
+               ^
+explore.c  int dodgeroll = rand() % 100;
+Badly placed ()'s.
+stormx:135% pp:73:8: error: ‘TOWN▒                       ^
+No previous left hand side.
+stormx:136% ▒ was not declared in this scope
+   case TOWN:
+        ^
+explore.cpp:75:battle.cpp:67:13: error: ‘currMyPok’ was not declared in this scope
+battle.cpp:67:13:: Too many arguments.
+stormx:137%    14: error: ‘foundTown’ was not declare damage = currMyPok.getAttack() * 0.5;
+Badly placed ()'s.
+stormx:138%     d in this scope         ^
+No previous left hand side.
+stormx:139%
+    foundTown();
+              ^
+explore.cpp:81:4: error: ‘cout’ was notbattle.cpp:70:20: error: ‘typeMultiplier’ was not declared in this scope
+battle.cpp:70:20:: Too many arguments.
+stormx:140%  declared in this scope
+    cout << "Error : explore.cpp trySpace mislabled space i    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+damage: No match.
+stormx:141%  n map" << endl;
+    ^
+                   ^
+No previous left hand side.
+stormx:142% explore.cpp:81:69: error: ‘endl’ was not declared in this scope
+    battle.cpp:70:35: error: ‘mypokemon’ was not declared in this scope
+battle.cpp:70:35:: Too many arguments.
+stormx:143% cout << "Error : explore.cpp trySpace mislable d space in map" << endl;
+               damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+damage: No match.
+stormx:144%                                                                         ^
+No previous left hand side.
+stormx:145%                     ^
+explore.cpp: At global scope:
+explore.cpp:88:6: errorbattle.cpp:70:57: error: ‘enemypokemon’ was not declared in this scope
+battle.cpp:70:57:: Too many arguments.
+stormx:146% : ‘explore’ has not been declared
+ void explore::whatHappen ed()
+      ^
+explore   damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+damage: No match.
+stormx:147% .cpp: In function ‘void whatHappened()’:
+explore.cpp:90                                                         ^
+No previous left hand side.
+stormx:148% :13: error: ‘NULL’ was not declared in this scope
+  srand(time(NULL));
+battle.cpp:74:13: error: ‘currEnemyPok’ was not declared in this scope
+battle.cpp:74:13:: Too many arguments.
+stormx:149%                 ^
+explore.cpp:90:17: error: ‘t damage = currEnemyPok.getAttack() * 0.5;
+Badly placed ()'s.
+stormx:150%     ime’ was not          ^
+No previous left hand side.
+stormx:151% declared in this scope
+  srand(time(NULL));
+                 ^
+explore.cpp:90battle.cpp:75:20: error: ‘typeMultiplier’ was not declared in this scope
+battle.cpp:75:20:: Too many arguments.
+stormx:152% :18: error: ‘srand’ was not declared in this scope
+  srand(time(NULL));
+           damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+damage: No match.
+stormx:153%            ^
+explore.c                    ^
+No previous left hand side.
+stormx:154% pp:92:21: error: ‘rand’ was not declared in this scope
+  int whatHapbattle.cpp:75:35: error: ‘mypokemon’ was not declared in this scope
+battle.cpp:75:35:: Too many arguments.
+stormx:155% pened = rand % 100;
+                     ^
+explore.cpp:96:3: error: ‘cout’ was     damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+damage: No match.
+stormx:156% not declared in th is scope
+   cout <<                                  ^
+No previous left hand side.
+stormx:157%  "A pokemon has appeared from seemingly nowhere to fight!" << endl;
+   ^
+exbattle.cpp:75:57: error: ‘enemypokemon’ was not declared in this scope
+battle.cpp:75:57:: Too many arguments.
+stormx:158% plore.cpp:96:72: error: ‘endl’ was not declared in this scope
+    cout << "A pok   damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+damage: No match.
+stormx:159% emon has appeared from seemingly nowhere to fight!" << endl                                                         ^
+No previous left hand side.
+stormx:160% ;
+                                                                     battle.cpp:81:6: error: ‘currMyPok’ was not declared in this scope
+battle.cpp:81:6:: Too many arguments.
+stormx:161%   if   ^
+explore.cpp:101:3: error: ‘cout’ w (currMyPok.getCurrentHealth() <= 0) {
+if: Expression Syntax.
+stormx:162%     as not d  ^
+No previous left hand side.
+stormx:163% eclared in this scope
+   cout << "A trainer has spotted you! They want to babattle.cpp:85:26: error: ‘switchPokemon’ was not declared in this scope
+battle.cpp:85:26:: Too many arguments.
+stormx:164% ttle!" << endl;
+   ^
+explore.   switchPokemon(thePlayer);
+Badly placed ()'s.
+stormx:165% cpp:101:64: error: ‘endl▒                          ^
+No previous left hand side.
+stormx:166% ▒ was not declared in this scope
+   cout << "A trainer has spotted you! Thbattle.cpp:87:6: error: ‘currEnemyPok’ was not declared in this scope
+battle.cpp:87:6:: Too many arguments.
+stormx:167%   ifey want to battle!" << endl;
+                (currEnemyPok.getCurrentHealth() <= 0)
+if: Expression Syntax.
+stormx:168%               ^
+No previous left hand side.
+stormx:169%                              battle.cpp: At global scope:
+battle.cpp:: Too many arguments.
+stormx:170%             ^
+explore.cpp: At global scope:
+explore.cpp:110battle.cpp:91:1: error: ‘Pokemon’ does not name a type
+battle.cpp:91:1:: Too many arguments.
+stormx:171% :6: error: ‘explore’ has not been decla Pokemon switchPokemon(Character trainer){
+Badly placed ()'s.
+stormx:172% red ^
+No previous left hand side.
+stormx:173%
+ void explore::foundForest()
+      ^
+explore.cpp: In functibattle.cpp:103:1: error: ‘Pokemon’ does not name a type
+battle.cpp:103:1:: Too many arguments.
+stormx:174% on ‘void foundForest()’:
+explore.cpp:112:2: error: ‘c Pokemon switchPokemon(int numPokemon, Character trainer){
+Badly placed ()'s.
+stormx:175% out ^
+No previous left hand side.
+stormx:176% ’ was not declared in this scope
+  cout << "You are in a forest." << endl;
+  ^
+explore.cpp:112:36:battle.cpp:117:15: error: expected constructor, destructor, or type conversion before ‘(’ token
+Too many ('s.
+stormx:177%  error: ‘endl’ was not declared in this scope
+  Battle::Battle(Character player, Pokemon enemy) {
+Badly placed ()'s.
+stormx:178%       cout << "You are          ^
+No previous left hand side.
+stormx:179%  in a forest." << endl;
+                                   explore.cpp:2:8: error: ‘explore’ does not name a type
+explore.cpp:2:8:: Too many arguments.
+stormx:180%  ^
+explore.cpp: At global scope:
+explore.cpp static explore::exploreNow(Character main)
+Badly placed ()'s.
+stormx:181%     :116:6: er    ^
+No previous left hand side.
+stormx:182% ror: ‘explore’ has not been declared
+ void explore::foundexplore.cpp:37:6: error: ‘explore’ has not been declared
+explore.cpp:37:6:: Too many arguments.
+stormx:183%  boolDesert()
+      ^
+explore.cpp: In funct explore::trySpace(int i, int j)
+Badly placed ()'s.
+stormx:184%     ion ‘v  ^
+No previous left hand side.
+stormx:185% oid foundDesert()’:
+explore.cpp:118:2: error: ‘cout▒explore.cpp: In function ‘bool trySpace(int, int)’:
+Badly placed ()'s.
+stormx:186% ▒▒ was not declared in this scope
+  cout << "You are in a desert." << enexplore.cpp:39:10: error: ‘MAP_SIZE’ was not declared in this scope
+explore.cpp:39:10:: Too many arguments.
+stormx:187% dl;
+  ^
+explore.cpp:118:36: error: ▒  if (i > MAP_SIZE || j > MAP_SIZE)
+if: Expression Syntax.
+stormx:188%      ▒▒endl’ wa     ^
+No previous left hand side.
+stormx:189% s not declared in this scope
+  cout << "You are in a desert." << enexplore.cpp:41:3: error: ‘cout’ was not declared in this scope
+explore.cpp:41:3:: Too many arguments.
+stormx:190% dl;
+                                    ^
+ explore.cpp: At global scope:
+ex  cout << "Error: explore.cpp trySpace out of bounds exception" << endl;
+Ambiguous input redirect.
+stormx:191%   plore ^
+No previous left hand side.
+stormx:192% .cpp:122:6: error: ‘explore’ has not been declared
+ void exploreexplore.cpp:41:68: error: ‘endl’ was not declared in this scope
+explore.cpp:41:68:: Too many arguments.
+stormx:193% ::foundSwamp()
+      ^
+explore.cpp: In function ‘void foundSwamp()’:
+e   cout << "Error: explore.cpp trySpace out of bounds exception" << endl;
+Ambiguous input redirect.
+stormx:194% xplore.cpp:124:2: error: ‘cout’ was not declared in this scope
+   c                                                                   ^
+No previous left hand side.
+stormx:195% out << "You are in a Swamp." << endl;
+  ^
+explore.cpp:124:35: error: ‘endl’ was not declared in this explore.cpp:42:3: error: return-statement with no value, in function returning ‘bool’ [-fpermissive]
+explore.cpp:42:3:: Too many arguments.
+stormx:196%   scope
+  cou return;
+return: Command not found.
+stormx:197%   t <<  ^
+No previous left hand side.
+stormx:198% "You are in a Swamp." << endl;
+                                   ^
+exexplore.cpp:45:18: error: ‘newmap’ was not declared in this scope
+explore.cpp:45:18:: Too many arguments.
+stormx:199%   intplore.cpp: At global scope:
+expl nextSpace = newmap[i][j];
+int: No match.
+stormx:200%  ore.cpp:127:6: error                 ^
+No previous left hand side.
+stormx:201% : ‘explore’ has not been declared
+ void explore::foundTown()
+  explore.cpp:49:8: error: ‘WALL’ was not declared in this scope
+explore.cpp:49:8:: Too many arguments.
+stormx:202%    case    ^
+explore. WALL:
+stormx:203%     cpp: In fu    ^
+No previous left hand side.
+stormx:204% nction ‘void foundTown()’:
+explore.cpp:129:2: error: ‘cout’ was nexplore.cpp:51:14: error: ‘foundWall’ was not declared in this scope
+explore.cpp:51:14:: Too many arguments.
+stormx:205%    ot declared in th foundWall();
+Badly placed ()'s.
+stormx:206%     is scope
+  cout           ^
+No previous left hand side.
+stormx:207% << "You have found a town!" << endl;
+  ^
+explore.cpp:129:38: error: ▒explore.cpp:55:8: error: ‘FOREST’ was not declared in this scope
+explore.cpp:55:8:: Too many arguments.
+stormx:208%    case▒▒endl’ was no FOREST:
+stormx:209%  t declared       ^
+No previous left hand side.
+stormx:210%  in this scope
+  cout << "You have found a town!" << endl;
+                explore.cpp:57:16: error: ‘foundForest’ was not declared in this scope
+explore.cpp:57:16:: Too many arguments.
+stormx:211%                        foundForest();
+Badly placed ()'s.
+stormx:212%    ^
+explore.cpp:                 ^
+No previous left hand side.
+stormx:213% At global scope:
+explore.cpp:133:6: error: ‘explore’ has not beenexplore.cpp:61:8: error: ‘DESERT’ was not declared in this scope
+explore.cpp:61:8:: Too many arguments.
+stormx:214%    case declared
+ void  DESERT:
+stormx:215% explore::f        ^
+No previous left hand side.
+stormx:216% oundWall()
+      ^
+explore.cpp: In function ‘void foundWall()’:
+exploreexplore.cpp:63:16: error: ‘foundDesert’ was not declared in this scope
+explore.cpp:63:16:: Too many arguments.
+stormx:217%    .cpp:135:2: error:  foundDesert();
+Badly placed ()'s.
+stormx:218%    ‘cout’ was not             ^
+No previous left hand side.
+stormx:219%  declared in this scope
+  cout << "You have found a 40 foot wall conexplore.cpp:67:8: error: ‘SWAMP’ was not declared in this scope
+explore.cpp:67:8:: Too many arguments.
+stormx:220%  crete that is i  case SWAMP:
+stormx:221%       nsermounta  ^
+No previous left hand side.
+stormx:222% ble. The word TRUMP is written on the side."
+  ^
+explore.cpp:136:1: error:explore.cpp:69:15: error: ‘foundSwamp’ was not declared in this scope
+explore.cpp:69:15:: Too many arguments.
+stormx:223%    expected ‘;’   foundSwamp();
+Badly placed ()'s.
+stormx:224% before ‘}’ to               ^
+No previous left hand side.
+stormx:225% ken
+ }
+ ^
+explore.cpp: At global scope:
+explore.cpp:138:1: error: ▒explore.cpp:73:8: error: ‘TOWN’ was not declared in this scope
+explore.cpp:73:8:: Too many arguments.
+stormx:226%  ▒▒string’ do  case TOWN:
+stormx:227%     es not nam    ^
+No previous left hand side.
+stormx:228% e a type
+ string explore::getString()
+ ^
+In file included from gameEngineexplore.cpp:75:14: error: ‘foundTown’ was not declared in this scope
+explore.cpp:75:14:: Too many arguments.
+stormx:229%    .cpp:1:0:
+gameEng foundTown();
+Badly placed ()'s.
+stormx:230%     ine.h:1:19: warn          ^
+No previous left hand side.
+stormx:231% ing: extra tokens at end of #ifndef directive [enabled by default]
+explore.cpp:81:4: error: ‘cout’ was not declared in this scope
+explore.cpp:81:4:: Too many arguments.
+stormx:232%  #ifndef GAMEENGINE.H
+                   ^
+gameEngine.h:2:19: warning: miss    cout << "Error : explore.cpp trySpace mislabled space in map" << endl;
+Ambiguous input redirect.
+stormx:233%    ing wh ^
+No previous left hand side.
+stormx:234% itespace after the macro name [enabled by default]
+ #define GAMEENGIexplore.cpp:81:69: error: ‘endl’ was not declared in this scope
+explore.cpp:81:69:: Too many arguments.
+stormx:235% NE.H
+                   ^
+ In file included from battle.cpp:1:0,
+              cout << "Error : explore.cpp trySpace mislabled space in map" << endl;
+Ambiguous input redirect.
+stormx:236%       from gameEngine.h:5,
+                 from gameEngine.cpp:1:
+batt                                                                     ^
+No previous left hand side.
+stormx:237% le.h:1:15: warning: extra tokeexplore.cpp: At global scope:
+explore.cpp:: Too many arguments.
+stormx:238% ns at end of #ifndef directive [enabled by default]
+ #ifndef explore.cpp:88:6: error: ‘explore’ has not been declared
+explore.cpp:88:6:: Too many arguments.
+stormx:239% BATTLE.H
+               ^
+batt void explore::whatHappened()
+Badly placed ()'s.
+stormx:240%     le.h:2:1  ^
+No previous left hand side.
+stormx:241% 5: warning: missing whitespace after the macro name explore.cpp: In function ‘void whatHappened()’:
+Badly placed ()'s.
+stormx:242% [enabled by default]
+ #define BATTLE.H
+               ^
+battle.h:7:2explore.cpp:90:13: error: ‘NULL’ was not declared in this scope
+explore.cpp:90:13:: Too many arguments.
+stormx:243%  : error: ‘Pokemon▒ srand(time(NULL));
+Badly placed ()'s.
+stormx:244%     ▒ does not name         ^
+No previous left hand side.
+stormx:245%  a type
+  Pokemon owned; // Player's pokemon that is in play
+  ^
+batexplore.cpp:90:17: error: ‘time’ was not declared in this scope
+explore.cpp:90:17:: Too many arguments.
+stormx:246%  tle.h:8:2: error: ‘ srand(time(NULL));
+Badly placed ()'s.
+stormx:247%     Pokemon’ does not             ^
+No previous left hand side.
+stormx:248%  name a type
+  Pokemon enemy; // Enemy pokemon in play
+  ^
+battle.h:1explore.cpp:90:18: error: ‘srand’ was not declared in this scope
+explore.cpp:90:18:: Too many arguments.
+stormx:249%  2:19: error: expected srand(time(NULL));
+Badly placed ()'s.
+stormx:250%      ‘)’ before ‘p              ^
+No previous left hand side.
+stormx:251% layer’
+  Battle(Character player, Pokemon enemy); // select the fiexplore.cpp:92:21: error: ‘rand’ was not declared in this scope
+explore.cpp:92:21:: Too many arguments.
+stormx:252%   intrst pokemon from your party to fi whatHappened = rand % 100;
+int: Command not found.
+stormx:253% ght, for wild battle sc                     ^
+No previous left hand side.
+stormx:254% enarios
+                   ^
+battle.h:13:19: error: expected ‘)▒explore.cpp:96:3: error: ‘cout’ was not declared in this scope
+explore.cpp:96:3:: Too many arguments.
+stormx:255% ▒ before ‘player’
+  Battle(Character player, Character opponent); // for T   cout << "A pokemon has appeared from seemingly nowhere to fight!" << endl;
+Ambiguous input redirect.
+stormx:256%   raine ^
+No previous left hand side.
+stormx:257% r vs. Trainer scenarios
+                   ^
+battle.h:14:24: error: explore.cpp:96:72: error: ‘endl’ was not declared in this scope
+explore.cpp:96:72:: Too many arguments.
+stormx:258% ‘Character’ has not been declared
+  void attack(bool turn,Character thePla   cout << "A pokemon has appeared from seemingly nowhere to fight!" << endl;
+Ambiguous input redirect.
+stormx:259% yer, Character theEnemyPlayer);
+                        ^
+battle.h:14:45:                                                                         ^
+No previous left hand side.
+stormx:260% error: ‘Character’ has not been declared
+explore.cpp:101:3:  void attack(bool turn error: ‘cout’ was not declared in this scope
+explore.cpp:101:3:: Too many arguments.
+stormx:261% ,Character thePlayer, Character theEnemyPlayer);
+                        cout << "A trainer has spotted you! They want to battle!" << endl;
+Ambiguous input redirect.
+stormx:262%         ^
+No previous left hand side.
+stormx:263%                    ^
+battle.h:15:25: error: ‘Character’ has not bexplore.cpp:101:64: error: ‘endl’ was not declared in this scope
+explore.cpp:101:64:: Too many arguments.
+stormx:264% een declared
+  void attack(bool turn, Character thePlayer, Pokemon wil   cout << "A trainer has spotted you! They want to battle!" << endl;
+Ambiguous input redirect.
+stormx:265% dPokemon);
+                         ^
+battle.h:15:46: error: ‘Po                                                                ^
+No previous left hand side.
+stormx:266% kemon’ has not been declaredexplore.cpp: At global scope:
+explore.cpp:: Too many arguments.
+stormx:267%
+  void attack(bool turn, Character thePlayer, Pokemon wildPokexplore.cpp:110:6: error: ‘explore’ has not been declared
+explore.cpp:110:6:: Too many arguments.
+stormx:268% emon);
+                       void explore::foundForest()
+Badly placed ()'s.
+stormx:269%               ^
+No previous left hand side.
+stormx:270%                 ^
+battle.h:15:7: error: ‘void Batexplore.cpp: In function ‘void foundForest()’:
+Badly placed ()'s.
+stormx:271% tle::attack(bool, int, int)’ cannot be overloaded
+  void attack(boexplore.cpp:112:2: error: ‘cout’ was not declared in this scope
+explore.cpp:112:2:: Too many arguments.
+stormx:272% ol turn, Character thePlayer, Pokemon wild  cout << "You are in a forest." << endl;
+Ambiguous input redirect.
+stormx:273% Poke  ^
+No previous left hand side.
+stormx:274% mon);
+       ^
+battle.h:14:7: error: with ‘void Battle::attack(boolexplore.cpp:112:36: error: ‘endl’ was not declared in this scope
+explore.cpp:112:36:: Too many arguments.
+stormx:275% , int, int)’
+  void attack(bool turn,Cha  cout << "You are in a forest." << endl;
+Ambiguous input redirect.
+stormx:276% racter thePlayer, Character theEnemyPl                                    ^
+No previous left hand side.
+stormx:277% ayer);
+       ^
+battle.h:16:21explore.cpp: At global scope:
+explore.cpp:: Too many arguments.
+stormx:278% : error: ‘Character’ has not been declared
+  void switchPoexplore.cpp:116:6: error: ‘explore’ has not been declared
+explore.cpp:116:6:: Too many arguments.
+stormx:279% kemon(Character trainer);
+    void explore::foundDesert()
+Badly placed ()'s.
+stormx:280%               ^
+No previous left hand side.
+stormx:281%           ^
+In file included from gameEngine.h:5:0,explore.cpp: In function ‘void foundDesert()’:
+Badly placed ()'s.
+stormx:282%
+                 from gameEngine.cpp:1:
+battle.cpp:8:25: error: ‘explore.cpp:118:2: error: ‘cout’ was not declared in this scope
+explore.cpp:118:2:: Too many arguments.
+stormx:283% Character’ has not been declared
+ void a  cout << "You are in a desert." << endl;
+Ambiguous input redirect.
+stormx:284% ttac  ^
+No previous left hand side.
+stormx:285% k(bool turns, Character thePlayer, Character theEnemyPlayer){
+       explore.cpp:118:36: error: ‘endl’ was not declared in this scope
+explore.cpp:118:36:: Too many arguments.
+stormx:286%                   ^
+battle.cpp:8:46: error  cout << "You are in a desert." << endl;
+Ambiguous input redirect.
+stormx:287% : ‘Character’ has not been declare                                    ^
+No previous left hand side.
+stormx:288% d
+ void attack(bool turns, Chaexplore.cpp: At global scope:
+explore.cpp:: Too many arguments.
+stormx:289% racter thePlayer, Character theEnemyPlayer){
+                 explore.cpp:122:6: error: ‘explore’ has not been declared
+explore.cpp:122:6:: Too many arguments.
+stormx:290%                              void explore::foundSwamp()
+Badly placed ()'s.
+stormx:291%  ^
+battl      ^
+No previous left hand side.
+stormx:292% e.cpp: In function ‘void attack(bool, int, int)▒explore.cpp: In function ‘void foundSwamp()’:
+Badly placed ()'s.
+stormx:293% ▒▒:
+battle.cpp:9:2: error: ‘Pokemon’ was not declared in this scexplore.cpp:124:2: error: ‘cout’ was not declared in this scope
+explore.cpp:124:2:: Too many arguments.
+stormx:294% ope
+   Pokemon currEnemyPok = theEnemyPlay cout << "You are in a Swamp." << endl;
+Ambiguous input redirect.
+stormx:295% er.g  ^
+No previous left hand side.
+stormx:296% etCurrentPokemon();
+  ^
+battle.cpp:9:10: error: expected ‘;’ befoexplore.cpp:124:35: error: ‘endl’ was not declared in this scope
+explore.cpp:124:35:: Too many arguments.
+stormx:297% re ‘currEnemyPok’
+  Pokemon currEnemy  cout << "You are in a Swamp." << endl;
+Ambiguous input redirect.
+stormx:298% Pok = theEnemyPlayer.getCurrentPokemo                                   ^
+No previous left hand side.
+stormx:299% n();
+          ^
+battle.cpp:10explore.cpp: At global scope:
+explore.cpp:: Too many arguments.
+stormx:300% :10: error: expected ‘;’ before ‘currMyPok’
+  Pokemon explore.cpp:127:6: error: ‘explore’ has not been declared
+explore.cpp:127:6:: Too many arguments.
+stormx:301% currMyPok = thePlayer.getCu void explore::foundTown()
+Badly placed ()'s.
+stormx:302% rrentPok      ^
+No previous left hand side.
+stormx:303% emon();
+          ^
+battle.cpp:14:17: error: ‘cexplore.cpp: In function ‘void foundTown()’:
+Badly placed ()'s.
+stormx:304% urrMyPok’ was not declared in this scope
+   dodgechance = currMyPoexplore.cpp:129:2: error: ‘cout’ was not declared in this scope
+explore.cpp:129:2:: Too many arguments.
+stormx:305% k.getDodge();
+                 ^
+battle.cpp:  cout << "You have found a town!" << endl;
+Ambiguous input redirect.
+stormx:306% 16:1  ^
+No previous left hand side.
+stormx:307% 7: error: ‘currEnemyPok’ was not declared in this scope
+   dodgecexplore.cpp:129:38: error: ‘endl’ was not declared in this scope
+explore.cpp:129:38:: Too many arguments.
+stormx:308% hance = currEnemyPok.getDodge();
+             cout << "You have found a town!" << endl;
+Ambiguous input redirect.
+stormx:309%       ^
+battle.cpp:17:23: error: ‘rand                                      ^
+No previous left hand side.
+stormx:310% ’ was not declared in this sexplore.cpp: At global scope:
+explore.cpp:: Too many arguments.
+stormx:311% cope
+  int dodgeroll = rand() % 100;
+                       ^
+explore.cpp:133:6: error: ‘explore’ has not been declared
+explore.cpp:133:6:: Too many arguments.
+stormx:312% battle.cpp:24:13: error: ▒ void explore::foundWall()
+Badly placed ()'s.
+stormx:313% ▒currMyP      ^
+No previous left hand side.
+stormx:314% ok’ was not declared in this scope
+    damage =explore.cpp: In function ‘void foundWall()’:
+Badly placed ()'s.
+stormx:315%  currMyPok.getAttack() * 0.5;
+             ^
+battle.cpp:27:20: errorexplore.cpp:135:2: error: ‘cout’ was not declared in this scope
+explore.cpp:135:2:: Too many arguments.
+stormx:316% : ‘typeMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][ene  cout << "You have found a 40 foot wall concrete that is insermountable. The word TRUMP is written on the side."
+? mypo  ^
+? kemon.typeNumber];
+                    ^
+battle.cpp:27:35: errorexplore.cpp:136:1: error: expected ‘;’ before ‘}’ token
+? : ▒ }
+? ▒▒m ^
+? ypokemon’ was not declared iexplore.cpp: At global scope:
+? n this scope
+    damage = damage*typeMultiplier[mypokemon.tyexplore.cpp:138:1: error: ‘string’ does not name a type
+? peNumber][enemypokemon.typeNu string explore::getString()
+? mbe ^
+? r];
+                                   ^
+bIn file included from gameEngine.cpp:1:0:
+? attle.cpp:27:57: error: ‘enemypokemon’ was not declared in this scope
+    damage = damgameEngine.h:1:19: warning: extra tokens at end of #ifndef directive [enabled by default]
+? age*typeMultiplier[myp #ifndef GAMEENGINE.H
+? okemon.typeNumber][en                   ^
+? emypokemon.typeNumber];
+                                                         ^
+battlegameEngine.h:2:19: warning: missing whitespace after the macro name [enabled by default]
+? .cpp:31:13: error: ‘ #define GAMEENGINE.H
+? currEnemyPok’ was n                   ^
+? ot declared in this scope
+In    damage = file included from battle.cpp:1:0,
+?  currEnemyPok.getAttack() * 0.5;
+                      from gameEngine.h:5,
+?         ^
+battle.cpp:32:20: error: ‘ty                 from gameEngine.cpp:1:
+? peMultiplier’ was not declared in this scope
+    damage = damage*typeMultiplier[mypobattle.h:1:15: warning: extra tokens at end of #ifndef directive [enabled by default]
+? kemon.typeNumber][ #ifndef BATTLE.H
+? enemypokemon.type               ^
+? Number];
+                    ^
+battle.cpp:32:35: error: ‘mypokemon’ was not declabattle.h:2:15: warning: missing whitespace after the macro name [enabled by default]
+? red in this scope
+ #define BATTLE.H
+?     damage = dama               ^
+? ge*typeMultiplier[mypokemon.typeNumber][enemypokemon.typbattle.h:7:2: error: ‘Pokemon’ does not name a type
+? eNumber];
+                                   ^
+battle  Pokemon owned; // Player's pokemon that is in play
+? .cpp  ^
+? :32:57: error: ‘enemypokemon’ was not declared in thbattle.h:8:2: error: ‘Pokemon’ does not name a type
+? is scope
+    damage = damage*typeMultiplie  Pokemon enemy; // Enemy pokemon in play
+? r[my  ^
+? pokemon.typeNumber][enemypokemon.typeNumber];
+              battle.h:12:19: error: expected ‘)’ before ‘player’
+?                                            ^
+battle.cpp:38:6: error: ‘currMyPok’ was not declared in this scope
+  if (c  Battle(Character player, Pokemon enemy); // select the first pokemon from your party to fight, for wild battle scenarios
+?  urrMyPok.getCurrentHe                  ^
+? alth() <= 0) {
+      ^
+battle.cpp:42:26: error: ‘switchPokbattle.h:13:19: error: expected ‘)’ before ‘player’
+? emon’ was not declared in this scope
+   switchPokemon(thePlayer);
+                   Battle(Character player, Character opponent); // for Trainer vs. Trainer scenarios
+?          ^
+battle.cpp                   ^
+? :44:6: error: ‘currEnemyPok’ was not declared in this scobattle.h:14:24: error: ‘Character’ has not been declared
+? pe
+  if (currEnemyPok.getCurrentHealth() <= 0) {
+      ^
+battle.cpp:47:3  void attack(bool turn,Character thePlayer, Character theEnemyPlayer);
+?  2: error: ‘switchPokemon                       ^
+? ’ was not declared in this scope
+    switchPokemon(theEnemybattle.h:14:45: error: ‘Character’ has not been declared
+? Player);
+                                ^
+battle.cpp: At global scope:
+  void attack(bool turn,Character thePlayer, Character theEnemyPlayer);
+? battle.cpp:51:25: error: ‘Character’ has no                                             ^
+? t been declared
+ void attack(bool turns, Character thePlayer,battle.h:15:25: error: ‘Character’ has not been declared
+?  Pokemon wildPokemon) {
+                         ^
+battle.cpp:51:46:  void attack(bool turn, Character thePlayer, Pokemon wildPokemon);
+?  error: ‘Pokemon’ has n                         ^
+? ot been declared
+ void attack(bool turns, Character thePlaybattle.h:15:46: error: ‘Pokemon’ has not been declared
+? er, Pokemon wildPokemon) {
+                                           void attack(bool turn, Character thePlayer, Pokemon wildPokemon);
+?      ^
+battle.cpp: In function ‘void attack(bo                                              ^
+? ol, int, int)’:
+battle.cpp:51:6: error: redefinition of ‘void attack(bool, int, ibattle.h:15:7: error: ‘void Battle::attack(bool, int, int)’ cannot be overloaded
+? nt)’
+ void attack(bool turns, Character thePlayer, Pokemon wildPok  void attack(bool turn, Character thePlayer, Pokemon wildPokemon);
+? emon) {
+        ^
+?      ^
+battle.cpp:8:6: error: ‘void attack(bool, int, int)’ previbattle.h:14:7: error: with ‘void Battle::attack(bool, int, int)’
+? ously defined here
+ void attack(bool turns, Character thePlayer, Charact  void attack(bool turn,Character thePlayer, Character theEnemyPlayer);
+? er theEne       ^
+? myPlayer){
+      ^
+battle.cpp:52:2: error: ‘Pokemon’ was battle.h:16:21: error: ‘Character’ has not been declared
+? not declared in this scope
+  Pokemon curr  void switchPokemon(Character trainer);
+?  EnemyPok = wildPokemon;                    ^
+?
+  ^
+battle.cpp:52:10: error: expected ▒In file included from gameEngine.h:5:0,
+? ▒▒;’ before ‘currEnemyPok’
+  Pokem                 from gameEngine.cpp:1:
+? on currEnemyPok = wildPokemon;
+          ^
+battle.cpp:53:10: ebattle.cpp:8:25: error: ‘Character’ has not been declared
+? rror: expected ‘;’ before ‘currMyPok’
+  Pokemon currMyPok = thePl void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+? ayer.getCurrentPokemon();
+                          ^
+?          ^
+battle.cpp:57:17: error: ‘currMyPok’ was not debattle.cpp:8:46: error: ‘Character’ has not been declared
+? clared in this scope
+   dodgechance = currMyPok.getDodge();
+              void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+?     ^
+battle.cpp:59:17: error: ‘currEnemyPok▒                                              ^
+? ▒ was not declared in this scope
+   dodgechance = currEnemybattle.cpp: In function ‘void attack(bool, int, int)’:
+? Pok.getDodge();
+                 ^
+battle.cpp:60:23: error: ‘rand▒battle.cpp:9:2: error: ‘Pokemon’ was not declared in this scope
+? ▒▒ was not declared in this scope
+  int dodgeroll = rand() %   Pokemon currEnemyPok = theEnemyPlayer.getCurrentPokemon();
+?  100; ^
+?
+                       ^
+battle.cpp:9:10:battle.cpp:67:13: error: ‘currMyPok’  error: expected ‘;’ before ‘currEnemyPok’
+? was not declared in this scope
+    damage = currMyPok.getAtta  Pokemon currEnemyPok = theEnemyPlayer.getCurrentPokemon();
+?      ck() * 0.5;
+     ^
+?              ^
+battle.cpp:70:20: error: ‘typeMultiplier’ was battle.cpp:10:10: error: expected ‘;’ before ‘currMyPok’
+? not declared in this scope
+    damage = damage*typeMu  Pokemon currMyPok = thePlayer.getCurrentPokemon();
+?     ltiplier[myp      ^
+? okemon.typeNumber][enemypokemon.typeNumber];
+                    ^
+battlbattle.cpp:14:17: error: ‘currMyPok’ was not declared in this scope
+? e.cpp:70:35: error: ‘mypokemon’ was   dodgechance = currMyPok.getDodge();
+?   not declared in th                ^
+? is scope
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokebattle.cpp:16:17: error: ‘currEnemyPok’ was not declared in this scope
+? mon.typeNumber];
+                            dodgechance = currEnemyPok.getDodge();
+?            ^
+battle.                ^
+? cpp:70:57: error: ‘enemypokemon’ was not declared in this scopebattle.cpp:17:23: error: ‘rand’ was not declared in this scope
+?
+    damage = damage*typeMultipl int dodgeroll = rand() % 100;
+?     ier [mypokemon.typeNumber]                  ^
+? [enemypokemon.typeNumber];
+                                             battle.cpp:24:13: error: ‘currMyPok’ was not declared in this scope
+?             ^
+battle.cpp:74:13: error: ‘    damage = currMyPok.getAttack() * 0.5;
+?     currEnemyPok’         ^
+?  was not declared in this scope
+    damage = currEnemyPok.getAttack() * 0.5;
+battle.cpp:27:20: error: ‘typeMultiplier’ was not declared in this scope
+?              ^
+battle.cpp:75:20: error: ‘typeMultiplier’ was not declared in th    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+?  is scope
+    damage =                    ^
+? damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+  battle.cpp:27:35: error: ‘mypokemon’ was not declared in this scope
+?                   ^
+battle.cpp:75:35: error: ‘mypokemon’ was not declared in th    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+?                 is scope
+    damage = damage*typeMult                   ^
+? iplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+                    battle.cpp:27:57: error: ‘enemypokemon’ was not declared in this scope
+?                ^
+battle.cpp:75:57: error: ‘enemypokemon’ was not declared in th    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+? is scope
+    damage = damage*typeMultiplier[mypokemon.typeN                                                         ^
+? umber][enemypokemon.typeNumber];
+                                          battle.cpp:31:13: error: ‘currEnemyPok’ was not declared in this scope
+?                ^
+battle.cpp:81:6: error: ‘c    damage = currEnemyPok.getAttack() * 0.5;
+?        urrMyPok’ was      ^
+?  not declared in this scope
+battle.cpp:32:20:  if (currMyPok.getCurrentHealth() <= 0) {
+       error: ‘typeMultiplier’ was not declared in this scope
+? ^
+battle.cpp:85:26: error: ‘switchPokemon’ was not declared in this scope
+   sw    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+?        itchPokemon(thePlayer)             ^
+? ;
+                          ^
+battle.cpp:87:6: error: ‘currEnemyPok’battle.cpp:32:35: error: ‘mypokemon’ was not declared in this scope
+?  was not declared in this scope
+  if (currEnemyPok.getCurrentHealth() <= 0)
+      ^    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+?
+battle.cpp: At global scope:
+battle.                             ^
+? cpp:91:1: error: ‘Pokemon’ does not name a type
+ Pokemon switchPokemon(battle.cpp:32:57: error: ‘enemypokemon’ was not declared in this scope
+? Character trainer){
+ ^
+battle.cpp:103:1: error: ‘Pokemon’ does not name a type
+    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+?       Pokemon switchPokemon(int numPokemon, Character trainer){
+                                                    ^
+?  ^
+battle.cpp:117:15: error: expected constructor, destructor, or type battle.cpp:38:6: error: ‘currMyPok’ was not declared in this scope
+?   ifconversion before ‘(’ token
+ Battle::Ba (currMyPok.getCurrentHealth() <= 0) {
+?      ttle(Cha ^
+? racter player, Pokemon enemy) {
+               ^
+Pokemon.cpp:1:24: fatal errbattle.cpp:42:26: error: ‘switchPokemon’ was not declared in this scope
+?   or: gameEngine.h: No such fil switchPokemon(thePlayer);
+?        e or directory
+ #include <ga                   ^
+? meEngine.h>
+                        ^
+compilation terminated.
+battle.cpp:44:6: error: ‘currEnemyPok’ was not declared in this scope
+?   if (currEnemyPok.getCurrentHealth() <= 0) {
+?       ^
+? battle.cpp:47:32: error: ‘switchPokemon’ was not declared in this scope
+?     switchPokemon(theEnemyPlayer);
+?                                 ^
+? battle.cpp: At global scope:
+? battle.cpp:51:25: error: ‘Character’ has not been declared
+?  void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+?                          ^
+? battle.cpp:51:46: error: ‘Pokemon’ has not been declared
+?  void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+?                                               ^
+? battle.cpp: In function ‘void attack(bool, int, int)’:
+? battle.cpp:51:6: error: redefinition of ‘void attack(bool, int, int)’
+?  void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+?       ^
+? battle.cpp:8:6: error: ‘void attack(bool, int, int)’ previously defined here
+?  void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+?       ^
+? battle.cpp:52:2: error: ‘Pokemon’ was not declared in this scope
+?   Pokemon currEnemyPok = wildPokemon;
+?   ^
+? battle.cpp:52:10: error: expected ‘;’ before ‘currEnemyPok’
+?   Pokemon currEnemyPok = wildPokemon;
+?           ^
+? battle.cpp:53:10: error: expected ‘;’ before ‘currMyPok’
+?   Pokemon currMyPok = thePlayer.getCurrentPokemon();
+?           ^
+? battle.cpp:57:17: error: ‘currMyPok’ was not declared in this scope
+?    dodgechance = currMyPok.getDodge();
+?                  ^
+? battle.cpp:59:17: error: ‘currEnemyPok’ was not declared in this scope
+?    dodgechance = currEnemyPok.getDodge();
+?                  ^
+? battle.cpp:60:23: error: ‘rand’ was not declared in this scope
+?   int dodgeroll = rand() % 100;
+?                        ^
+? battle.cpp:67:13: error: ‘currMyPok’ was not declared in this scope
+?     damage = currMyPok.getAttack() * 0.5;
+?              ^
+? battle.cpp:70:20: error: ‘typeMultiplier’ was not declared in this scope
+?     damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+?                     ^
+? battle.cpp:70:35: error: ‘mypokemon’ was not declared in this scope
+?     damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+?                                    ^
+? battle.cpp:70:57: error: ‘enemypokemon’ was not declared in this scope
+?     damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+?                                                          ^
+? battle.cpp:74:13: error: ‘currEnemyPok’ was not declared in this scope
+?     damage = currEnemyPok.getAttack() * 0.5;
+?              ^
+? battle.cpp:75:20: error: ‘typeMultiplier’ was not declared in this scope
+?     damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+?                     ^
+? battle.cpp:75:35: error: ‘mypokemon’ was not declared in this scope
+?     damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+?                                    ^
+? battle.cpp:75:57: error: ‘enemypokemon’ was not declared in this scope
+?     damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+?                                                          ^
+? battle.cpp:81:6: error: ‘currMyPok’ was not declared in this scope
+?   if (currMyPok.getCurrentHealth() <= 0) {
+?       ^
+? battle.cpp:85:26: error: ‘switchPokemon’ was not declared in this scope
+?    switchPokemon(thePlayer);
+?                           ^
+? battle.cpp:87:6: error: ‘currEnemyPok’ was not declared in this scope
+?   if (currEnemyPok.getCurrentHealth() <= 0)
+?       ^
+? battle.cpp: At global scope:
+? battle.cpp:91:1: error: ‘Pokemon’ does not name a type
+?  Pokemon switchPokemon(Character trainer){
+?  ^
+? battle.cpp:103:1: error: ‘Pokemon’ does not name a type
+?  Pokemon switchPokemon(int numPokemon, Character trainer){
+?  ^
+? battle.cpp:117:15: error: expected constructor, destructor, or type conversion before ‘(’ token
+?  Battle::Battle(Character player, Pokemon enemy) {
+?                ^
+? Pokemon.cpp:1:24: fatal error: gameEngine.h: No such file or directory
+?  #include <gameEngine.h>
+?                         ^
+? compilation terminated.
