@@ -3,8 +3,9 @@ static explore::exploreNow(Character main)
 {
 	do
 	{
-		cout << "Where to? (North, South, East, West)";
+		cout << "Where to? (North, South, East, West, or exit)";
 		string choice = getString();
+		bool hasExited = false;
 
 		for (int i = 0; i < choice.size(); i++)
 		{
@@ -27,11 +28,16 @@ static explore::exploreNow(Character main)
 		{
 			if(trySpace(main.xPosition, main.yPosition - 1)) main.yPosition--;
 		}
+		else if (choice.compare("EXIT") == 0)
+		{
+			hasExit = true;
+		}
 		else
 		{
 			cout << "Invalid Input" << endl;
 		}
-	}
+		
+	} while (!hasExit);
 }
 
 bool explore::trySpace(int i, int j)
@@ -84,26 +90,30 @@ bool explore::trySpace(int i, int j)
 	}
 }
 
-
 void explore::whatHappened()
 {
 	srand(time(NULL));
 
 	int whatHappened = rand % 100;
-
-	if (whatHappened > 9 && whatHappened < 11)
+	
+	//free steps works as a way to make it more and more likely to be stoped by a trainer or
+	//pokemon the more times the player has moved without fighting a player or pokemon
+	//we may need to adjust the frequency settings though
+	if (whatHappened < freeSteps)
 	{
 		cout << "A pokemon has appeared from seemingly nowhere to fight!" << endl;
+		freeSteps = 0;
 		//battle wild
 	}
-	else if (whatHappened > 11 && whatHappened < 20)
+	else if (whatHappened > (100 - freesteps/2))
 	{
 		cout << "A trainer has spotted you! They want to battle!" << endl;
+		freeSteps = 0;
 		//battle trainer
 	}
 	else
 	{
-		//nothing
+		freeSteps++;
 	}
 }
 
