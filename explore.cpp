@@ -1,3 +1,4 @@
+#include "explore.h"
 
 static explore::exploreNow(Character main)
 {
