@@ -1,4 +1,5 @@
 #include "gameEngine.h"
+#include "explore.h"
 
 
 // Define functions from header
