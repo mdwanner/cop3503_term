@@ -12,6 +12,7 @@ public:
 	static Character exploreNow(Character);
 
 private:
+	int freeSteps;
 	string getString();
 	bool trySpace(int, int);
 	void foundForest();
