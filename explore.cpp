@@ -1,7 +1,7 @@
 #include "explore.h"
 
-static explore::exploreNow(Character main)
-{
+static void explore::exploreNow()
+{	
 	do
 	{
 		cout << "Where to? (North, South, East, West, or exit)";
@@ -15,19 +15,19 @@ static explore::exploreNow(Character main)
 
 		if (choice.compare("NORTH") == 0)
 		{
-			if(trySpace(main.xPosition, main.yPosition + 1)) main.yPosition++;
+			if(trySpace(mainCharacter.xPosition, mainCharacter.yPosition + 1)) mainCharacter.yPosition++;
 		}
 		else if (choice.compare("EAST") == 0)
 		{
-			if(trySpace(main.xPosition + 1, main.yPosition)) main.xPosition++;
+			if(trySpace(mainCharacter.xPosition + 1, mainCharacter.yPosition)) mainCharacter.xPosition++;
 		}
 		else if (choice.compare("WEST") == 0)
 		{
-			if(trySpace(main.xPosition - 1, main.yPosition)) main.xPosition--;
+			if(trySpace(mainCharacter.xPosition - 1, mainCharacter.yPosition)) mainCharacter.xPosition--;
 		}
 		else if (choice.compare("SOUTH") == 0)
 		{
-			if(trySpace(main.xPosition, main.yPosition - 1)) main.yPosition--;
+			if(trySpace(mainCharacter.xPosition, mainCharacter.yPosition - 1)) mainCharacter.yPosition--;
 		}
 		else if (choice.compare("EXIT") == 0)
 		{
@@ -39,6 +39,7 @@ static explore::exploreNow(Character main)
 		}
 		
 	} while (!hasExit);
+	
 }
 
 bool explore::trySpace(int i, int j)
@@ -104,13 +105,13 @@ void explore::whatHappened()
 	{
 		cout << "A pokemon has appeared from seemingly nowhere to fight!" << endl;
 		freeSteps = 0;
-		//battle wild
+		mainCharacter = /*battle wild*/(mainCharacter);
 	}
 	else if (whatHappened > (100 - freesteps/2))
 	{
 		cout << "A trainer has spotted you! They want to battle!" << endl;
 		freeSteps = 0;
-		//battle trainer
+		mainCharacter = /*battle trainer*/(mainCharacter);
 	}
 	else
 	{

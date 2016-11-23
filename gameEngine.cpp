@@ -6,15 +6,15 @@
 int main() 
 {
 	GameEngine game = new GameEngine();
-	cout << "\tWhat do you want to do?\n\t\t1) Explore\n\t\t2) Pokedex\n\t\t3) Pokemon\n\t\t4) Bag\n\t\t5) Quit\n\n\tchoice: ";
+	cout << "\tWhat do you want to do now?\n\t\t1) Explore\n\t\t2) Pokedex\n\t\t3) Pokemon\n\t\t4) Bag\n\t\t5) Quit\n\n\tchoice: ";
 	int choice = getInt();
 	while (choice != 5) 
 	{
 		switch (choice) 
 		{
-		case 1:
+		case 1: explore.exploreNow();
 			break;
-		case 2:
+		case 2: 
 			break;
 		case 3:
 			break;
@@ -30,42 +30,57 @@ int main()
 GameEngine()
 {
 	int genderChoice;
+	int pokeChoice;
+	
 	string nameChoice;
 
-	cout << "You wake up dazed and confused with bright white walls burning your eyes." << endl;
-	cout << "You see a large green figure in a white lab coat staring down at you. 'Hello!' it says." << endl;
-	cout << "Yes, the big green alligator is talking to you.";
-	cout << "'My name is professor Albert. Yes, I am an alligator, no your not dreaming, yes I am gald you woke up." << endl;
-	cout << " I found you passed out in Turlington. What is your name?' " << endl;
-	cout << "Your name: ";
+	cout << "You wake up dazed and confused in a forest." << endl;
+	cout << "There is writing on a tree. You approach and it reads 'Welcome to Canto.'" << endl;
+	cout << "Theres a voice in your head. It says 'What is your name?'\n You respond: ";
 	nameChoice = getString();
-	cout << "'Thats a great name. It is nice to meet you " << mainCharacter.getName() << ". " << endl;
-	cout << "I'm sorry I have to ask this but my eyesight is not the best, but what is your gender?'" << endl;
-	cout << "Your gender (1. Female, 2. Male): ";
+	cout << "What is your gender?'\n Your gender (1. Female, 2. Male): ";
 	genderChoice = getInt();
+	cout << "'I see greatness in you, " << mainCharacter.getName() << ". Become the best, and I will speak with you again.'" << endl;
+	cout << "The voice disappeared and 3 pokeoballs appeared." << endl;
+	cout << "Grab the 1st, 2nd, or 3rd one? " << endl;
+	pokeChoice = getInt();
+	
+	do
+	{
+		bool valid = false;
+		switch(pokeChoice)
+		{
+			case 1:
+			{
+				//need to add pokemon creation here.
+				valid = true;
+				break;
+			}
+			case 2:
+			{
+				//need to add pokemon creation here.
+				valid = true;
+				break;
+			}
+			case 3:
+			{
+				//need to add pokemon creation here.
+				valid = true;
+				break;
+			}
+			default:
+			{
+				cout << "Invalid choice. Try again: ";
+				valid = false;
+			}
+		
+		}
+	} while (!valid);
 	
 	mainCharacter = new Character(nameChoice, genderChoice);
 	
-	cout << "'Thats great! I'm happy to meet you. I just wish it was under better circumstances. " << endl;
-	cout << "Like I said, I found you passed out in th middle of Turlington so I brought you back to my lab to patch you up." << endl;
-	cout << "Turns out I can heal you and Pokemon! Do you remeber what happened?'" << endl;
-	string ans = getString();
-	
-	if(ans.compare("No") == 0 || ans.compare("NO") == 0 || ans.compare("no") == 0)
-	{
-		cout << "Okay, then I will fill you in. ";
-	}
-	else if(ans.compare("YES") == 0 || ans.compare("Yes") == 0 || ans.compare("yes") == 0)
-	{
-		cout << "Then what happened? " << endl;
-		getString();
-		cout << "Yeah, thats not right, let me give you the real story.";
-	}
-	else
-	{
-		cout << "Yeah, you've got a concussion so I will just fill you in. ";
-	}
-	
+	cout << "You got a SOMETHING." << endl;
+	cout << "The other pokeballs disappeared before you could grab another." << endl;
 	
 	/** The map will hold ints and the ints will represent as fallows: 
 	* 0: Character

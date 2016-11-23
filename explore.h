@@ -9,7 +9,7 @@
 class explore
 {
 public:
-	static Character exploreNow(Character);
+	static void exploreNow();	//this is just going directly edit main because expoler an game engine are "friends"
 
 private:
 	int freeSteps;
