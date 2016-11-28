@@ -1,7 +1,9 @@
 #include "battle.h"
+#include "Pokemon.h"
 #include <iostream>
 #include <sstream>
-#include "Pokemon.h"
+#include <time.h>
+#include <ctime>
 
 using namespace std;
 // define functions in header (main() NOT located here)
@@ -16,7 +18,8 @@ void Battle::attack(bool turns, Character &thePlayer, Character &theEnemyPlayer)
 		dodgechance = currMyPok.getDodge();
 	else
 		dodgechance = currEnemyPok.getDodge();
-	int dodgeroll = rand() % 100;
+	srand(time(0));
+	int dodgeroll = rand() % 100+1;
 	if (dodgeroll >= dodgechance) {
 		//attack
 		cout << "attack was successful!\n";
@@ -26,12 +29,12 @@ void Battle::attack(bool turns, Character &thePlayer, Character &theEnemyPlayer)
 			damage = currMyPok.getAttack() * 0.5;
 			//The typeMultiplier represents a double array of gen 1 pokemon type chart multipliers.
 			//the pokemon.typenumber
-			damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+			//damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
 		}
 		else {
 			//enemy pokemon attacks
 			damage = currEnemyPok.getAttack() * 0.5;
-			damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+			//damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
 		}
 	}
 	else
@@ -59,7 +62,8 @@ void Battle::attack(bool turns, Character &thePlayer, Pokemon &wildPokemon) {
 		dodgechance = currMyPok.getDodge();
 	else
 		dodgechance = currEnemyPok.getDodge();
-	int dodgeroll = rand() % 100;
+	srand(time(0));
+	int dodgeroll = rand() % 100+1;
 	if (dodgeroll >= dodgechance) {
 		//attack
 		cout << "attack was successful!\n";
@@ -69,12 +73,12 @@ void Battle::attack(bool turns, Character &thePlayer, Pokemon &wildPokemon) {
 			damage = currMyPok.getAttack() * 0.5;
 			//The typeMultiplier represents a double array of gen 1 pokemon type chart multipliers.
 			//the pokemon.typenumber
-			damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+			//damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
 		}
 		else {
 			//enemy pokemon attacks
 			damage = currEnemyPok.getAttack() * 0.5;
-			damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+			//damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
 		}
 	}
 	else
@@ -135,9 +139,9 @@ Battle::Battle(Character &player, Pokemon &enemy) {
 			break;
 		case 2:
 			//open bag
-			int bagChoice = 0;
+			int bagOption = 0;
 			while (bagChoice > 3 || bagChoice < 1) {
-				cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
+				//cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
 				cout << "\n\t3)RETURN\nWhat will you use?\n\t\tchoice: ";
 				bagChoice = getInt();
 				if (bagChoice == 1) {
@@ -237,14 +241,15 @@ Battle::Battle(Character &player, Character &opponent) {
 			break;
 		case 2:
 			//open bag
-			int bagChoice = 0;
+			int bagOption = 0;
 			while (bagChoice > 3 || bagChoice < 1) {
-				cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
+				//cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
 				cout << "\n\t3)RETURN\nWhat will you use?\n\n\tchoice: ";
 				bagChoice = getInt();
 				if (bagChoice == 1){
 					//can't use pokeballs here.
 					cout << "You can't catch their pokemon!\n";
+					bagOption = 0;
 				}
 				if (bagChoice == 2){
 					//use health potion
