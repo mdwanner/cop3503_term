@@ -1,5 +1,6 @@
 #ifndef BATTLE.H
 #define BATTLE.H
+#include "Pokemon.h"
 using namespace std;
 
 class Battle {
