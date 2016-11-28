@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-using namnspace std;
+using namespace std;
 
 class Pokemon { // No subclasses, just one basic attack, at least for now.
 private:
@@ -52,3 +52,4 @@ public:
 												//might help to use getPokemon(numChange) in it to set the current Pokemon.
 	int getBadges(void);
 };
+#endif
