@@ -1,11 +1,13 @@
 #include "battle.h"
 #include <iostream>
+#include <sstream>
+#include "Pokemon.h"
 
 using namespace std;
 // define functions in header (main() NOT located here)
 
 //todo: INVENTORY SECTION STILL NEEDS CREATION AND IMPLEMENTATION
-void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
+void Battle::attack(bool turns, Character &thePlayer, Character &theEnemyPlayer){
 	Pokemon currEnemyPok = theEnemyPlayer.getCurrentPokemon();
 	Pokemon currMyPok = thePlayer.getCurrentPokemon();
 	int dodgechance;
@@ -44,11 +46,11 @@ void attack(bool turns, Character thePlayer, Character theEnemyPlayer){
 	if (currEnemyPok.getCurrentHealth() <= 0) {
 		cout << "enemy pokemon has fainted!";
 		//todo: make a loop that checks the next healthy pokemon (and maybe battle type).
-			switchPokemon(theEnemyPlayer);
+		switchPokemon(theEnemyPlayer);
 	}
 };
 
-void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
+void Battle::attack(bool turns, Character &thePlayer, Pokemon &wildPokemon) {
 	Pokemon currEnemyPok = wildPokemon;
 	Pokemon currMyPok = thePlayer.getCurrentPokemon();
 	int dodgechance;
@@ -88,19 +90,21 @@ void attack(bool turns, Character thePlayer, Pokemon wildPokemon) {
 		cout << "Wild pokemon has fainted!";
 };
 
-Pokemon switchPokemon(Character trainer){
+Pokemon Battle::switchPokemon(Character &trainer){
 	//For forced pokemon switch.
 	Pokemon currPokemon = trainer.getCurrentPokemon();
 	for (int i = 0; i < 6; i++){
 		if (currPokemon.getCurrentHealth() <= 0){
 			currPokemon = trainer.setCurrentPokemon(i);
 			cout << "switched to " << currPokemon.getName() << ".\n";
+			break;
 		}
-		return currPokemon;
+		
 	}
+	return currPokemon;
 };
 
-Pokemon switchPokemon(int numPokemon, Character trainer){
+Pokemon Battle::switchPokemon(int numPokemon, Character &trainer){
 	//For user choice switch.
 	Pokemon currPokemon = trainer.getCurrentPokemon();
 	Pokemon switchPokemon = trainer.getPokemon(numPokemon);
@@ -110,12 +114,13 @@ Pokemon switchPokemon(int numPokemon, Character trainer){
 	}
 	else {
 		cout << "You cannot switch to that pokemon!\n";
-			return currPokemon;
+			
 	}
+	return currPokemon;
 };
 
-Battle::Battle(Character player, Pokemon enemy) {
-	Pokemon currPokemon = trainer.getCurrentPokemon();
+Battle::Battle(Character &player, Pokemon &enemy) {
+	Pokemon currPokemon = player.getCurrentPokemon();
 	int action = 0;
 	//turn decides who attacks: 0 = you, 1 = enemy.
 	bool turn = 0;
@@ -153,12 +158,18 @@ Battle::Battle(Character player, Pokemon enemy) {
 			Pokemon beforePokemon = currPokemon;
 			while (pokeswitch > 7 || pokeswitch < 1) {
 				cout << "Which pokemon would you like to switch to?";
-				cout << "\n\t1)" << player.getPokemon(1);
-				cout << "\t2)" << player.getPokemon(2);
-				cout << "\n\t3)" << player.getPokemon(3);
-				cout << "\t4)" << player.getPokemon(4);
-				cout << "\n\t5)" << player.getPokemon(5);
-				cout << "\t6)" << player.getPokemon(6);
+				Pokemon pok1 = player.getPokemon(1);
+				cout << "\n\t1)" << pok1.getName();
+				Pokemon pok2 = player.getPokemon(2);
+				cout << "\t2)" << pok2.getName();
+				Pokemon pok3 = player.getPokemon(3);
+				cout << "\n\t3)" << pok3.getName();
+				Pokemon pok4 = player.getPokemon(4);
+				cout << "\t4)" << pok4.getName();
+				Pokemon pok5 = player.getPokemon(5);
+				cout << "\n\t5)" << pok5.getName();
+				Pokemon pok6 = player.getPokemon(6);
+				cout << "\t6)" << pok6.getName();
 				cout << "\n\t\t7) Exit\n\n\tchoice: ";
 				pokeswitch = getInt();
 				switch (pokeswitch) {
@@ -185,7 +196,7 @@ Battle::Battle(Character player, Pokemon enemy) {
 					cout << "Invalid pokemon choice, please try again.\n";
 			}
 			//if (pokeswitch != 7) turn = 1; (replaced code)
-			if (currPokemon != beforePokemon) {
+			if (currPokemon.getName() != beforePokemon.getName()) {
 				turn = 1;
 			}
 		}
@@ -194,8 +205,8 @@ Battle::Battle(Character player, Pokemon enemy) {
 			attack(1, player, enemy);
 			turn = 0;
 		}
-		cout << "Your pokemon has: " << currPokemon.getCurrentHealth(); << " hp.";
-		cout << "Enemy pokemon has: " << enemy.getCurrentHealth(); << " hp.";
+		cout << "Your pokemon has: " << currPokemon.getCurrentHealth() << " hp.";
+		cout << "Enemy pokemon has: " << enemy.getCurrentHealth() << " hp.";
 
 	}
 	if (currPokemon.getCurrentHealth() <= 0) {
@@ -209,8 +220,8 @@ Battle::Battle(Character player, Pokemon enemy) {
 	cout << "you ran away!";
 }
 //Battle for a character essentially does the same thing but you cannot run away nor catch.
-Battle::Battle(Character player, Character opponent) {
-	Pokemon currPokemon = trainer.getCurrentPokemon();
+Battle::Battle(Character &player, Character &opponent) {
+	Pokemon currPokemon = player.getCurrentPokemon();
 	Pokemon currEnemyPokemon = opponent.getCurrentPokemon();
 	int action = 0;
 	//turn decides who attacks: 0 = you, 1 = enemy.
@@ -250,12 +261,18 @@ Battle::Battle(Character player, Character opponent) {
 			Pokemon beforePokemon = currPokemon;
 			while (pokeswitch > 7 || pokeswitch < 1) {
 				cout << "Which pokemon would you like to switch to?";
-				cout << "\n\t1)" << player.getPokemon(1);
-				cout << "\t2)" << player.getPokemon(2);
-				cout << "\n\t3)" << player.getPokemon(3);
-				cout << "\t4)" << player.getPokemon(4);
-				cout << "\n\t5)" << player.getPokemon(5);
-				cout << "\t6)" << player.getPokemon(6);
+				Pokemon pok1 = player.getPokemon(1);
+				cout << "\n\t1)" << pok1.getName();
+				Pokemon pok2 = player.getPokemon(2);
+				cout << "\t2)" << pok2.getName();
+				Pokemon pok3 = player.getPokemon(3);
+				cout << "\n\t3)" << pok3.getName();
+				Pokemon pok4 = player.getPokemon(4);
+				cout << "\t4)" << pok4.getName();
+				Pokemon pok5 = player.getPokemon(5);
+				cout << "\n\t5)" << pok5.getName();
+				Pokemon pok6 = player.getPokemon(6);
+				cout << "\t6)" << pok6.getName();
 				cout << "\n\t\t7) Exit\n\n\tchoice: ";
 				pokeswitch = getInt();
 				switch (pokeswitch) {
@@ -282,7 +299,7 @@ Battle::Battle(Character player, Character opponent) {
 					cout << "Invalid pokemon choice, please try again.\n";
 			}
 			//if (pokeswitch != 7) turn = 1; (replaced code)
-			if (currPokemon != beforePokemon) {
+			if (currPokemon.getName() != beforePokemon.getName()) {
 				turn = 1;
 			}
 		}
@@ -291,8 +308,8 @@ Battle::Battle(Character player, Character opponent) {
 			attack(1, player, opponent);
 			turn = 0;
 		}
-		cout << "Your pokemon has: " << currPokemon.getCurrentHealth(); << " hp.";
-		cout << "Enemy pokemon has: " << currEnemyPokemon.getCurrentHealth(); << " hp.";
+		cout << "Your pokemon has: " << currPokemon.getCurrentHealth() << " hp.";
+		cout << "Enemy pokemon has: " << currEnemyPokemon.getCurrentHealth() << " hp.";
 	}
 	if (currPokemon.getCurrentHealth() <= 0) {
 		cout << "You have lost the battle!\n";
