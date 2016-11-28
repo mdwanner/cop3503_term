@@ -1,5 +1,5 @@
-#ifndef POKEMON.H
-#define POKEMON.H
+#ifndef POKEMON_H
+#define POKEMON_H
 #include <iostream>
 #include <string>
 

@@ -1,12 +1,13 @@
 #include "explore.h"
 
-static void explore::exploreNow()
+void explore::exploreNow(GameEngine g)
 {	
+	bool hasExit = false;
+	
 	do
 	{
 		cout << "Where to? (North, South, East, West, or exit)";
 		string choice = getString();
-		bool hasExited = false;
 
 		for (int i = 0; i < choice.size(); i++)
 		{
@@ -15,19 +16,19 @@ static void explore::exploreNow()
 
 		if (choice.compare("NORTH") == 0)
 		{
-			if(trySpace(mainCharacter.xPosition, mainCharacter.yPosition + 1)) mainCharacter.yPosition++;
+			if(trySpace(g.mainCharacter.xPosition, g.mainCharacter.yPosition + 1, g)) g.mainCharacter.yPosition++;
 		}
 		else if (choice.compare("EAST") == 0)
 		{
-			if(trySpace(mainCharacter.xPosition + 1, mainCharacter.yPosition)) mainCharacter.xPosition++;
+			if(trySpace(g.mainCharacter.xPosition + 1, g.mainCharacter.yPosition, g)) g.mainCharacter.xPosition++;
 		}
 		else if (choice.compare("WEST") == 0)
 		{
-			if(trySpace(mainCharacter.xPosition - 1, mainCharacter.yPosition)) mainCharacter.xPosition--;
+			if(trySpace(g.mainCharacter.xPosition - 1, g.mainCharacter.yPosition, g)) g.mainCharacter.xPosition--;
 		}
 		else if (choice.compare("SOUTH") == 0)
 		{
-			if(trySpace(mainCharacter.xPosition, mainCharacter.yPosition - 1)) mainCharacter.yPosition--;
+			if(trySpace(g.mainCharacter.xPosition, g.mainCharacter.yPosition - 1, g)) g.mainCharacter.yPosition--;
 		}
 		else if (choice.compare("EXIT") == 0)
 		{
@@ -42,7 +43,7 @@ static void explore::exploreNow()
 	
 }
 
-bool explore::trySpace(int i, int j)
+bool explore::trySpace(int i, int j, GameEngine g)
 {
 	if (i > MAP_SIZE || j > MAP_SIZE)
 	{
@@ -50,37 +51,37 @@ bool explore::trySpace(int i, int j)
 		return false;
 	}
 
-	int nextSpace = newmap[i][j];
+	int nextSpace = g.newmap[i][j];
 
 	switch (nextSpace)
 	{
 		case WALL:
 		{
-			foundWall();
+			foundWall(g);
 			return false;
 			break;
 		}
 		case FOREST:
 		{
-			foundForest();
+			foundForest(g);
 			return true;
 			break;
 		}
 		case DESERT:
 		{
-			foundDesert();
+			foundDesert(g);
 			return true;
 			break;
 		}
 		case SWAMP:
 		{
-			foundSwamp();
+			foundSwamp(g);
 			return true;
 			break;
 		}
 		case TOWN:
 		{
-			foundTown();
+			foundTown(g);
 			return false;
 			break;
 		}
@@ -92,7 +93,7 @@ bool explore::trySpace(int i, int j)
 	}
 }
 
-void explore::whatHappened()
+void explore::whatHappened(GameEngine g)
 {
 	srand(time(NULL));
 
@@ -105,13 +106,13 @@ void explore::whatHappened()
 	{
 		cout << "A pokemon has appeared from seemingly nowhere to fight!" << endl;
 		freeSteps = 0;
-		mainCharacter = /*battle wild*/(mainCharacter);
+		g.mainCharacter;// = /*battle wild*/(g.mainCharacter);
 	}
-	else if (whatHappened > (100 - freesteps/2))
+	else if (whatHappened > (100 - freeSteps/2))
 	{
 		cout << "A trainer has spotted you! They want to battle!" << endl;
 		freeSteps = 0;
-		mainCharacter = /*battle trainer*/(mainCharacter);
+		g.mainCharacter; //= /*battle trainer*/(g.mainCharacter);
 	}
 	else
 	{
@@ -119,30 +120,31 @@ void explore::whatHappened()
 	}
 }
 
-void explore::foundForest()
+void explore::foundForest(GameEngine g)
 {
 	cout << "You are in a forest." << endl;
-	whatHappened();
+	whatHappened(g);
 }
 
-void explore::foundDesert()
+void explore::foundDesert(GameEngine g)
 {
 	cout << "You are in a desert." << endl;
-	whatHappened();
+	whatHappened(g);
 }
 
-void explore::foundSwamp()
+void explore::foundSwamp(GameEngine g)
 {
 	cout << "You are in a Swamp." << endl;
+	whatHappened(g);
 }
 
-void explore::foundTown() 
+void explore::foundTown(GameEngine g) 
 {
 	cout << "You have found a town!" << endl;
 	//run town
 }
 
-void explore::foundWall()
+void explore::foundWall(GameEngine g)
 {
 	cout << "You have found a 40 foot wall concrete that is insermountable. The word TRUMP is written on the side.";
 }

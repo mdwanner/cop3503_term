@@ -1,109 +1,10 @@
-stormx:3% g++ -o p.out *.cpp
-In file included from battle.cpp:1:0:
-battle.h:1:15: warning: extra tokens at end of #ifndef directive [enabled by default]
- #ifndef BATTLE.H
-               ^
-battle.h:2:15: warning: missing whitespace after the macro name [enabled by default]
- #define BATTLE.H
-               ^
-In file included from battle.h:3:0,
-                 from battle.cpp:1:
-Pokemon.h:1:16: warning: extra tokens at end of #ifndef directive [enabled by default]
- #ifndef POKEMON.H
-                ^
-Pokemon.h:2:16: warning: missing whitespace after the macro name [enabled by default]
- #define POKEMON.H
-                ^
+
+stormx:31% g++ -o p.out *.cpp
 In file included from battle.h:3:0,
                  from battle.cpp:1:
 Pokemon.h:44:15: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
   int badges = 0;        // increment this as gyms beaten
                ^
-battle.cpp: In member function ‘void Battle::attack(bool, Character&, Character&)’:
-battle.cpp:19:23: error: ‘rand’ was not declared in this scope
-  int dodgeroll = rand() % 100;
-                       ^
-battle.cpp:29:20: error: ‘typeMultiplier’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                    ^
-battle.cpp:29:35: error: ‘mypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                   ^
-battle.cpp:29:57: error: ‘enemypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                                         ^
-battle.cpp:34:20: error: ‘typeMultiplier’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                    ^
-battle.cpp:34:35: error: ‘mypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                   ^
-battle.cpp:34:57: error: ‘enemypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                                         ^
-battle.cpp: In member function ‘void Battle::attack(bool, Character&, Pokemon&)’:
-battle.cpp:62:23: error: ‘rand’ was not declared in this scope
-  int dodgeroll = rand() % 100;
-                       ^
-battle.cpp:72:20: error: ‘typeMultiplier’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                    ^
-battle.cpp:72:35: error: ‘mypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                   ^
-battle.cpp:72:57: error: ‘enemypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                                         ^
-battle.cpp:77:20: error: ‘typeMultiplier’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                    ^
-battle.cpp:77:35: error: ‘mypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                   ^
-battle.cpp:77:57: error: ‘enemypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                                         ^
-battle.cpp: In constructor ‘Battle::Battle(Character&, Pokemon&)’:
-battle.cpp:140:34: error: ‘mainCharacter’ was not declared in this scope
-     cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
-                                  ^
-battle.cpp:156:8: error: jump to case label [-fpermissive]
-   case 3:
-        ^
-battle.cpp:138:8: error:   crosses initialization of ‘int bagChoice’
-    int bagChoice = 0;
-        ^
-battle.cpp: In constructor ‘Battle::Battle(Character&, Character&)’:
-battle.cpp:242:34: error: ‘mainCharacter’ was not declared in this scope
-     cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
-                                  ^
-battle.cpp:259:8: error: jump to case label [-fpermissive]
-   case 3:
-        ^
-battle.cpp:240:8: error:   crosses initialization of ‘int bagChoice’
-    int bagChoice = 0;
-        ^
-In file included from battle.cpp:1:0,
-                 from gameEngine.h:5,
-                 from explore.h:2,
-                 from explore.cpp:1:
-battle.h:1:15: warning: extra tokens at end of #ifndef directive [enabled by default]
- #ifndef BATTLE.H
-               ^
-battle.h:2:15: warning: missing whitespace after the macro name [enabled by default]
- #define BATTLE.H
-               ^
-In file included from battle.h:3:0,
-                 from battle.cpp:1,
-                 from gameEngine.h:5,
-                 from explore.h:2,
-                 from explore.cpp:1:
-Pokemon.h:1:16: warning: extra tokens at end of #ifndef directive [enabled by default]
- #ifndef POKEMON.H
-                ^
-Pokemon.h:2:16: warning: missing whitespace after the macro name [enabled by default]
- #define POKEMON.H
-                ^
 In file included from battle.h:3:0,
                  from battle.cpp:1,
                  from gameEngine.h:5,
@@ -112,176 +13,10 @@ In file included from battle.h:3:0,
 Pokemon.h:44:15: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
   int badges = 0;        // increment this as gyms beaten
                ^
-In file included from gameEngine.h:5:0,
-                 from explore.h:2,
-                 from explore.cpp:1:
-battle.cpp: In member function ‘void Battle::attack(bool, Character&, Character&)’:
-battle.cpp:19:23: error: ‘rand’ was not declared in this scope
-  int dodgeroll = rand() % 100;
-                       ^
-battle.cpp:29:20: error: ‘typeMultiplier’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                    ^
-battle.cpp:29:35: error: ‘mypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                   ^
-battle.cpp:29:57: error: ‘enemypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                                         ^
-battle.cpp:34:20: error: ‘typeMultiplier’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                    ^
-battle.cpp:34:35: error: ‘mypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                   ^
-battle.cpp:34:57: error: ‘enemypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                                         ^
-battle.cpp: In member function ‘void Battle::attack(bool, Character&, Pokemon&)’:
-battle.cpp:62:23: error: ‘rand’ was not declared in this scope
-  int dodgeroll = rand() % 100;
-                       ^
-battle.cpp:72:20: error: ‘typeMultiplier’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                    ^
-battle.cpp:72:35: error: ‘mypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                   ^
-battle.cpp:72:57: error: ‘enemypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                                         ^
-battle.cpp:77:20: error: ‘typeMultiplier’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                    ^
-battle.cpp:77:35: error: ‘mypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                   ^
-battle.cpp:77:57: error: ‘enemypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                                         ^
-battle.cpp: In constructor ‘Battle::Battle(Character&, Pokemon&)’:
-battle.cpp:140:34: error: ‘mainCharacter’ was not declared in this scope
-     cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
-                                  ^
-In file included from gameEngine.h:5:0,
-                 from explore.h:2,
-                 from explore.cpp:1:
-battle.cpp:156:8: error: jump to case label [-fpermissive]
-   case 3:
-        ^
-In file included from gameEngine.h:5:0,
-                 from explore.h:2,
-                 from explore.cpp:1:
-battle.cpp:138:8: error:   crosses initialization of ‘int bagChoice’
-    int bagChoice = 0;
-        ^
-In file included from gameEngine.h:5:0,
-                 from explore.h:2,
-                 from explore.cpp:1:
-battle.cpp: In constructor ‘Battle::Battle(Character&, Character&)’:
-battle.cpp:242:34: error: ‘mainCharacter’ was not declared in this scope
-     cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
-                                  ^
-battle.cpp:259:8: error: jump to case label [-fpermissive]
-   case 3:
-        ^
-battle.cpp:240:8: error:   crosses initialization of ‘int bagChoice’
-    int bagChoice = 0;
-        ^
-In file included from explore.h:2:0,
-                 from explore.cpp:1:
-gameEngine.h: At global scope:
-gameEngine.h:24:5: error: expected unqualified-id before ‘[’ token
-  int[MAP_SIZE][MAP_SIZE] newmap;
-     ^
-gameEngine.h:38:16: error: expected ‘;’ at end of member declaration
-  void help(void) // get game guidance and tips
-                ^
-gameEngine.h:51:30: error: ISO C++ forbids declaration of ‘healPokemon’ with no type [-fpermissive]
-  healPokemon(Pokemon party[6]);
-                              ^
-gameEngine.h:52:15: error: ISO C++ forbids declaration of ‘buyItems’ with no type [-fpermissive]
-  buyItems(void); // open store interface
-               ^
-gameEngine.h: In function ‘int getInt()’:
-gameEngine.h:56:5: error: redefinition of ‘int getInt()’
- int getInt() {
-     ^
-In file included from gameEngine.h:5:0,
-                 from explore.h:2,
-                 from explore.cpp:1:
-battle.cpp:324:5: error: ‘int getInt()’ previously defined here
- int getInt() {
-     ^
-In file included from explore.cpp:1:0:
-explore.h: At global scope:
-explore.h:23:7: error: ‘void explore::foundTown()’ cannot be overloaded
-  void foundTown();
-       ^
-explore.h:21:7: error: with ‘void explore::foundTown()’
-  void foundTown();
-       ^
-explore.cpp:3:33: error: cannot declare member function ‘static void explore::exploreNow()’ to have static linkage [-fpermissive]
- static void explore::exploreNow()
-                                 ^
-explore.cpp: In static member function ‘static void explore::exploreNow()’:
-explore.cpp:8:29: error: cannot call member function ‘std::string explore::getString()’ without object
-   string choice = getString();
-                             ^
-explore.cpp:18:16: error: ‘mainCharacter’ was not declared in this scope
-    if(trySpace(mainCharacter.xPosition, mainCharacter.yPosition + 1)) mainCharacter.yPosition++;
-                ^
-explore.cpp:22:16: error: ‘mainCharacter’ was not declared in this scope
-    if(trySpace(mainCharacter.xPosition + 1, mainCharacter.yPosition)) mainCharacter.xPosition++;
-                ^
-explore.cpp:26:16: error: ‘mainCharacter’ was not declared in this scope
-    if(trySpace(mainCharacter.xPosition - 1, mainCharacter.yPosition)) mainCharacter.xPosition--;
-                ^
-explore.cpp:30:16: error: ‘mainCharacter’ was not declared in this scope
-    if(trySpace(mainCharacter.xPosition, mainCharacter.yPosition - 1)) mainCharacter.yPosition--;
-                ^
-explore.cpp:34:4: error: ‘hasExit’ was not declared in this scope
-    hasExit = true;
-    ^
-explore.cpp:41:12: error: ‘hasExit’ was not declared in this scope
-  } while (!hasExit);
-            ^
-explore.cpp: In member function ‘bool explore::trySpace(int, int)’:
-explore.cpp:53:18: error: ‘newmap’ was not declared in this scope
-  int nextSpace = newmap[i][j];
-                  ^
-explore.cpp: In member function ‘void explore::whatHappened()’:
-explore.cpp:99:28: error: invalid operands of types ‘int()throw ()’ and ‘int’ to binary ‘operator%’
+explore.cpp: In member function ‘void explore::whatHappened(GameEngine)’:
+explore.cpp:100:28: error: invalid operands of types ‘int()throw ()’ and ‘int’ to binary ‘operator%’
   int whatHappened = rand % 100;
                             ^
-explore.cpp:108:3: error: ‘mainCharacter’ was not declared in this scope
-   mainCharacter = /*battle wild*/(mainCharacter);
-   ^
-explore.cpp:110:33: error: ‘freesteps’ was not declared in this scope
-  else if (whatHappened > (100 - freesteps/2))
-                                 ^
-explore.cpp:114:3: error: ‘mainCharacter’ was not declared in this scope
-   mainCharacter = /*battle trainer*/(mainCharacter);
-   ^
-In file included from battle.cpp:1:0,
-                 from gameEngine.h:5,
-                 from gameEngine.cpp:1:
-battle.h:1:15: warning: extra tokens at end of #ifndef directive [enabled by default]
- #ifndef BATTLE.H
-               ^
-battle.h:2:15: warning: missing whitespace after the macro name [enabled by default]
- #define BATTLE.H
-               ^
-In file included from battle.h:3:0,
-                 from battle.cpp:1,
-                 from gameEngine.h:5,
-                 from gameEngine.cpp:1:
-Pokemon.h:1:16: warning: extra tokens at end of #ifndef directive [enabled by default]
- #ifndef POKEMON.H
-                ^
-Pokemon.h:2:16: warning: missing whitespace after the macro name [enabled by default]
- #define POKEMON.H
-                ^
 In file included from battle.h:3:0,
                  from battle.cpp:1,
                  from gameEngine.h:5,
@@ -289,120 +24,50 @@ In file included from battle.h:3:0,
 Pokemon.h:44:15: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
   int badges = 0;        // increment this as gyms beaten
                ^
-In file included from gameEngine.h:5:0,
-                 from gameEngine.cpp:1:
-battle.cpp: In member function ‘void Battle::attack(bool, Character&, Character&)’:
-battle.cpp:19:23: error: ‘rand’ was not declared in this scope
-  int dodgeroll = rand() % 100;
-                       ^
-battle.cpp:29:20: error: ‘typeMultiplier’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                    ^
-battle.cpp:29:35: error: ‘mypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                   ^
-battle.cpp:29:57: error: ‘enemypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                                         ^
-battle.cpp:34:20: error: ‘typeMultiplier’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                    ^
-battle.cpp:34:35: error: ‘mypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                   ^
-battle.cpp:34:57: error: ‘enemypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                                         ^
-battle.cpp: In member function ‘void Battle::attack(bool, Character&, Pokemon&)’:
-battle.cpp:62:23: error: ‘rand’ was not declared in this scope
-  int dodgeroll = rand() % 100;
-                       ^
-battle.cpp:72:20: error: ‘typeMultiplier’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                    ^
-battle.cpp:72:35: error: ‘mypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                   ^
-battle.cpp:72:57: error: ‘enemypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                                         ^
-battle.cpp:77:20: error: ‘typeMultiplier’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                    ^
-battle.cpp:77:35: error: ‘mypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                   ^
-battle.cpp:77:57: error: ‘enemypokemon’ was not declared in this scope
-    damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
-                                                         ^
-battle.cpp: In constructor ‘Battle::Battle(Character&, Pokemon&)’:
-battle.cpp:140:34: error: ‘mainCharacter’ was not declared in this scope
-     cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
-                                  ^
-In file included from gameEngine.h:5:0,
-                 from gameEngine.cpp:1:
-battle.cpp:156:8: error: jump to case label [-fpermissive]
-   case 3:
-        ^
-In file included from gameEngine.h:5:0,
-                 from gameEngine.cpp:1:
-battle.cpp:138:8: error:   crosses initialization of ‘int bagChoice’
-    int bagChoice = 0;
-        ^
-In file included from gameEngine.h:5:0,
-                 from gameEngine.cpp:1:
-battle.cpp: In constructor ‘Battle::Battle(Character&, Character&)’:
-battle.cpp:242:34: error: ‘mainCharacter’ was not declared in this scope
-     cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
-                                  ^
-battle.cpp:259:8: error: jump to case label [-fpermissive]
-   case 3:
-        ^
-battle.cpp:240:8: error:   crosses initialization of ‘int bagChoice’
-    int bagChoice = 0;
-        ^
-In file included from gameEngine.cpp:1:0:
-gameEngine.h: At global scope:
-gameEngine.h:24:5: error: expected unqualified-id before ‘[’ token
-  int[MAP_SIZE][MAP_SIZE] newmap;
-     ^
-gameEngine.h:38:16: error: expected ‘;’ at end of member declaration
-  void help(void) // get game guidance and tips
-                ^
-gameEngine.h:51:30: error: ISO C++ forbids declaration of ‘healPokemon’ with no type [-fpermissive]
-  healPokemon(Pokemon party[6]);
-                              ^
-gameEngine.h:52:15: error: ISO C++ forbids declaration of ‘buyItems’ with no type [-fpermissive]
-  buyItems(void); // open store interface
-               ^
-gameEngine.h: In function ‘int getInt()’:
-gameEngine.h:56:5: error: redefinition of ‘int getInt()’
- int getInt() {
-     ^
-In file included from gameEngine.h:5:0,
-                 from gameEngine.cpp:1:
-battle.cpp:324:5: error: ‘int getInt()’ previously defined here
- int getInt() {
-     ^
-In file included from gameEngine.cpp:2:0:
-explore.h: At global scope:
-explore.h:23:7: error: ‘void explore::foundTown()’ cannot be overloaded
-  void foundTown();
-       ^
-explore.h:21:7: error: with ‘void explore::foundTown()’
-  void foundTown();
-       ^
-gameEngine.cpp: In function ‘int main()’:
-gameEngine.cpp:8:35: error: conversion from ‘GameEngine*’ to non-scalar type ‘GameEngine’ requested
-  GameEngine game = new GameEngine();
-                                   ^
-gameEngine.cpp:15:18: error: expected unqualified-id before ‘.’ token
-   case 1: explore.exploreNow();
-                  ^
-gameEngine.cpp: At global scope:
-gameEngine.cpp:30:12: error: expected unqualified-id before ‘)’ token
- GameEngine()
-            ^
-Pokemon.cpp:1:24: fatal error: gameEngine.h: No such file or directory
- #include <gameEngine.h>
+gameEngine.cpp: In constructor ‘GameEngine::GameEngine()’:
+gameEngine.cpp:31:24: error: no matching function for call to ‘Character::Character()’
+ GameEngine::GameEngine()
                         ^
+gameEngine.cpp:31:24: note: candidates are:
+In file included from battle.h:3:0,
+                 from battle.cpp:1,
+                 from gameEngine.h:5,
+                 from gameEngine.cpp:1:
+Pokemon.h:47:2: note: Character::Character(std::string, int)
+  Character(string name, int gender);
+  ^
+Pokemon.h:47:2: note:   candidate expects 2 arguments, 0 provided
+Pokemon.h:46:2: note: Character::Character(std::string)
+  Character(string name);      // create accessors for the items
+  ^
+Pokemon.h:46:2: note:   candidate expects 1 argument, 0 provided
+Pokemon.h:34:7: note: Character::Character(const Character&)
+ class Character {
+       ^
+Pokemon.h:34:7: note:   candidate expects 1 argument, 0 provided
+gameEngine.cpp: In function ‘int getInt()’:
+gameEngine.cpp:224:5: error: redefinition of ‘int getInt()’
+ int getInt()
+     ^
+In file included from gameEngine.h:5:0,
+                 from gameEngine.cpp:1:
+battle.cpp:350:5: error: ‘int getInt()’ previously defined here
+ int getInt() {
+     ^
+In file included from battle.h:3:0,
+                 from battle.cpp:1,
+                 from gameEngine.h:5,
+                 from Pokemon.cpp:1:
+Pokemon.h:44:15: warning: non-static data member initializers only available with -std=c++11 or -std=gnu++11 [enabled by default]
+  int badges = 0;        // increment this as gyms beaten
+               ^
+Pokemon.cpp: In constructor ‘Pokemon::Pokemon(int)’:
+Pokemon.cpp:19:5: error: ‘choice’ was not declared in this scope
+     choice = rand()%10;
+     ^
+Pokemon.cpp:39:11: error: ‘class Pokemon’ has no member named ‘defense’
+     this->defense = int((1.0/(health-((level-1)*20)))*1000 + (rand()%10-5));
+           ^
+Pokemon.cpp: At global scope:
+Pokemon.cpp:51:25: error: no ‘int Pokemon::getDefense()’ member function declared in class ‘Pokemon’
+ int Pokemon::getDefense() {

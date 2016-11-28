@@ -1,6 +1,14 @@
-#ifndef BATTLE.H
-#define BATTLE.H
+#ifndef BATTLE_H
+#define BATTLE_H
 #include "Pokemon.h"
+#include <cstring>
+#include <cctype>
+#include <stdlib.h>
+#include <iostream>
+#include <sstream>
+#include <time.h>
+#include <ctime>
+
 using namespace std;
 
 class Battle {

@@ -9,17 +9,16 @@
 class explore
 {
 public:
-	static void exploreNow();	//this is just going directly edit main because expoler an game engine are "friends"
+	void exploreNow(GameEngine);	//this is just going directly edit main because expoler an game engine are "friends"
 
 private:
 	int freeSteps;
 	string getString();
-	bool trySpace(int, int);
-	void foundForest();
-	void foundDesert();
-	void foundSwamp();
-	void foundTown();
-	void foundWall();
-	void foundTown();
-	void whatHappened();
+	bool trySpace(int, int, GameEngine);
+	void foundForest(GameEngine);
+	void foundDesert(GameEngine);
+	void foundSwamp(GameEngine);
+	void foundWall(GameEngine);
+	void foundTown(GameEngine);
+	void whatHappened(GameEngine);
 };

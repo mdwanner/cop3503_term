@@ -5,14 +5,15 @@
 // Define functions from header
 int main() 
 {
-	GameEngine game = new GameEngine();
+	GameEngine game = /*new*/ GameEngine();
 	cout << "\tWhat do you want to do now?\n\t\t1) Explore\n\t\t2) Pokedex\n\t\t3) Pokemon\n\t\t4) Bag\n\t\t5) Quit\n\n\tchoice: ";
 	int choice = getInt();
+	explore ex = explore();
 	while (choice != 5) 
 	{
 		switch (choice) 
 		{
-		case 1: explore.exploreNow();
+		case 1: ex.exploreNow(game);
 			break;
 		case 2: 
 			break;
@@ -27,7 +28,7 @@ int main()
 	cout << "Goodbye!" << endl;
 }
 
-GameEngine()
+GameEngine::GameEngine()
 {
 	int genderChoice;
 	int pokeChoice;
@@ -45,9 +46,10 @@ GameEngine()
 	cout << "Grab the 1st, 2nd, or 3rd one? " << endl;
 	pokeChoice = getInt();
 	
+	bool valid = false;
+	
 	do
 	{
-		bool valid = false;
 		switch(pokeChoice)
 		{
 			case 1:
@@ -77,7 +79,7 @@ GameEngine()
 		}
 	} while (!valid);
 	
-	mainCharacter = new Character(nameChoice, genderChoice);
+	mainCharacter = Character(nameChoice, genderChoice);
 	
 	cout << "You got a SOMETHING." << endl;
 	cout << "The other pokeballs disappeared before you could grab another." << endl;
@@ -91,13 +93,28 @@ GameEngine()
 	* 5: town		Example output: You have found (blank) town
 	*/
 	
+	newmap = new int*[MAP_SIZE];
+	
+	for(int i = 0; i < MAP_SIZE; i++)
+	{
+		newmap[i] = new int[MAP_SIZE];
+	}
+	
 	//should be done now
-	createMap();
+	newmap = createMap();
 	
 }
 
-void createMap()
+int** createMap()
 {
+	int **newmap;
+	newmap = new int*[MAP_SIZE];
+	
+	for(int i = 0; i < MAP_SIZE; i++)
+	{
+		newmap[i] = new int[MAP_SIZE];
+	}
+	
 	for (int i = 0; i < MAP_SIZE / 2; i++) {
 		for (int j = 0; j < MAP_SIZE / 2; j++) {
 			newmap[i][j] = SWAMP;

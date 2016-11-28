@@ -1,8 +1,9 @@
-#ifndef GAMEENGINE.H
-#define GAMEENGINE.H
+#ifndef GAMEENGINE_H
+#define GAMEENGINE_H
 #include <iostream>
 #include <string>
 #include "battle.cpp"
+#include "Pokemon.h"
 #define MAP_SIZE 100
 #define WALL 1
 #define FOREST 2
@@ -21,21 +22,21 @@ class GameEngine {
 	friend class explore;
 
 private:
-	int[MAP_SIZE][MAP_SIZE] newmap;
+	int** newmap;
 	Character mainCharacter;
 	void go(string dir);
-	void foundTrainer(void);
-	void foundWildPokemon(void);
-	void foundTown(void);
-	void foundItem(void);
-	void createMap();
+	void foundTrainer();
+	void foundWildPokemon();
+	void foundTown();
+	void foundItem();
+	int** createMap();
 public:
 	//public ones
-	GameEngine(void); // Constructor, sequence to create character and choose initial pokemon
-	void viewPokedex(void);
-	void viewBag(void); // calls accessors of player Character to see inventory counts
-	void viewTeam(void);
-	void help(void) // get game guidance and tips
+	GameEngine(); // Constructor, sequence to create character and choose initial pokemon
+	void viewPokedex();
+	void viewBag(); // calls accessors of player Character to see inventory counts
+	void viewTeam();
+	void help(); // get game guidance and tips
 	// save game function if time allows
 	// End game function to be added?
 };
@@ -46,25 +47,14 @@ class Town {
 	// add private functions for buyItems() to use in its function definition
 public:
 	// public methods and fields
-	Town(void); // Initialize a new town, include its location on map
-	void battleGym(void); // includes a call to the Battle class
-	healPokemon(Pokemon party[6]);
-	buyItems(void); // open store interface
+	Town(); // Initialize a new town, include its location on map
+	void battleGym(); // includes a call to the Battle class
+	void healPokemon(Pokemon party[6]);
+	void buyItems(); // open store interface
 };
 
 //Marco: I made an int function to make sure responses are taken as ints.
-int getInt() {
-	int response;
-	string input = " ";
-	while (true) {
-		getline(cin, input);
-		// This code converts from string to number safely.
-		stringstream myStream(input);
-		if (myStream >> response)
-			break;
-		cout << "Invalid choice, please try again: ";
-	}
-	return response;
-}
+int getInt();
+string getString();
 
 #endif

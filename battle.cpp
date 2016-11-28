@@ -1,11 +1,13 @@
 #include "battle.h"
 #include "Pokemon.h"
-#include <iostream>
-#include <sstream>
-#include <time.h>
-#include <ctime>
+//I put these in the header file - joey
+//#include <iostream>
+//#include <sstream>
+//#include <time.h>
+//#include <ctime>
 
 using namespace std;
+
 // define functions in header (main() NOT located here)
 
 //todo: INVENTORY SECTION STILL NEEDS CREATION AND IMPLEMENTATION
@@ -18,7 +20,7 @@ void Battle::attack(bool turns, Character &thePlayer, Character &theEnemyPlayer)
 		dodgechance = currMyPok.getDodge();
 	else
 		dodgechance = currEnemyPok.getDodge();
-	srand(time(0));
+	srand(time(NULL));
 	int dodgeroll = rand() % 100+1;
 	if (dodgeroll >= dodgechance) {
 		//attack
@@ -62,7 +64,7 @@ void Battle::attack(bool turns, Character &thePlayer, Pokemon &wildPokemon) {
 		dodgechance = currMyPok.getDodge();
 	else
 		dodgechance = currEnemyPok.getDodge();
-	srand(time(0));
+	srand(time(NULL));
 	int dodgeroll = rand() % 100+1;
 	if (dodgeroll >= dodgechance) {
 		//attack
@@ -132,78 +134,90 @@ Battle::Battle(Character &player, Pokemon &enemy) {
 		cout << "\nYou encountered a wild pokemon, what would you like to do?" << endl;
 		cout << "\t1) FIGHT\t2) BAG\n\t3) POKEMON\t4) RUN\n\n\tchoice: ";
 		action = getInt();
-		switch (action) {
+		switch (action)
+		{
 		case 1:
-			attack(0,player,enemy);
-			turn = 1;
-			break;
+			{
+				attack(0,player,enemy);
+				turn = 1;
+				break;
+			}
 		case 2:
-			//open bag
-			int bagOption = 0;
-			while (bagChoice > 3 || bagChoice < 1) {
-				//cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
-				cout << "\n\t3)RETURN\nWhat will you use?\n\t\tchoice: ";
-				bagChoice = getInt();
-				if (bagChoice == 1) {
-					//use Pokeball
-				}
-				if (bagChoice == 2) {
-					//use health potion
-					currPokemon.changeCurrentHealth(currPokemon.getCurrentHealth()+currPokemon.getHealth()*0.5);
-					if (currPokemon.getCurrentHealth() > currPokemon.getHealth()) {
-						//Takes away the extra health if it exceeds maxhealth.
-						currPokemon.changeCurrentHealth(0-(currPokemon.getCurrentHealth() - currPokemon.getHealth()));
+			{
+				int bagChoice = 5;//for now but open bag
+				int bagOption = 0;
+				while (bagChoice > 3 || bagChoice < 1) {
+					//cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
+					cout << "\n\t3)RETURN\nWhat will you use?\n\t\tchoice: ";
+					bagChoice = getInt();
+					if (bagChoice == 1) {
+						//use Pokeball
+					}
+					if (bagChoice == 2) {
+						//use health potion
+						currPokemon.changeCurrentHealth(currPokemon.getCurrentHealth()+currPokemon.getHealth()*0.5);
+						if (currPokemon.getCurrentHealth() > currPokemon.getHealth()) {
+							//Takes away the extra health if it exceeds maxhealth.
+							currPokemon.changeCurrentHealth(0-(currPokemon.getCurrentHealth() - currPokemon.getHealth()));
+						}
 					}
 				}
+				break;
 			}
-			break;
 		case 3:
-			int pokeswitch = 0;
-			Pokemon beforePokemon = currPokemon;
-			while (pokeswitch > 7 || pokeswitch < 1) {
-				cout << "Which pokemon would you like to switch to?";
-				Pokemon pok1 = player.getPokemon(1);
-				cout << "\n\t1)" << pok1.getName();
-				Pokemon pok2 = player.getPokemon(2);
-				cout << "\t2)" << pok2.getName();
-				Pokemon pok3 = player.getPokemon(3);
-				cout << "\n\t3)" << pok3.getName();
-				Pokemon pok4 = player.getPokemon(4);
-				cout << "\t4)" << pok4.getName();
-				Pokemon pok5 = player.getPokemon(5);
-				cout << "\n\t5)" << pok5.getName();
-				Pokemon pok6 = player.getPokemon(6);
-				cout << "\t6)" << pok6.getName();
-				cout << "\n\t\t7) Exit\n\n\tchoice: ";
-				pokeswitch = getInt();
-				switch (pokeswitch) {
-				case 1:
-					currPokemon = switchPokemon(1,player);
-					break;
-				case 2:
-					currPokemon = switchPokemon(2,player);
-					break;
-				case 3:
-					currPokemon = switchPokemon(3,player);
-					break;
-				case 4:
-					currPokemon = switchPokemon(4,player);
-					break;
-				case 5:
-					currPokemon = switchPokemon(5,player);
-					break;
-				case 6:
-					currPokemon = switchPokemon(6,player);
-					break;
+			{
+				int pokeswitch = 0;
+				Pokemon beforePokemon = currPokemon;
+				while (pokeswitch > 7 || pokeswitch < 1) 
+				{
+					cout << "Which pokemon would you like to switch to?";
+					Pokemon pok1 = player.getPokemon(1);
+					cout << "\n\t1)" << pok1.getName();
+					Pokemon pok2 = player.getPokemon(2);
+					cout << "\t2)" << pok2.getName();
+					Pokemon pok3 = player.getPokemon(3);
+					cout << "\n\t3)" << pok3.getName();
+					Pokemon pok4 = player.getPokemon(4);
+					cout << "\t4)" << pok4.getName();
+					Pokemon pok5 = player.getPokemon(5);
+					cout << "\n\t5)" << pok5.getName();
+					Pokemon pok6 = player.getPokemon(6);
+					cout << "\t6)" << pok6.getName();
+					cout << "\n\t\t7) Exit\n\n\tchoice: ";
+					pokeswitch = getInt();
+					switch (pokeswitch) 
+					{
+						case 1:
+							currPokemon = switchPokemon(1,player);
+							break;
+						case 2:
+							currPokemon = switchPokemon(2,player);
+							break;
+						case 3:
+							currPokemon = switchPokemon(3,player);
+							break;
+						case 4:
+							currPokemon = switchPokemon(4,player);
+							break;
+						case 5:
+						currPokemon = switchPokemon(5,player);
+						break;
+						case 6:
+							currPokemon = switchPokemon(6,player);
+							break;
+					}
+					if (pokeswitch > 7 || pokeswitch < 1)
+						cout << "Invalid pokemon choice, please try again.\n";
 				}
-				if (pokeswitch > 7 || pokeswitch < 1)
-					cout << "Invalid pokemon choice, please try again.\n";
-			}
-			//if (pokeswitch != 7) turn = 1; (replaced code)
-			if (currPokemon.getName() != beforePokemon.getName()) {
-				turn = 1;
+				//if (pokeswitch != 7) turn = 1; (replaced code)
+				if (currPokemon.getName() != beforePokemon.getName()) 
+				{
+					turn = 1;
+				}
+				break;
 			}
 		}
+		
 		if (turn == 1) {
 			cout << "enemy pokemon attacks!";
 			attack(1, player, enemy);
@@ -236,76 +250,83 @@ Battle::Battle(Character &player, Character &opponent) {
 		action = getInt();
 		switch (action) {
 		case 1:
-			attack(0,player,opponent);
-			turn = 1;
-			break;
+			{
+				attack(0,player,opponent);
+				turn = 1;
+				break;
+			}
 		case 2:
-			//open bag
-			int bagOption = 0;
-			while (bagChoice > 3 || bagChoice < 1) {
-				//cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
-				cout << "\n\t3)RETURN\nWhat will you use?\n\n\tchoice: ";
-				bagChoice = getInt();
-				if (bagChoice == 1){
-					//can't use pokeballs here.
-					cout << "You can't catch their pokemon!\n";
-					bagOption = 0;
-				}
-				if (bagChoice == 2){
-					//use health potion
-					currPokemon.changeCurrentHealth(currPokemon.getCurrentHealth() + currPokemon.getHealth()*0.5);
-					if (currPokemon.getCurrentHealth() > currPokemon.getHealth()) {
-						//Takes away the extra health if it exceeds maxhealth.
-						currPokemon.changeCurrentHealth(0 - (currPokemon.getCurrentHealth() - currPokemon.getHealth()));
+			{
+				int bagChoice = 5; //open bag
+				int bagOption = 0;
+				while (bagChoice > 3 || bagChoice < 1) {
+					//cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
+					cout << "\n\t3)RETURN\nWhat will you use?\n\n\tchoice: ";
+					bagChoice = getInt();
+					if (bagChoice == 1){
+						//can't use pokeballs here.
+						cout << "You can't catch their pokemon!\n";
+						bagOption = 0;
+					}
+					if (bagChoice == 2){
+						//use health potion
+						currPokemon.changeCurrentHealth(currPokemon.getCurrentHealth() + currPokemon.getHealth()*0.5);
+						if (currPokemon.getCurrentHealth() > currPokemon.getHealth()) {
+							//Takes away the extra health if it exceeds maxhealth.
+							currPokemon.changeCurrentHealth(0 - (currPokemon.getCurrentHealth() - currPokemon.getHealth()));
+						}
 					}
 				}
+				break;
 			}
-			break;
 		case 3:
-			int pokeswitch = 0;
-			Pokemon beforePokemon = currPokemon;
-			while (pokeswitch > 7 || pokeswitch < 1) {
-				cout << "Which pokemon would you like to switch to?";
-				Pokemon pok1 = player.getPokemon(1);
-				cout << "\n\t1)" << pok1.getName();
-				Pokemon pok2 = player.getPokemon(2);
-				cout << "\t2)" << pok2.getName();
-				Pokemon pok3 = player.getPokemon(3);
-				cout << "\n\t3)" << pok3.getName();
-				Pokemon pok4 = player.getPokemon(4);
-				cout << "\t4)" << pok4.getName();
-				Pokemon pok5 = player.getPokemon(5);
-				cout << "\n\t5)" << pok5.getName();
-				Pokemon pok6 = player.getPokemon(6);
-				cout << "\t6)" << pok6.getName();
-				cout << "\n\t\t7) Exit\n\n\tchoice: ";
-				pokeswitch = getInt();
-				switch (pokeswitch) {
-				case 1:
-					currPokemon = switchPokemon(1, player);
-					break;
-				case 2:
-					currPokemon = switchPokemon(2, player);
-					break;
-				case 3:
-					currPokemon = switchPokemon(3, player);
-					break;
-				case 4:
-					currPokemon = switchPokemon(4, player);
-					break;
-				case 5:
-					currPokemon = switchPokemon(5, player);
-					break;
-				case 6:
-					currPokemon = switchPokemon(6, player);
-					break;
+			{
+				int pokeswitch = 0;
+				Pokemon beforePokemon = currPokemon;
+				while (pokeswitch > 7 || pokeswitch < 1) {
+					cout << "Which pokemon would you like to switch to?";
+					Pokemon pok1 = player.getPokemon(1);
+					cout << "\n\t1)" << pok1.getName();
+					Pokemon pok2 = player.getPokemon(2);
+					cout << "\t2)" << pok2.getName();
+					Pokemon pok3 = player.getPokemon(3);
+					cout << "\n\t3)" << pok3.getName();
+					Pokemon pok4 = player.getPokemon(4);
+					cout << "\t4)" << pok4.getName();
+					Pokemon pok5 = player.getPokemon(5);
+					cout << "\n\t5)" << pok5.getName();
+					Pokemon pok6 = player.getPokemon(6);
+					cout << "\t6)" << pok6.getName();
+					cout << "\n\t\t7) Exit\n\n\tchoice: ";
+					pokeswitch = getInt();
+					switch (pokeswitch) {
+					case 1:
+						currPokemon = switchPokemon(1, player);
+						break;
+					case 2:
+						currPokemon = switchPokemon(2, player);
+						break;
+					case 3:
+						currPokemon = switchPokemon(3, player);
+						break;
+					case 4:
+						currPokemon = switchPokemon(4, player);
+						break;
+					case 5:
+						currPokemon = switchPokemon(5, player);
+						break;
+					case 6:
+						currPokemon = switchPokemon(6, player);
+						break;
+					}
+					if (pokeswitch > 7 || pokeswitch < 1)
+						cout << "Invalid pokemon choice, please try again.\n";
 				}
-				if (pokeswitch > 7 || pokeswitch < 1)
-					cout << "Invalid pokemon choice, please try again.\n";
-			}
-			//if (pokeswitch != 7) turn = 1; (replaced code)
-			if (currPokemon.getName() != beforePokemon.getName()) {
-				turn = 1;
+				//if (pokeswitch != 7) turn = 1; (replaced code)
+				if (currPokemon.getName() != beforePokemon.getName()) {
+					turn = 1;
+				}
+				break;
 			}
 		}
 		if (turn == 1) {
