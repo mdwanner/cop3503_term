@@ -4,10 +4,10 @@
 // Define functions from header
 int main() 
 {
-	GameEngine game = /*new*/ GameEngine();
+	GameEngine game;// = /*new*/ GameEngine();
 	cout << "\tWhat do you want to do now?\n\t\t1) Explore\n\t\t2) Pokedex\n\t\t3) Pokemon\n\t\t4) Bag\n\t\t5) Quit\n\n\tchoice: ";
 	int choice = getInt();
-	Explore ex = Explore();
+	Explore ex;// = Explore();
 	while (choice != 5) 
 	{
 		switch (choice) 
@@ -344,7 +344,7 @@ void Explore::whatHappened(GameEngine* g)
 {
 	srand(time(NULL));
 
-	int whatHappened = rand % 100;
+	int whatHappened = rand() % 100;
 	
 	//free steps works as a way to make it more and more likely to be stoped by a trainer or
 	//pokemon the more times the player has moved without fighting a player or pokemon

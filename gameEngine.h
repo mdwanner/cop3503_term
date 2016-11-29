@@ -34,6 +34,7 @@ private:
 	void foundTown();
 	void foundItem();
 	int** createMap();
+	
 public:
 	//public ones
 	GameEngine(); // Constructor, sequence to create character and choose initial pokemon

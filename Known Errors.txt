@@ -1,4 +1,4 @@
-stormx:12% g++ -o p.out *.cpp
+stormx:26% g++ -o p.out *.cpp
 gameEngine.cpp: In constructor ‘GameEngine::GameEngine()’:
 gameEngine.cpp:30:24: error: no matching function for call to ‘Character::Character()’
  GameEngine::GameEngine()
@@ -7,20 +7,15 @@ gameEngine.cpp:30:24: note: candidates are:
 In file included from battle.h:3:0,
                  from gameEngine.h:9,
                  from gameEngine.cpp:1:
-Pokemon.h:49:2: note: Character::Character(std::string, int)
+Pokemon.h:54:2: note: Character::Character(std::string, int)
   Character(std::string, int);
   ^
-Pokemon.h:49:2: note:   candidate expects 2 arguments, 0 provided
-Pokemon.h:48:2: note: Character::Character(std::string)
+Pokemon.h:54:2: note:   candidate expects 2 arguments, 0 provided
+Pokemon.h:53:2: note: Character::Character(std::string)
   Character(std::string);      // create accessors for the items
   ^
-Pokemon.h:48:2: note:   candidate expects 1 argument, 0 provided
-Pokemon.h:36:7: note: Character::Character(const Character&)
+Pokemon.h:53:2: note:   candidate expects 1 argument, 0 provided
+Pokemon.h:39:7: note: Character::Character(const Character&)
  class Character {
        ^
-Pokemon.h:36:7: note:   candidate expects 1 argument, 0 provided
-gameEngine.cpp: In member function ‘void Explore::whatHappened(GameEngine*)’:
-gameEngine.cpp:347:28: error: invalid operands of types ‘int()throw ()’ and ‘int’ to binary ‘operator%’
-  int whatHappened = rand % 100;
-                            ^
-stormx:13%
+Pokemon.h:39:7: note:   candidate expects 1 argument, 0 provided

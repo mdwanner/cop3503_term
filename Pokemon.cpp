@@ -34,7 +34,7 @@ string pokeMen[151][4] = {{"Bulbasaur", "Ivysaur", "Venusaur", "grass"},{"Charma
 Pokemon::Pokemon(int level) {
 
     //names are chosen based on level, so a level one will be squirtle, etc. i haven't yet implemented evelution for EXISTING pokemon on level up.
-    this->choice = rand()%151;
+    this-> choice = rand()%151;
     if(level <= 33) {
         this->name = pokeMen[choice][0];
     }
@@ -128,27 +128,34 @@ void Pokemon::changeCurrentHealth(int healthChange) {
 }
 
 //handles leveling up and evolving
-void Pokemon::giveExperience(int exp) {
-    if((experience + exp) < (50 + (10*level))) {
+void Pokemon::giveExperience(int exp) 
+{
+    if((experience + exp) < (50 + (10*level))) 
+	{
         experience = experience + exp;
-      cout << "Your " << name << " has gained " << exp << " experience! - exp: " << experience << "/" << (50 + (10*level)) << "." << endl;
+		cout << "Your " << name << " has gained " << exp << " experience! - exp: " << experience << "/" << (50 + (10*level)) << "." << endl;
     }
-    else if(level < 100) {
-        experience = 0;
-        level += 1;
-        health += 20;
-        currentHealth += 20;
-        attack += 3;
-      cout << "Your " << name << " is now level " << level << "! - Health: " << health << " - Attack: " << attack << " - Dodge: " << defense << "." << endl;
-      if((level = 34)&&(pokeMen[choice][0]!=pokeMen[choice][1])) {
-        cout << "Your " << name << " has evolved into " << pokeMen[choice][1] << "!" << endl;
-        name = pokeMen[choice][1];
-      }
-      if((level = 67)&&(pokeMen[choice][1]!=pokeMen[choice][2])) {
-        cout << "Your " << name << " has evolved into " << pokeMen[choice][2] << "!" << endl;
-        name = pokeMen[choice][2];
+    else if(level < 100)
+	{
+		experience = 0;
+		level += 1;
+		health += 20;
+		currentHealth += 20;
+		attack += 3;
+		cout << "Your " << name << " is now level " << level << "! - Health: " << health << " - Attack: " << attack << " - Dodge: " << defense << "." << endl;
+		if((level = 34)&&(pokeMen[choice][0]!=pokeMen[choice][1])) 
+		{
+		cout << "Your " << name << " has evolved into " << pokeMen[choice][1] << "!" << endl;
+		name = pokeMen[choice][1];
+		}
+		if((level = 67)&&(pokeMen[choice][1]!=pokeMen[choice][2])) 
+		{
+		cout << "Your " << name << " has evolved into " << pokeMen[choice][2] << "!" << endl;
+		name = pokeMen[choice][2];
+		}
     }
-    else {
-      cout << "This " << name << " is already maximum level!" << endl;
+    else 
+	{
+		cout << "This " << name << " is already maximum level!" << endl;
     }
 }

@@ -18,9 +18,11 @@ private:
 	int dodge; //chance to dodge out of 100%. higher for lower health pokemon. Does not increase with level.
 	int level; //currently no level cap, i'll fix that.
 	int experience; //experience per level starts at 50 and increases by 10 per level.
+	int choice; //DONT FORGET TO DECLARE YOUR VARIABLES. 
 public:
 	Pokemon(int level); //creates randomized pokemon with stats/evolution based on level
 	Pokemon(int level, string name); //overloaded constructor to create starters/other specific pocheymancheys.
+	Pokemon(int, int);
 	string getName();
 	string getType();
 	int getHealth();
@@ -42,8 +44,10 @@ private:
 	string name;
 	Pokemon party[6];
 	Pokemon currentPokemon;						//Marco: The current pokemon the player holds.
+	
 	int xPosition;								//From joey, needed in explore function
 	int yPosition;
+	
 	int badges;									// increment this as gyms beaten 
 public:
 	Character(std::string);						// create accessors for the items
