@@ -20,6 +20,7 @@ private:
 	int experience; //experience per level starts at 50 and increases by 10 per level.
 public:
 	Pokemon(int level); //creates randomized pokemon with stats/evolution based on level
+	Pokemon(int level, string name); //overloaded constructor to create starters/other specific pocheymancheys.
 	string getName();
 	string getType();
 	int getHealth();
