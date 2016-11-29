@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EXPLORE_H
+#define EXPLORE_H
 #include "gameEngine.h"
 #include <cstring>
 #include <cctype>
@@ -22,3 +23,5 @@ private:
 	void foundTown(GameEngine);
 	void whatHappened(GameEngine);
 };
+
+#endif

@@ -2,8 +2,9 @@
 #define GAMEENGINE_H
 #include <iostream>
 #include <string>
-#include "battle.cpp"
+#include "battle.h"
 #include "Pokemon.h"
+#include "explore.h"
 #define MAP_SIZE 100
 #define WALL 1
 #define FOREST 2

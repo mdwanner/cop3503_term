@@ -1,11 +1,11 @@
 #include "gameEngine.h"
 #include <string>
-
-using namespace std;
-
+#include "Pokemon.h"
 /*
 I have everything under control as far as generating randomized pokemon with varying stats based on level, and leveling them up based on xp given through battle. There is still a lot to do but here is something i have so far...
 */
+
+//NEED TO SET BADGES TO ZERO IN CONSTRUCOR, NOT IN HEADER FILE.
 
 // this array contains all of the names and types for each pokemon. the evelution will be chosen during construction based on level.
 // gonna be adding all 150 I suppose since it's pretty easy to add names/types.
@@ -16,7 +16,7 @@ string pokeMen[11][4] = {{"Bulbasaur", "Ivysaur", "Venusaur", "grass"},{"Charman
 Pokemon::Pokemon(int level) {
 
     //names are chosen based on level, so a level one will be squirtle, etc. i haven't yet implemented evelution for EXISTING pokemon on level up.
-    choice = rand()%10;
+    int choice = rand()%10;
     if(level <= 33) {
         this->name = pokeMen[choice][0];
     }
