@@ -1,51 +1,11 @@
-explore.cpp: In member function ‘void explore::whatHappened(GameEngine)’:
-explore.cpp:100:28: error: invalid operands of types ‘int()throw ()’ and ‘int’ to binary ‘operator%’
-  int whatHappened = rand % 100;
-                            ^
-In file included from gameEngine.h:7:0,
-                 from gameEngine.cpp:1:
-explore.h:13:18: error: ‘GameEngine’ has not been declared
-  void exploreNow(GameEngine); //this is just going directly edit main because expoler an game engine are "friends"
-                  ^
-explore.h:18:26: error: ‘GameEngine’ has not been declared
-  bool trySpace(int, int, GameEngine);
-                          ^
-explore.h:19:19: error: ‘GameEngine’ has not been declared
-  void foundForest(GameEngine);
-                   ^
-explore.h:20:19: error: ‘GameEngine’ has not been declared
-  void foundDesert(GameEngine);
-                   ^
-explore.h:21:18: error: ‘GameEngine’ has not been declared
-  void foundSwamp(GameEngine);
-                  ^
-explore.h:22:17: error: ‘GameEngine’ has not been declared
-  void foundWall(GameEngine);
-                 ^
-explore.h:23:17: error: ‘GameEngine’ has not been declared
-  void foundTown(GameEngine);
-                 ^
-explore.h:24:20: error: ‘GameEngine’ has not been declared
-  void whatHappened(GameEngine);
-                    ^
-gameEngine.cpp: In function ‘int main()’:
-gameEngine.cpp:15:29: error: no matching function for call to ‘explore::exploreNow(GameEngine&)’
-   case 1: ex.exploreNow(game);
-                             ^
-gameEngine.cpp:15:29: note: candidate is:
-In file included from gameEngine.h:7:0,
-                 from gameEngine.cpp:1:
-explore.h:13:7: note: void explore::exploreNow(int)
-  void exploreNow(GameEngine); //this is just going directly edit main because expoler an game engine are "friends"
-       ^
-explore.h:13:7: note:   no known conversion for argument 1 from ‘GameEngine’ to ‘int’
+stormx:12% g++ -o p.out *.cpp
 gameEngine.cpp: In constructor ‘GameEngine::GameEngine()’:
 gameEngine.cpp:30:24: error: no matching function for call to ‘Character::Character()’
  GameEngine::GameEngine()
                         ^
 gameEngine.cpp:30:24: note: candidates are:
 In file included from battle.h:3:0,
-                 from gameEngine.h:5,
+                 from gameEngine.h:9,
                  from gameEngine.cpp:1:
 Pokemon.h:49:2: note: Character::Character(std::string, int)
   Character(std::string, int);
@@ -59,31 +19,8 @@ Pokemon.h:36:7: note: Character::Character(const Character&)
  class Character {
        ^
 Pokemon.h:36:7: note:   candidate expects 1 argument, 0 provided
-In file included from gameEngine.h:7:0,
-                 from Pokemon.cpp:1:
-explore.h:13:18: error: ‘GameEngine’ has not been declared
-  void exploreNow(GameEngine); //this is just going directly edit main because expoler an game engine are "friends"
-                  ^
-explore.h:18:26: error: ‘GameEngine’ has not been declared
-  bool trySpace(int, int, GameEngine);
-                          ^
-explore.h:19:19: error: ‘GameEngine’ has not been declared
-  void foundForest(GameEngine);
-                   ^
-explore.h:20:19: error: ‘GameEngine’ has not been declared
-  void foundDesert(GameEngine);
-                   ^
-explore.h:21:18: error: ‘GameEngine’ has not been declared
-  void foundSwamp(GameEngine);
-                  ^
-explore.h:22:17: error: ‘GameEngine’ has not been declared
-  void foundWall(GameEngine);
-                 ^
-explore.h:23:17: error: ‘GameEngine’ has not been declared
-  void foundTown(GameEngine);
-                 ^
-explore.h:24:20: error: ‘GameEngine’ has not been declared
-  void whatHappened(GameEngine);
-                    ^
-stormx:4%
-
+gameEngine.cpp: In member function ‘void Explore::whatHappened(GameEngine*)’:
+gameEngine.cpp:347:28: error: invalid operands of types ‘int()throw ()’ and ‘int’ to binary ‘operator%’
+  int whatHappened = rand % 100;
+                            ^
+stormx:13%

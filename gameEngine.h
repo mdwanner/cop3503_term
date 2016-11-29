@@ -2,9 +2,12 @@
 #define GAMEENGINE_H
 #include <iostream>
 #include <string>
+#include <cstring>
+#include <cctype>
+#include <stdlib.h>
+#include <time.h>
 #include "battle.h"
 #include "Pokemon.h"
-#include "explore.h"
 #define MAP_SIZE 100
 #define WALL 1
 #define FOREST 2
@@ -20,7 +23,7 @@ until the game is exited
 */
 class GameEngine {
 
-	friend class explore;
+	friend class Explore;
 
 private:
 	int** newmap;
@@ -52,6 +55,23 @@ public:
 	void battleGym(); // includes a call to the Battle class
 	void healPokemon(Pokemon party[6]);
 	void buyItems(); // open store interface
+};
+
+class Explore
+{
+public:
+	void exploreNow(GameEngine*);	//this is just going directly edit main because expoler an game engine are "friends"
+
+private:
+	int freeSteps;
+	string getString();
+	bool trySpace(int, int, GameEngine*);
+	void foundForest(GameEngine*);
+	void foundDesert(GameEngine*);
+	void foundSwamp(GameEngine*);
+	void foundWall(GameEngine*);
+	void foundTown(GameEngine*);
+	void whatHappened(GameEngine*);
 };
 
 //Marco: I made an int function to make sure responses are taken as ints.

@@ -35,7 +35,7 @@ public:
 
 class Character {
 
-	friend class explore;						//From joey, needed in explore function, wanted to limit access to 
+	friend class Explore;						//From joey, needed in explore function, wanted to limit access to 
 												//all other classes
 private:
 	string name;
