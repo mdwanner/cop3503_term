@@ -5,7 +5,7 @@
 int main() 
 {
 	GameEngine game;
-	cout << "\tWhat do you want to do now?\n\t\t1) Explore\n\t\t2) Pokedex\n\t\t3) Pokemon\n\t\t4) Bag\n\t\t5) Quit\n\n\tchoice: ";
+	cout << "\tWhat do you want to do now?\n\t\t1) Go exploring\n\t\t2) Veiw the Pokedex\n\t\t3) Veiw your Pokemon\n\t\t4) Veiw your bag\n\t\t5) Quit\n\n\tchoice: ";
 	int choice = getInt();
 	Explore ex = Explore();
 	while (choice != 5) 
@@ -14,17 +14,90 @@ int main()
 		{
 		case 1: ex.exploreNow(&game);
 			break;
-		case 2: 
+		case 2: game.viewPokedex();
 			break;
-		case 3:
+		case 3: game.viewTeam();
 			break;
-		case 4:
+		case 4: game.viewBag();
 			break;
 		}
 		cout << "\tWhat do you want to do?\n\t\t1) Explore\n\t\t2) Pokedex\n\t\t3) Pokemon\n\t\t4) Bag\n\t\t5) Quit\n\n\tchoice: ";
 		choice = getInt();
 	}
 	cout << "Goodbye!" << endl;
+}
+
+void GameEngine::viewTeam()
+{
+	for(int i = 0; i < 6; i++)
+	{
+		cout << "Slot " << i << ": " << mainCharacter.getPokemon(i).getName() << endl;
+	}
+}
+
+void GameEngine::viewPokedex()
+{
+	for(int i = 0; i < 151; i++)
+	{
+		cout << i << ": " << mainCharacter.getCurrentPokemon().getPokedexEntry(i, 0) << " of type " << mainCharacter.getCurrentPokemon().getPokedexEntry(i, 3) << endl;
+	}
+}
+
+void GameEngine::viewBag()
+{
+	
+}
+
+string getString()
+{
+	std::string item;
+	bool validInput = false;
+
+	do
+	{
+		std::cin >> item;
+
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(256, '\n');
+			validInput = false;
+		}
+		else
+		{
+			validInput = true;
+		}
+
+	} while (!validInput);
+
+	return item;
+}
+
+int getInt()
+{
+	int item;
+	bool validInput = false;
+
+	do
+	{
+		std::cin >> item;
+
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(256, '\n');
+			item = 0;
+			validInput = false;
+			std::cout << "Invalid Input, try again" << std::endl;
+		}
+		else
+		{
+			validInput = true;
+		}
+
+	} while (!validInput);
+
+	return item;
 }
 
 GameEngine::GameEngine()
@@ -179,59 +252,6 @@ GameEngine::GameEngine()
 	}
 	
 }
-
-int getInt()
-{
-	int item;
-	bool validInput = false;
-
-	do
-	{
-		std::cin >> item;
-
-		if (std::cin.fail())
-		{
-			std::cin.clear();
-			std::cin.ignore(256, '\n');
-			item = 0;
-			validInput = false;
-			std::cout << "Invalid Input, try again" << std::endl;
-		}
-		else
-		{
-			validInput = true;
-		}
-
-	} while (!validInput);
-
-	return item;
-}
-
-string getString()
-{
-	std::string item;
-	bool validInput = false;
-
-	do
-	{
-		std::cin >> item;
-
-		if (std::cin.fail())
-		{
-			std::cin.clear();
-			std::cin.ignore(256, '\n');
-			validInput = false;
-		}
-		else
-		{
-			validInput = true;
-		}
-
-	} while (!validInput);
-
-	return item;
-}
-
 
 void Explore::exploreNow(GameEngine *g)
 {	

@@ -24,6 +24,7 @@ public:
 	Pokemon(int, int);
 	string getName();
 	string getType();
+	string getPokedexEntry(int, int);
 	int getHealth();
 	int getCurrentHealth();
 	int getAttack();

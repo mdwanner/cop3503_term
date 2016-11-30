@@ -119,6 +119,11 @@ string Pokemon::getType() {
     return type;
 }
 
+string Pokemon::getPokedexEntry(int i, int j)
+{
+	if(!(i > 150 && i < 0 && j < 0 && j > 3)) return pokeMen[i][j];
+}
+
 //not sure if this should print anything or not, depends on battles, also, note that this INCREASES health by healthChange.
 void Pokemon::changeCurrentHealth(int healthChange) {
     if((currentHealth + healthChange) < health) {
@@ -180,7 +185,8 @@ Character::Character(std::string n, int g)
 	name = n;
 	gender = g;
 	xPosition = 50;								//From joey, needed in explore function
-	yPosition = 50;
+	yPosition = 50;							//IMPORTANT!!! WHEN YOU POPULATE THE POKEMON ARRAY ON CREATION, FILL THE EMNTY SLOTS WITH A
+											//POKEMON NAMED "Empty"
 }
 
 string Character::getName()
