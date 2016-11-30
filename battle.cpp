@@ -125,7 +125,8 @@ Pokemon Battle::switchPokemon(int numPokemon, Character &trainer){
 	return currPokemon;
 };
 
-Battle::Battle(Character &player, Pokemon &enemy) {
+Battle::Battle(Character &player, Pokemon &enemy) 
+{
 	Pokemon currPokemon = player.getCurrentPokemon();
 	int action = 0;
 	//turn decides who attacks: 0 = you, 1 = enemy.
@@ -238,14 +239,16 @@ Battle::Battle(Character &player, Pokemon &enemy) {
 	cout << "you ran away!";
 }
 //Battle for a character essentially does the same thing but you cannot run away nor catch.
-Battle::Battle(Character &player, Character &opponent) {
+Battle::Battle(Character &player, Character &opponent) 
+{
 	Pokemon currPokemon = player.getCurrentPokemon();
 	Pokemon currEnemyPokemon = opponent.getCurrentPokemon();
 	int action = 0;
 	//turn decides who attacks: 0 = you, 1 = enemy.
 	bool turn = 0;
-	while (currEnemyPokemon.getCurrentHealth()>0 && currPokemon.getCurrentHealth()>0) {
-		cout << "\nYou encountered a wild pokemon, what would you like to do?" << endl;
+	while (currEnemyPokemon.getCurrentHealth()>0 && currPokemon.getCurrentHealth()>0) 
+	{
+		cout << "\nWhat would you like to do?" << endl;
 		cout << "\t1) FIGHT\t2) BAG\n\t3) POKEMON\n\n\tchoice: ";
 		action = getInt1();
 		switch (action) {

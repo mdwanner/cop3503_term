@@ -20,7 +20,7 @@ private:
 	static string pokeMen[151][4];//this is an array containing the names of all the pokemen in indexes 0-2, and type in index 3. Eventually it will be [150][4]
 public:
 	Pokemon();
-	Pokemon(int level); //creates randomized pokemon with stats/evolution based on level
+	Pokemon(int); //creates randomized pokemon with stats/evolution based on level
 	Pokemon(int, int);
 	string getName();
 	string getType();
@@ -40,6 +40,7 @@ class Character {
 	friend class Explore;						//From joey, needed in explore function, wanted to limit access to 
 												//all other classes
 private:
+	
 	string name;
 	int gender;
 	Pokemon party[6];

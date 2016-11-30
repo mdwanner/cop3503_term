@@ -33,7 +33,7 @@ string Pokemon::pokeMen[151][4] = {{"Bulbasaur", "Ivysaur", "Venusaur", "grass"}
 
 Pokemon::Pokemon()
 {
-	
+	name = "Empty";
 }
 
 Pokemon::Pokemon(int level) 
@@ -175,9 +175,11 @@ Character::Character()
 	//stuff
 }
 
-Character::Character(std::string)
+Character::Character(std::string n)
 {
-	//stuff
+	name = n;
+	xPosition = 50;								
+	yPosition = 50;	
 }					
 
 Character::Character(std::string n, int g)
@@ -186,7 +188,11 @@ Character::Character(std::string n, int g)
 	gender = g;
 	xPosition = 50;								//From joey, needed in explore function
 	yPosition = 50;							//IMPORTANT!!! WHEN YOU POPULATE THE POKEMON ARRAY ON CREATION, FILL THE EMNTY SLOTS WITH A
-											//POKEMON NAMED "Empty"
+	
+	for(int i = 0; i < party.size(); i++)
+	{
+		party[i] = Pokemon();
+	}					
 }
 
 string Character::getName()
@@ -196,7 +202,101 @@ string Character::getName()
 
 void Character::addPokemon(Pokemon p)
 {
+	bool hasSlot = false;
+	bool allEmpty = true;
+	int indexOfFirstEmpty;
+	for(int i = 0; i < party.size(); i++)
+	{
+		if (party[i].getName().compare("Empty") == 0)
+		{
+			if(!hasSlot) indexOfFirstEmpty = i;
+			hasSlot = true;
+		}
+		else
+		{
+			allEmpty = false;
+		}
+	}	
 	
+	if(allEmpty)
+	{
+		party[0] = p;
+		setCurrentPokemon(0);
+	}
+	else if (hasSlot)
+	{
+		party[indexOfFirstEmpty] = p;
+	}
+	else
+	{
+		cout << "No slots available. Which pokemon would you like to get ride of?" << endl;
+		
+		for(int i = 0; i < party.size(); i++)
+		{
+		cout << " " << i + 1 << ". " << party[i].getName()
+		}
+		cout << " " << party.size() + 1 << ". None";
+		
+		bool goodInput;
+		
+		do
+		{
+			int choice = getInt1() - 1;
+			goodInput = true;
+			
+			switch(choice)
+			{
+				case 0: 
+				{
+					cout << party[0].getName() << " was removed and " << p.getName() << " was added."
+					party[0] = p;
+					break;
+				}
+				case 1: 
+				{
+					cout << party[1].getName() << " was removed and " << p.getName() << " was added."
+					party[1] = p;
+					break;
+				}
+				case 2: 
+				{
+					cout << party[2].getName() << " was removed and " << p.getName() << " was added."
+					party[2] = p;
+					break;
+				}
+				case 3: 
+				{
+					cout << party[3].getName() << " was removed and " << p.getName() << " was added."
+					party[3] = p;
+					break;
+				}
+				case 4: 
+				{
+					cout << party[4].getName() << " was removed and " << p.getName() << " was added."
+					party[4] = p;
+					break;
+				}
+				case 5: 
+				{
+					cout << party[5].getName() << " was removed and " << p.getName() << " was added."
+					party[5] = p;
+					break;
+				}
+				case 6: 
+				{
+					cout << p.getName() << " was turned into candy."
+					break;
+				}
+				default: 
+				{
+					cout << "Invalid input" << endl;
+					goodInput = false;
+					break;
+				}
+			}
+		} while(!goodInput)
+		
+	}	
 }
 
 Pokemon Character::getPokemon(int) // takes number 1-6 of desired Pokemon in party

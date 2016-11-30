@@ -152,8 +152,10 @@ GameEngine::GameEngine()
 		}
 	} while (!valid);
 	
-	cout << "You got a " << "HEEYYY" <</*<< mainCharacter.getPokemon(0).getName() <<*/ "." << endl;
+	cout << "You got a " << mainCharacter.getPokemon(0).getName() << "!" << endl;
 	cout << "The other pokeballs disappeared before you could grab another." << endl;
+	cout << "Your " << mainCharacter.getPokemon(0).getName() << " is a pokemon." << endl;
+	cout << "Use it to battle other trainers and other wild pokemon." << endl;
 	
 	/** The map will hold ints and the ints will represent as fallows: 
 	* 0: Character
@@ -300,7 +302,7 @@ bool Explore::trySpace(int i, int j, GameEngine *g)
 	}
 	
 	//cout << "i: " << i << "   j: " << j << "   mainCharacter name: " << g->mainCharacter.getName() << endl; all of this works and then numbers are what they are supposed to be
-	int nextSpace = g->newmap[i][j]; //This is where the error happens!
+	int nextSpace = g->newmap[i][j]; 
 	
 	switch (nextSpace)
 	{
@@ -354,15 +356,26 @@ void Explore::whatHappened(GameEngine *g)
 	//we may need to adjust the frequency settings though
 	if (whatHappened < (freeSteps*1.7))
 	{
-		cout << "A pokemon has appeared from seemingly nowhere to fight!" << endl;
+		Pokemon joey = Pokemon(g->mainCharacter.getCurrentPokemon().getLevel());
+		cout << "A " << joey.getName() << " has appeared from seemingly nowhere to fight!" << endl;
 		freeSteps = 0;
-		g->mainCharacter;// = /*battle wild*/(g->mainCharacter);
+		Battle(g->mainCharacter, joey);
 	}
 	else if (whatHappened > (100 - (freeSteps*1.4)))
 	{
-		cout << "A trainer has spotted you! They want to battle!" << endl;
+		int name = rand() % 20;
+		Character joe = Character(people[name], (freeSteps%2) + 1);
+		cout << "Trainer " << joe.getName() << " has spotted you! They want to battle!" << endl;
+		
+		int numberOfPokemon = rand() % 6;
+		
+		for(int i = 0; i < numberOfPokemon; i++)
+		{
+			joe.addPokemon(Pokemon(g->mainCharacter.getCurrentPokemon().getLevel()));
+		}
+		
 		freeSteps = 0;
-		g->mainCharacter; //= /*battle trainer*/(g->mainCharacter);
+		Battle(g->mainCharacter, joe); 
 	}
 	else
 	{
@@ -398,3 +411,6 @@ void Explore::foundWall(GameEngine *g)
 {
 	cout << "You have found a 40 foot wall concrete that is insermountable. The word TRUMP is written on the side.";
 }
+
+string Explore::people[20] = {"Alex", "Jack", "Jamie", "Avery", "Blair", "Christian", "Dane", "Fabian", "Glen", "Hayley", 
+	"Kerry", "Lonnie", "Montana", "Noel", "Payton", "Quinn", "Rene", "Shay", "Tory", "Whitney"};

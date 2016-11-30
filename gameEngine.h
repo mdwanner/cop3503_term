@@ -65,6 +65,7 @@ public:
 
 private:
 	int freeSteps;
+	static string people[20];
 	bool trySpace(int, int, GameEngine*);
 	void foundForest(GameEngine*);
 	void foundDesert(GameEngine*);
