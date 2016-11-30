@@ -133,7 +133,7 @@ Battle::Battle(Character &player, Pokemon &enemy) {
 	while (action != 4 || (enemy.getCurrentHealth()>0 && currPokemon.getCurrentHealth()>0)) {
 		cout << "\nYou encountered a wild pokemon, what would you like to do?" << endl;
 		cout << "\t1) FIGHT\t2) BAG\n\t3) POKEMON\t4) RUN\n\n\tchoice: ";
-		action = getInt();
+		action = getInt1();
 		switch (action)
 		{
 		case 1:
@@ -149,7 +149,7 @@ Battle::Battle(Character &player, Pokemon &enemy) {
 				while (bagChoice > 3 || bagChoice < 1) {
 					//cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
 					cout << "\n\t3)RETURN\nWhat will you use?\n\t\tchoice: ";
-					bagChoice = getInt();
+					bagChoice = getInt1();
 					if (bagChoice == 1) {
 						//use Pokeball
 					}
@@ -184,7 +184,7 @@ Battle::Battle(Character &player, Pokemon &enemy) {
 					Pokemon pok6 = player.getPokemon(6);
 					cout << "\t6)" << pok6.getName();
 					cout << "\n\t\t7) Exit\n\n\tchoice: ";
-					pokeswitch = getInt();
+					pokeswitch = getInt1();
 					switch (pokeswitch) 
 					{
 						case 1:
@@ -247,7 +247,7 @@ Battle::Battle(Character &player, Character &opponent) {
 	while (currEnemyPokemon.getCurrentHealth()>0 && currPokemon.getCurrentHealth()>0) {
 		cout << "\nYou encountered a wild pokemon, what would you like to do?" << endl;
 		cout << "\t1) FIGHT\t2) BAG\n\t3) POKEMON\n\n\tchoice: ";
-		action = getInt();
+		action = getInt1();
 		switch (action) {
 		case 1:
 			{
@@ -262,7 +262,7 @@ Battle::Battle(Character &player, Character &opponent) {
 				while (bagChoice > 3 || bagChoice < 1) {
 					//cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
 					cout << "\n\t3)RETURN\nWhat will you use?\n\n\tchoice: ";
-					bagChoice = getInt();
+					bagChoice = getInt1();
 					if (bagChoice == 1){
 						//can't use pokeballs here.
 						cout << "You can't catch their pokemon!\n";
@@ -298,7 +298,7 @@ Battle::Battle(Character &player, Character &opponent) {
 					Pokemon pok6 = player.getPokemon(6);
 					cout << "\t6)" << pok6.getName();
 					cout << "\n\t\t7) Exit\n\n\tchoice: ";
-					pokeswitch = getInt();
+					pokeswitch = getInt1();
 					switch (pokeswitch) {
 					case 1:
 						currPokemon = switchPokemon(1, player);
@@ -347,7 +347,7 @@ Battle::Battle(Character &player, Character &opponent) {
 	
 }
 
-int getInt() {
+int getInt1() {
 	//This method makes sure that the response is an int. 
 	int response;
 	string input = " ";

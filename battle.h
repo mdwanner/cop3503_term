@@ -24,6 +24,6 @@ public:
 };
 
 //Marco: Same getInt function as in gameEngine.h. (May not be needed since it's a duplicate).
-int getInt();
+int getInt1();
 
 #endif

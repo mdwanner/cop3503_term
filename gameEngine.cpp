@@ -4,10 +4,10 @@
 // Define functions from header
 int main() 
 {
-	GameEngine game;// = /*new*/ GameEngine();
+	GameEngine game;
 	cout << "\tWhat do you want to do now?\n\t\t1) Explore\n\t\t2) Pokedex\n\t\t3) Pokemon\n\t\t4) Bag\n\t\t5) Quit\n\n\tchoice: ";
 	int choice = getInt();
-	Explore ex;// = Explore();
+	Explore ex = Explore();
 	while (choice != 5) 
 	{
 		switch (choice) 
@@ -35,11 +35,12 @@ GameEngine::GameEngine()
 	string nameChoice;
 
 	cout << "You wake up dazed and confused in a forest." << endl;
-	cout << "There is writing on a tree. You approach and it reads 'Welcome to Canto.'" << endl;
+	cout << "There is writing on a tree. You approach and it reads 'Welcome to Kanto.'" << endl;
 	cout << "Theres a voice in your head. It says 'What is your name?'\n You respond: ";
 	nameChoice = getString();
 	cout << "What is your gender?'\n Your gender (1. Female, 2. Male): ";
 	genderChoice = getInt();
+	mainCharacter = Character(nameChoice, genderChoice);
 	cout << "'I see greatness in you, " << mainCharacter.getName() << ". Become the best, and I will speak with you again.'" << endl;
 	cout << "The voice disappeared and 3 pokeoballs appeared." << endl;
 	cout << "Grab the 1st, 2nd, or 3rd one? " << endl;
@@ -53,19 +54,19 @@ GameEngine::GameEngine()
 		{
 			case 1:
 			{
-				//need to add pokemon creation here.
+				mainCharacter.addPokemon(Pokemon(1,0));
 				valid = true;
 				break;
 			}
 			case 2:
 			{
-				//need to add pokemon creation here.
+				mainCharacter.addPokemon(Pokemon(1,1));
 				valid = true;
 				break;
 			}
 			case 3:
 			{
-				//need to add pokemon creation here.
+				mainCharacter.addPokemon(Pokemon(1,2));
 				valid = true;
 				break;
 			}
@@ -78,9 +79,7 @@ GameEngine::GameEngine()
 		}
 	} while (!valid);
 	
-	mainCharacter = Character(nameChoice, genderChoice);
-	
-	cout << "You got a SOMETHING." << endl;
+	cout << "You got a " << "HEEYYY" <</*<< mainCharacter.getPokemon(0).getName() <<*/ "." << endl;
 	cout << "The other pokeballs disappeared before you could grab another." << endl;
 	
 	/** The map will hold ints and the ints will represent as fallows: 
@@ -104,7 +103,7 @@ GameEngine::GameEngine()
 	
 }
 
-int** createMap()
+int** GameEngine::createMap()
 {
 	int **newmap;
 	newmap = new int*[MAP_SIZE];
@@ -195,31 +194,6 @@ int** createMap()
 	}
 }
 
-string getString()
-{
-	std::string item;
-	bool validInput = false;
-
-	do
-	{
-		std::cin >> item;
-
-		if (std::cin.fail())
-		{
-			std::cin.clear();
-			std::cin.ignore(256, '\n');
-			validInput = false;
-		}
-		else
-		{
-			validInput = true;
-		}
-
-	} while (!validInput);
-
-	return item;
-}
-
 int getInt()
 {
 	int item;
@@ -247,37 +221,58 @@ int getInt()
 	return item;
 }
 
-void Explore::exploreNow(GameEngine* g)
+string getString()
+{
+	std::string item;
+	bool validInput = false;
+
+	do
+	{
+		std::cin >> item;
+
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(256, '\n');
+			validInput = false;
+		}
+		else
+		{
+			validInput = true;
+		}
+
+	} while (!validInput);
+
+	return item;
+}
+
+
+void Explore::exploreNow(GameEngine *g)
 {	
 	bool hasExit = false;
 	
 	do
 	{
-		cout << "Where to? (North, South, East, West, or exit)";
-		string choice = getString();
-
-		for (int i = 0; i < choice.size(); i++)
-		{
-			choice.at(i) = toupper(choice.at(i));
-		}
-
-		if (choice.compare("NORTH") == 0)
+		cout << "Where to? (1 = North, 2 = South, 3 = East, 4 = West, or 5 = exit) ";
+		int choice = getInt();
+		
+		if (choice == 1)
 		{
 			if(trySpace(g->mainCharacter.xPosition, g->mainCharacter.yPosition + 1, g)) g->mainCharacter.yPosition++;
 		}
-		else if (choice.compare("EAST") == 0)
+		else if (choice == 2)
 		{
 			if(trySpace(g->mainCharacter.xPosition + 1, g->mainCharacter.yPosition, g)) g->mainCharacter.xPosition++;
 		}
-		else if (choice.compare("WEST") == 0)
+		else if (choice == 3)
 		{
 			if(trySpace(g->mainCharacter.xPosition - 1, g->mainCharacter.yPosition, g)) g->mainCharacter.xPosition--;
 		}
-		else if (choice.compare("SOUTH") == 0)
+		else if (choice == 4)
 		{
 			if(trySpace(g->mainCharacter.xPosition, g->mainCharacter.yPosition - 1, g)) g->mainCharacter.yPosition--;
 		}
-		else if (choice.compare("EXIT") == 0)
+		else if (choice == 5)
 		{
 			hasExit = true;
 		}
@@ -290,11 +285,11 @@ void Explore::exploreNow(GameEngine* g)
 	
 }
 
-bool Explore::trySpace(int i, int j, GameEngine* g)
+bool Explore::trySpace(int i, int j, GameEngine *g)
 {
 	if (i > MAP_SIZE || j > MAP_SIZE)
 	{
-		cout << "Error: explore.cpp trySpace out of bounds exception" << endl;
+		cout << "Error: explore.cpp trySpace out of bounds exception " << i << " " << j << " " << MAP_SIZE << endl;
 		return false;
 	}
 
@@ -340,7 +335,7 @@ bool Explore::trySpace(int i, int j, GameEngine* g)
 	}
 }
 
-void Explore::whatHappened(GameEngine* g)
+void Explore::whatHappened(GameEngine *g)
 {
 	srand(time(NULL));
 
@@ -367,31 +362,31 @@ void Explore::whatHappened(GameEngine* g)
 	}
 }
 
-void Explore::foundForest(GameEngine* g)
+void Explore::foundForest(GameEngine *g)
 {
 	cout << "You are in a forest." << endl;
 	whatHappened(g);
 }
 
-void Explore::foundDesert(GameEngine* g)
+void Explore::foundDesert(GameEngine *g)
 {
 	cout << "You are in a desert." << endl;
 	whatHappened(g);
 }
 
-void Explore::foundSwamp(GameEngine* g)
+void Explore::foundSwamp(GameEngine *g)
 {
 	cout << "You are in a Swamp." << endl;
 	whatHappened(g);
 }
 
-void Explore::foundTown(GameEngine* g) 
+void Explore::foundTown(GameEngine *g) 
 {
 	cout << "You have found a town!" << endl;
 	//run town
 }
 
-void Explore::foundWall(GameEngine* g)
+void Explore::foundWall(GameEngine *g)
 {
 	cout << "You have found a 40 foot wall concrete that is insermountable. The word TRUMP is written on the side.";
 }
