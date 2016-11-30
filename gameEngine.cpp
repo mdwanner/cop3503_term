@@ -91,21 +91,7 @@ GameEngine::GameEngine()
 	* 5: town		Example output: You have found (blank) town
 	*/
 	
-	newmap = new int*[MAP_SIZE];
-	
-	for(int i = 0; i < MAP_SIZE; i++)
-	{
-		newmap[i] = new int[MAP_SIZE];
-	}
-	
 	//should be done now
-	newmap = createMap();
-	
-}
-
-int** GameEngine::createMap()
-{
-	int **newmap;
 	newmap = new int*[MAP_SIZE];
 	
 	for(int i = 0; i < MAP_SIZE; i++)
@@ -127,7 +113,7 @@ int** GameEngine::createMap()
 
 	for (int i = 50; i < MAP_SIZE; i++) {
 		for (int j = 0; j < MAP_SIZE / 2; j++) {
-			newmap[i][j] = SWAMP;
+			newmap[i][j] = FOREST;
 		}
 	}
 
@@ -143,13 +129,12 @@ int** GameEngine::createMap()
 		}
 	}
 
-
 	for(int i = 0; i < 100; i++)
 	{
-		newmap[0][i] = 0;
-		newmap[99][i] = 0;
-		newmap[i][0] = 0;
-		newmap[i][99] = 0;
+		newmap[0][i] = WALL;
+		newmap[99][i] = WALL;
+		newmap[i][0] = WALL;
+		newmap[i][99] = WALL;
 	}
 	
 	//top = north, left = east
@@ -192,6 +177,7 @@ int** GameEngine::createMap()
 			newmap[i + 10][j + 60] = TOWN;
 		}
 	}
+	
 }
 
 int getInt()
@@ -258,19 +244,19 @@ void Explore::exploreNow(GameEngine *g)
 		
 		if (choice == 1)
 		{
-			if(trySpace(g->mainCharacter.xPosition, g->mainCharacter.yPosition + 1, g)) g->mainCharacter.yPosition++;
+			if(trySpace(g->mainCharacter.xPosition, g->mainCharacter.yPosition - 1, g)) g->mainCharacter.yPosition--;
 		}
 		else if (choice == 2)
 		{
-			if(trySpace(g->mainCharacter.xPosition + 1, g->mainCharacter.yPosition, g)) g->mainCharacter.xPosition++;
+			if(trySpace(g->mainCharacter.xPosition, g->mainCharacter.yPosition + 1, g)) g->mainCharacter.yPosition++;
 		}
 		else if (choice == 3)
 		{
-			if(trySpace(g->mainCharacter.xPosition - 1, g->mainCharacter.yPosition, g)) g->mainCharacter.xPosition--;
+			if(trySpace(g->mainCharacter.xPosition + 1, g->mainCharacter.yPosition, g)) g->mainCharacter.xPosition++;
 		}
 		else if (choice == 4)
 		{
-			if(trySpace(g->mainCharacter.xPosition, g->mainCharacter.yPosition - 1, g)) g->mainCharacter.yPosition--;
+			if(trySpace(g->mainCharacter.xPosition - 1, g->mainCharacter.yPosition, g)) g->mainCharacter.xPosition--;
 		}
 		else if (choice == 5)
 		{
@@ -292,9 +278,10 @@ bool Explore::trySpace(int i, int j, GameEngine *g)
 		cout << "Error: explore.cpp trySpace out of bounds exception " << i << " " << j << " " << MAP_SIZE << endl;
 		return false;
 	}
-
-	int nextSpace = g->newmap[i][j];
-
+	
+	//cout << "i: " << i << "   j: " << j << "   mainCharacter name: " << g->mainCharacter.getName() << endl; all of this works and then numbers are what they are supposed to be
+	int nextSpace = g->newmap[i][j]; //This is where the error happens!
+	
 	switch (nextSpace)
 	{
 		case WALL:
@@ -331,6 +318,7 @@ bool Explore::trySpace(int i, int j, GameEngine *g)
 		{
 			cout << "Error : explore.cpp trySpace mislabled space in map" << endl;
 			return false;
+			break;
 		}
 	}
 }
@@ -344,13 +332,13 @@ void Explore::whatHappened(GameEngine *g)
 	//free steps works as a way to make it more and more likely to be stoped by a trainer or
 	//pokemon the more times the player has moved without fighting a player or pokemon
 	//we may need to adjust the frequency settings though
-	if (whatHappened < freeSteps)
+	if (whatHappened < (freeSteps*1.7))
 	{
 		cout << "A pokemon has appeared from seemingly nowhere to fight!" << endl;
 		freeSteps = 0;
 		g->mainCharacter;// = /*battle wild*/(g->mainCharacter);
 	}
-	else if (whatHappened > (100 - freeSteps/2))
+	else if (whatHappened > (100 - (freeSteps*1.4)))
 	{
 		cout << "A trainer has spotted you! They want to battle!" << endl;
 		freeSteps = 0;

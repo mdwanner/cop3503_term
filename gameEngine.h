@@ -33,7 +33,7 @@ private:
 	void foundWildPokemon();
 	void foundTown();
 	void foundItem();
-	int** createMap();
+	//int** createMap();
 	
 public:
 	//public ones
