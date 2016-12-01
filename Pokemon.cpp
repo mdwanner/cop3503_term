@@ -314,6 +314,10 @@ Pokemon Character::setCurrentPokemon(int)
 	
 }
 
+Pokemon[] Character::getParty() {
+	return party;
+}
+
 // Matt: For bag functioning, healing, catching pokemon
 
 void Character::usePotion(&Pokemon p) {
@@ -340,4 +344,12 @@ void Character::addPotion() {
 
 void Character::addPokeBall() {
 	++pokeBalls;
+}
+
+int Character::getPotionCount() {
+	return potions;
+}
+
+int Character::getPokeBallCount() {
+	return pokeBalls;
 }

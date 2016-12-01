@@ -45,7 +45,7 @@ void GameEngine::viewPokedex()
 
 void GameEngine::viewBag()
 {
-	
+	cout << "You have\n\t" + mainCharacter.getPokeBallCount() + " pokeball(s)\n\t" + mainCharacter.getPotionCount() + " potions" << endl;
 }
 
 string getString()
@@ -157,7 +157,7 @@ GameEngine::GameEngine()
 	cout << "Your " << mainCharacter.getPokemon(0).getName() << " is a pokemon." << endl;
 	cout << "Use it to battle other trainers and other wild pokemon." << endl;
 	
-	/** The map will hold ints and the ints will represent as fallows: 
+	/** The map will hold ints and the ints will represent as follows: 
 	* 0: Character
 	* 1: wall		Example output: Its a 40 foot tall concrete wall with barbwire on top. aka Trump's wall
 	* 2: forest 		Example output: You are in a forest
@@ -414,3 +414,82 @@ void Explore::foundWall(GameEngine *g)
 
 string Explore::people[20] = {"Alex", "Jack", "Jamie", "Avery", "Blair", "Christian", "Dane", "Fabian", "Glen", "Hayley", 
 	"Kerry", "Lonnie", "Montana", "Noel", "Payton", "Quinn", "Rene", "Shay", "Tory", "Whitney"};
+
+Town::Town(string name) {
+	this->name = name;
+}
+
+void Town::visitTown() {
+	bool isVisiting = true;
+	cout << "You have entered " + name + ". What would you like to do?\n" << endl;
+	while (isVisiting) {
+		cout << "\t1) Pokemon Center (Heal)\n\t2) PokeMart (Shop)\n\t3) Challenge Gym (Battle)\n\t4) LEAVE\n\nchoice - ";
+		int choice = getInt();
+		switch (choice) {
+		case 1:
+			healPokemon(mainCharacter.getParty());
+			break;
+		case 2:
+			buyItems();
+			break;
+		case 3:
+			battleGym();
+			break;
+		case 4:
+			cout << "You leave for the wilderness" << endl;
+			isVisiting = false;
+			break;
+		}
+	}
+}
+
+// TODO: implement the gym battle
+void Town::battleGym() {
+	cout << "You're going to challenge the city's gym? Are you sure?\n\n\t1) Yes\t2) No" << endl;
+	int decision = getInt();
+	while (decision != 1 && decision != 2) {
+		decision = getInt();
+	}
+	if (decision == 1) {
+		// incorporate battle
+	}
+}
+
+void Town::healPokemon(Pokemon party[6]) {
+	cout << "Welcome to the Pokemon Center! We can heal your Pokemon to full health! One moment please..." << endl;
+	for (int i = 0; i < party.size(); ++i) {
+		party[i].changeCurrentHealth(party.[i].getHealth());
+	}
+	cout << "Thank you for waiting! Your Pokemon are nice and healthy. Have a good day!" << endl;
+}
+
+void Town::buyItems() {
+	cout << "Welcome to the Pokemart! What would you like to buy?\n" << endl;
+	bool isShopping = true;
+	while (isShopping) {
+		cout << "\t1) Pokeball  [ $100 ]\n\t2) Potion  [ $200 ]\n\t3) EXIT" << endl;
+		choice = getInt();
+		switch (choice) {
+		case 1:
+			cout << "How many Pokeballs? ";
+			int amount = getInt();
+			for (int i = 0; i < amount; ++i) {
+				mainCharacter.addPokeBall();
+			}
+			cout << "You purchased " + amount + " Pokeballs! Anything else?" << endl;
+			break;
+		case 2:
+			cout << "How many Potions? ";
+			int amount = getInt();
+			for (int i = 0; i < amount; ++i) {
+				mainCharacter.addPotion();
+			}
+			cout << "You purchased " + amount + " Potions! Anything else?" << endl;
+			break;
+		case 3:
+			cout << "Goodbye, please come again!" << endl;
+			isShopping = false;
+			break;
+		}
+	}
+}

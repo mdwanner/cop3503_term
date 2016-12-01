@@ -49,10 +49,11 @@ public:
 class Town {
 	// private methods and fields
 	int location[2]; // size-two array, store the x and y indices of town's location on map (a 2x2 matrix)
-	// add private functions for buyItems() to use in its function definition
+	string name;
 public:
 	// public methods and fields
-	Town(); // Initialize a new town, include its location on map
+	Town(string); // Initialize a new town, giving it a name
+	void visitTown(); // Enter and interact with a town's features
 	void battleGym(); // includes a call to the Battle class
 	void healPokemon(Pokemon party[6]);
 	void buyItems(); // open store interface
