@@ -6,6 +6,9 @@
 using namespace std;
 
 class Pokemon { // No subclasses, just one basic attack, at least for now.
+
+	friend class Character; // Matt: So bag contents can modify pokemon health
+
 private:
 	int pokedex;
 	string type;
@@ -46,6 +49,9 @@ private:
 	Pokemon party[6];
 	Pokemon currentPokemon;						//Marco: The current pokemon the player holds.
 	
+	int pokeBalls = 0;
+	int potions = 0;
+
 	int xPosition;								//From joey, needed in explore function
 	int yPosition;
 	
@@ -58,6 +64,11 @@ public:
 	Pokemon getPokemon(int);				// takes number 0-5 of desired Pokemon in party
 	Pokemon getCurrentPokemon();				//Marco: for getting the currentPokemon the player has.
 	Pokemon setCurrentPokemon(int);			//Marco: for setting up the currentPokemon. 
+
+	void usePotion(&Pokemon);
+	void usePokeBall();
+	void addPotion();
+	void addPokeball();
 	 											//might help to use getPokemon(numChange) in it to set the current Pokemon.
 	void addPokemon(Pokemon);
 	int getBadges();
