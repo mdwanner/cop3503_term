@@ -45,7 +45,7 @@ void GameEngine::viewPokedex()
 
 void GameEngine::viewBag()
 {
-	cout << "You have\n\t" + mainCharacter.getPokeBallCount() + " pokeball(s)\n\t" + mainCharacter.getPotionCount() + " potions" << endl;
+	cout << "You have\n\t" << mainCharacter.getPokeBallCount() << " pokeball(s)\n\t" << mainCharacter.getPotionCount() << " potions" << endl;
 }
 
 string getString()
@@ -214,41 +214,45 @@ GameEngine::GameEngine()
 	
 	//top = north, left = east
 	//town 1, smallest
+	pew = Town("Pewter City");
 	for(int i = 0; i < 3; i++)
 	{
 		for(int j = 0; j < 3; j++)
 		{
-			//top left corner of town is at corordinate (15,15)
+			//top left corner of town is at coordinate (15,15)
 			newmap[i + 15][j + 15] = TOWN;
 		}
 	}
 		
 	//town 2, smaller
+	fuch = Town("Fuchsia City");
 	for(int i = 0; i < 4; i++)
 	{
 		for(int j = 0; j < 4; j++)
 		{
-			//top left corner of town is at corordinate (57,57)? i guess, idk, maybe it should be moved
+			//top left corner of town is at coordinate (57,57)? i guess, idk, maybe it should be moved
 			newmap[i + 57][j + 57] = TOWN;
 		}
 	}
 		
 	//town 3, same size as 2
+	cer = Town("Cerulean City");
 	for(int i = 0; i < 4; i++)
 	{
 		for(int j = 0; j < 4; j++)
 		{
-			//top left corner of town is at corordinate (79,20)? i guess, idk, maybe it should be moved
+			//top left corner of town is at coordinate (79,20)? i guess, idk, maybe it should be moved
 			newmap[i + 79][j + 20] = TOWN;
 		}
 	}
 		
 	//town 4, big town
+	Town cel("Celadon City");
 	for(int i = 0; i < 7; i++)
 	{
 		for(int j = 0; j < 7; j++)
 		{
-			//top left corner of town is at corordinate (10,60)? i guess, idk, maybe it should be moved
+			//top left corner of town is at coordinate (10,60)? i guess, idk, maybe it should be moved
 			newmap[i + 10][j + 60] = TOWN;
 		}
 	}
@@ -332,7 +336,7 @@ bool Explore::trySpace(int i, int j, GameEngine *g)
 		}
 		case TOWN:
 		{
-			foundTown(g);
+			foundTown(g, i, j);
 			return false;
 			break;
 		}
@@ -401,10 +405,21 @@ void Explore::foundSwamp(GameEngine *g)
 	whatHappened(g);
 }
 
-void Explore::foundTown(GameEngine *g) 
+void Explore::foundTown(GameEngine *g, int x, int y) 
 {
 	cout << "You have found a town!" << endl;
-	//run town
+	if ((x == 15 || x == 16 || x == 17) ^ (y == 15 || y == 16 || y == 17)) { // Pewter City
+		g->pew.visitTown();
+	}
+	else if ((x == 57 || x == 58 || x == 59 || x == 60) ^ (y == 57 || y == 58 || y == 59 || y == 60)) { // Fuchsia City
+		g->fuch.visitTown();
+	}
+	else if ((x == 79 || x == 80 || x == 81 || x == 82) ^ (y == 20 || y == 21 || y == 22 || y == 23)) { // Cerulean City
+		g->cer.visitTown();
+	}
+	else { // Celadon City
+		g->cel.visitTown();
+	}
 }
 
 void Explore::foundWall(GameEngine *g)
@@ -415,11 +430,18 @@ void Explore::foundWall(GameEngine *g)
 string Explore::people[20] = {"Alex", "Jack", "Jamie", "Avery", "Blair", "Christian", "Dane", "Fabian", "Glen", "Hayley", 
 	"Kerry", "Lonnie", "Montana", "Noel", "Payton", "Quinn", "Rene", "Shay", "Tory", "Whitney"};
 
-Town::Town(string name) {
+Town::Town()
+{
+	this->name = "DEFAULT";
+}
+
+Town::Town(string name)
+{
 	this->name = name;
 }
 
-void Town::visitTown() {
+void Town::visitTown()
+{
 	bool isVisiting = true;
 	cout << "You have entered " + name + ". What would you like to do?\n" << endl;
 	while (isVisiting) {
@@ -444,7 +466,8 @@ void Town::visitTown() {
 }
 
 // TODO: implement the gym battle
-void Town::battleGym() {
+void Town::battleGym()
+{
 	cout << "You're going to challenge the city's gym? Are you sure?\n\n\t1) Yes\t2) No" << endl;
 	int decision = getInt();
 	while (decision != 1 && decision != 2) {
@@ -455,7 +478,8 @@ void Town::battleGym() {
 	}
 }
 
-void Town::healPokemon(Pokemon party[6]) {
+void Town::healPokemon(Pokemon party[6])
+{
 	cout << "Welcome to the Pokemon Center! We can heal your Pokemon to full health! One moment please..." << endl;
 	for (int i = 0; i < party.size(); ++i) {
 		party[i].changeCurrentHealth(party.[i].getHealth());
@@ -463,7 +487,8 @@ void Town::healPokemon(Pokemon party[6]) {
 	cout << "Thank you for waiting! Your Pokemon are nice and healthy. Have a good day!" << endl;
 }
 
-void Town::buyItems() {
+void Town::buyItems()
+{
 	cout << "Welcome to the Pokemart! What would you like to buy?\n" << endl;
 	bool isShopping = true;
 	while (isShopping) {

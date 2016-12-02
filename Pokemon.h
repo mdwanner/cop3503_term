@@ -49,8 +49,8 @@ private:
 	Pokemon party[6];
 	Pokemon currentPokemon;						//Marco: The current pokemon the player holds.
 	
-	int pokeBalls = 0;
-	int potions = 0;
+	int pokeBalls;
+	int potions;
 
 	int xPosition;								//From joey, needed in explore function
 	int yPosition;
@@ -62,11 +62,11 @@ public:
 	Character(std::string, int);
 	string getName();
 	Pokemon getPokemon(int);				// takes number 0-5 of desired Pokemon in party
-	Pokemon[] getParty();
+	Pokemon *getParty();
 	Pokemon getCurrentPokemon();				//Marco: for getting the currentPokemon the player has.
 	Pokemon setCurrentPokemon(int);			//Marco: for setting up the currentPokemon. 
 
-	void usePotion(&Pokemon);
+	void usePotion(Pokemon*);
 	void usePokeBall();
 	void addPotion();
 	void addPokeball();
