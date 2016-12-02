@@ -62,7 +62,7 @@ public:
 	Character(std::string, int);
 	string getName();
 	Pokemon getPokemon(int);				// takes number 0-5 of desired Pokemon in party
-	Pokemon *getParty();
+	Pokemon* getParty();
 	Pokemon getCurrentPokemon();				//Marco: for getting the currentPokemon the player has.
 	Pokemon setCurrentPokemon(int);			//Marco: for setting up the currentPokemon. 
 

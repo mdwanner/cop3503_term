@@ -409,16 +409,16 @@ void Explore::foundTown(GameEngine *g, int x, int y)
 {
 	cout << "You have found a town!" << endl;
 	if ((x == 15 || x == 16 || x == 17) ^ (y == 15 || y == 16 || y == 17)) { // Pewter City
-		g->pew.visitTown();
+		g->pew.visitTown(g);
 	}
 	else if ((x == 57 || x == 58 || x == 59 || x == 60) ^ (y == 57 || y == 58 || y == 59 || y == 60)) { // Fuchsia City
-		g->fuch.visitTown();
+		g->fuch.visitTown(g);
 	}
 	else if ((x == 79 || x == 80 || x == 81 || x == 82) ^ (y == 20 || y == 21 || y == 22 || y == 23)) { // Cerulean City
-		g->cer.visitTown();
+		g->cer.visitTown(g);
 	}
 	else { // Celadon City
-		g->cel.visitTown();
+		g->cel.visitTown(g);
 	}
 }
 
@@ -440,7 +440,7 @@ Town::Town(string name)
 	this->name = name;
 }
 
-void Town::visitTown()
+void Town::visitTown(GameEngine *g)
 {
 	bool isVisiting = true;
 	cout << "You have entered " + name + ". What would you like to do?\n" << endl;
@@ -449,10 +449,10 @@ void Town::visitTown()
 		int choice = getInt();
 		switch (choice) {
 		case 1:
-			healPokemon(mainCharacter.getParty());
+			healPokemon(g->mainCharacter.getParty());
 			break;
 		case 2:
-			buyItems();
+			buyItems(g);
 			break;
 		case 3:
 			battleGym();
@@ -478,38 +478,39 @@ void Town::battleGym()
 	}
 }
 
-void Town::healPokemon(Pokemon party[6])
+void Town::healPokemon(Pokemon *party)
 {
 	cout << "Welcome to the Pokemon Center! We can heal your Pokemon to full health! One moment please..." << endl;
-	for (int i = 0; i < party.size(); ++i) {
-		party[i].changeCurrentHealth(party.[i].getHealth());
+	for (int i = 0; i < 6; ++i) {
+		party[i].changeCurrentHealth(party[i].getHealth());
 	}
 	cout << "Thank you for waiting! Your Pokemon are nice and healthy. Have a good day!" << endl;
 }
 
-void Town::buyItems()
+void Town::buyItems(GameEngine *g)
 {
 	cout << "Welcome to the Pokemart! What would you like to buy?\n" << endl;
 	bool isShopping = true;
 	while (isShopping) {
 		cout << "\t1) Pokeball  [ $100 ]\n\t2) Potion  [ $200 ]\n\t3) EXIT" << endl;
-		choice = getInt();
+		int choice = getInt();
+		int amount = 0;
 		switch (choice) {
 		case 1:
 			cout << "How many Pokeballs? ";
-			int amount = getInt();
+			amount = getInt();
 			for (int i = 0; i < amount; ++i) {
-				mainCharacter.addPokeBall();
+				g->mainCharacter.addPokeball();
 			}
-			cout << "You purchased " + amount + " Pokeballs! Anything else?" << endl;
+			cout << "You purchased " << amount << " Pokeballs! Anything else?" << endl;
 			break;
 		case 2:
 			cout << "How many Potions? ";
-			int amount = getInt();
+			amount = getInt();
 			for (int i = 0; i < amount; ++i) {
-				mainCharacter.addPotion();
+				g->mainCharacter.addPotion();
 			}
-			cout << "You purchased " + amount + " Potions! Anything else?" << endl;
+			cout << "You purchased " << amount << " Potions! Anything else?" << endl;
 			break;
 		case 3:
 			cout << "Goodbye, please come again!" << endl;
