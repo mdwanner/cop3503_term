@@ -245,7 +245,7 @@ GameEngine::GameEngine()
 			newmap[i + 79][j + 20] = TOWN;
 		}
 	}
-		
+	
 	//town 4, big town
 	Town cel("Celadon City", 3);
 	for(int i = 0; i < 7; i++)
@@ -437,6 +437,7 @@ Town::Town()
 
 Town::Town(string name, int level) 
 {
+	
 	this->name = name;
 	this->level = level;
 	int pokeLevel;
@@ -468,7 +469,7 @@ Town::Town(string name, int level)
 			pokeLevel = 80;
 		}
 	}
-		
+	
 	int numberOfPokemon = 6;
 	Character joe = Character(gymLeaderName, 2);	
 	for(int i = 0; i < numberOfPokemon; i++)
@@ -476,7 +477,8 @@ Town::Town(string name, int level)
 		joe.addPokemon(Pokemon(pokeLevel));
 	}
 		
-	gymLeader = joe; 
+	gymLeader = joe;
+	
 }
 
 void Town::visitTown(GameEngine *g)

@@ -33,7 +33,7 @@ string Pokemon::pokeMen[151][4] = {{"Bulbasaur", "Ivysaur", "Venusaur", "grass"}
 
 Pokemon::Pokemon()
 {
-	name = "Empty";
+	this->name = "Empty";
 }
 
 Pokemon::Pokemon(int level) 
@@ -233,7 +233,7 @@ void Character::addPokemon(Pokemon p)
 	else
 	{
 		cout << "No slots available. Which pokemon would you like to get ride of?" << endl;
-		
+
 		for(int i = 0; i < 6; i++)
 		{
 			cout << " " << i + 1 << ". " << party[i].getName();
@@ -298,22 +298,39 @@ void Character::addPokemon(Pokemon p)
 				}
 			}
 		} while(!goodInput);
-		
 	}	
 }
 
-Pokemon Character::getPokemon(int) // takes number 1-6 of desired Pokemon in party
+Pokemon Character::getPokemon(int i) // takes number 1-6 of desired Pokemon in party
 {
-	
+	if( i >= 0 && i < 6)
+	{		
+		return party[i];
+	}
+	else 
+	{
+		cout << "Error in getPokemon.";
+		return currentPokemon;
+	}
 }
 				
 Pokemon Character::getCurrentPokemon() //Marco: for getting the currentPokemon the player has.
 {
-	
+	return currentPokemon;
 }		
 	
-Pokemon Character::setCurrentPokemon(int)
+Pokemon Character::setCurrentPokemon(int i)
 {
+	if( i >= 0 && i < 6)
+	{		
+		currentPokemon = party[i];
+		return currentPokemon;
+	}
+	else 
+	{
+		cout << "Error in setCurrentPokemon.";
+		return currentPokemon;
+	}
 	
 }
 
