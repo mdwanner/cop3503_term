@@ -265,6 +265,18 @@ GameEngine::GameEngine()
 
 void Explore::exploreNow(GameEngine *g)
 {	
+	// NOTE: Thinking in terms of a 2D array to a xy-plane, where origin (0,0) is
+	// at the top left corner
+
+	// NOTE: i and j being parameters for function trySpace() further below
+	// i = rows = y-coord, where positive y is down the 2D array
+	// j = columns = x-coord, where positive x is across the right of the array
+
+	// North is up (decrease i)
+	// South is down (increase i)
+	// East is right (increase j)
+	// West is left (decrease j)
+
 	bool hasExit = false;
 	
 	do
@@ -274,19 +286,19 @@ void Explore::exploreNow(GameEngine *g)
 		
 		if (choice == 1)
 		{
-			if(trySpace(g->mainCharacter.xPosition, g->mainCharacter.yPosition - 1, g)) g->mainCharacter.yPosition--;
+			if(trySpace(g->mainCharacter.yPosition - 1, g->mainCharacter.xPosition, g)) g->mainCharacter.yPosition--;
 		}
 		else if (choice == 2)
 		{
-			if(trySpace(g->mainCharacter.xPosition, g->mainCharacter.yPosition + 1, g)) g->mainCharacter.yPosition++;
+			if(trySpace(g->mainCharacter.yPosition + 1, g->mainCharacter.xPosition, g)) g->mainCharacter.yPosition++;
 		}
 		else if (choice == 3)
 		{
-			if(trySpace(g->mainCharacter.xPosition + 1, g->mainCharacter.yPosition, g)) g->mainCharacter.xPosition++;
+			if(trySpace(g->mainCharacter.yPosition, g->mainCharacter.xPosition + 1, g)) g->mainCharacter.xPosition++;
 		}
 		else if (choice == 4)
 		{
-			if(trySpace(g->mainCharacter.xPosition - 1, g->mainCharacter.yPosition, g)) g->mainCharacter.xPosition--;
+			if(trySpace(g->mainCharacter.yPosition, g->mainCharacter.xPosition - 1, g)) g->mainCharacter.xPosition--;
 		}
 		else if (choice == 5)
 		{
@@ -412,17 +424,21 @@ void Explore::foundSwamp(GameEngine *g)
 void Explore::foundTown(GameEngine *g, int x, int y) 
 {
 	cout << "You have found a town!" << endl;
-	if ((x == 15 || x == 16 || x == 17) ^ (y == 15 || y == 16 || y == 17)) { // Pewter City
+	if ((x == 15 || x == 16 || x == 17) && (y == 15 || y == 16 || y == 17)) { // Pewter City
 		g->pew.visitTown(g);
 	}
-	else if ((x == 57 || x == 58 || x == 59 || x == 60) ^ (y == 57 || y == 58 || y == 59 || y == 60)) { // Fuchsia City
+	else if ((x == 57 || x == 58 || x == 59 || x == 60) && (y == 57 || y == 58 || y == 59 || y == 60)) { // Fuchsia City
 		g->fuch.visitTown(g);
 	}
-	else if ((x == 79 || x == 80 || x == 81 || x == 82) ^ (y == 20 || y == 21 || y == 22 || y == 23)) { // Cerulean City
+	else if ((x == 20 || x == 21 || x == 22 || x == 23) && (y == 79 || y == 80 || y == 81 || y == 82)) { // Cerulean City
 		g->cer.visitTown(g);
 	}
-	else { // Celadon City
+	else if ((x == 60 || x == 61 || x == 62 || x == 63 || x == 64 || x == 65 || x == 66)
+		&& (y == 10 || y == 11 || y == 12 || y == 13 || y == 14 || y == 15 || y == 16)) { // Celadon City
 		g->cel.visitTown(g);
+	}
+	else {
+		cout << "ERROR: Coordinate failure (" << x << "," << y << ")" << endl;
 	}
 }
 
