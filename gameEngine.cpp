@@ -533,7 +533,7 @@ void Town::battleGym(GameEngine *g)
 	}
 }
 
-void Town::healPokemon(Pokemon party[6])
+void Town::healPokemon(Pokemon* party)
 {
 	cout << "Welcome to the Pokemon Center! We can heal your Pokemon to full health! One moment please..." << endl;
 	for (int i = 0; i < 6; ++i) {
