@@ -406,22 +406,25 @@ void Explore::whatHappened(GameEngine *g)
 void Explore::foundForest(GameEngine *g)
 {
 	cout << "You are in a forest." << endl;
-	whatHappened(g);
+	//whatHappened(g);
+	cout << "(" << g->mainCharacter.xPosition << "," << g->mainCharacter.yPosition << ")" << endl;
 }
 
 void Explore::foundDesert(GameEngine *g)
 {
 	cout << "You are in a desert." << endl;
-	whatHappened(g);
+	//whatHappened(g);
+	cout << "(" << g->mainCharacter.xPosition << "," << g->mainCharacter.yPosition << ")" << endl;
 }
 
 void Explore::foundSwamp(GameEngine *g)
 {
 	cout << "You are in a Swamp." << endl;
-	whatHappened(g);
+	//whatHappened(g);
+	cout << "(" << g->mainCharacter.xPosition << "," << g->mainCharacter.yPosition << ")" << endl;
 }
 
-void Explore::foundTown(GameEngine *g, int x, int y) 
+void Explore::foundTown(GameEngine *g, int y, int x) 
 {
 	cout << "You have found a town!" << endl;
 	if ((x == 15 || x == 16 || x == 17) && (y == 15 || y == 16 || y == 17)) { // Pewter City
