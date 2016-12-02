@@ -515,7 +515,7 @@ void Town::battleGym(GameEngine *g)
 {
 	if(g->mainCharacter.getBadges() >= level)
 	{
-		cout << "You have already beat this gym!";
+		cout << "You have already beat this gym!" << endl;
 	}
 	else if (g->mainCharacter.getBadges() <= level - 1)
 	{
@@ -539,49 +539,49 @@ void Town::battleGym(GameEngine *g)
 
 void Town::healPokemon(Pokemon* party)
 {
-	cout << "Welcome to the Pokemon Center! We can heal your Pokemon to full health! One moment please..." << endl;
+	cout << "'Welcome to the Pokemon Center! We can heal your Pokemon to full health! One moment please...'" << endl;
 	for (int i = 0; i < 6; ++i) {
 		party[i].changeCurrentHealth(party[i].getHealth());
 	}
-	cout << "Thank you for waiting! Your Pokemon are nice and healthy. Have a good day!" << endl;
+	cout << "'Thank you for waiting! Your Pokemon are nice and healthy. Have a good day!'" << endl;
 }
 
 void Town::buyItems(GameEngine *g) 
 {
-	cout << "Welcome to the Pokemart! What would you like to buy?\n" << endl;
+	cout << "'Welcome to the Pokemart! What would you like to buy?'\n" << endl;
 	bool isShopping = true;
 	int amount;
 	while (isShopping) 
 	{
-		cout << "\t1) Pokeball  [ $100 ]\n\t2) Potion  [ $200 ]\n\t3) EXIT" << endl;
+		cout << "\t1) Pokeball  [ $100 ]\n\t2) Potion  [ $200 ]\n\t3) EXIT\n\nchoice - ";
 		int choice = getInt();
 		switch (choice) 
 		{
 			case 1:
 			{
-				cout << "How many Pokeballs? ";
+				cout << "How many Pokeballs: ";
 				amount = getInt();
 				for (int i = 0; i < amount; ++i) 
 				{
 					g->mainCharacter.addPokeball();
 				}
-				cout << "You purchased " << amount << " Pokeballs! Anything else?" << endl;
+				cout << "You purchased " << amount << " Pokeballs! 'Anything else?'" << endl;
 				break;
 			}
 			case 2:
 			{
-				cout << "How many Potions? ";
+				cout << "How many Potions: ";
 				amount = getInt();
 				for (int i = 0; i < amount; ++i) 
 				{
 					g->mainCharacter.addPotion();
 				}
-				cout << "You purchased " << amount << " Potions! Anything else?" << endl;
+				cout << "You purchased " << amount << " Potions! 'Anything else?'" << endl;
 				break;
 			}
 			case 3:
 			{
-				cout << "Goodbye, please come again!" << endl;
+				cout << "'Goodbye, please come again!'" << endl;
 				isShopping = false;
 				break;
 			}
