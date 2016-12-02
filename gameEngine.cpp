@@ -479,7 +479,7 @@ Town::Town(string name, int level)
 	gymLeader = joe; 
 }
 
-void Town::visitTown(GameEngine* g)
+void Town::visitTown(GameEngine *g)
 {
 	bool isVisiting = true;
 	cout << "You have entered " + name + ". What would you like to do?\n" << endl;
@@ -491,10 +491,10 @@ void Town::visitTown(GameEngine* g)
 			healPokemon(g->mainCharacter.getParty());
 			break;
 		case 2:
-			buyItems(GameEngine* g);
+			buyItems(g);
 			break;
 		case 3:
-			battleGym(GameEngine* g);
+			battleGym(g);
 			break;
 		case 4:
 			cout << "You leave for the wilderness" << endl;
@@ -534,8 +534,8 @@ void Town::battleGym(GameEngine *g)
 void Town::healPokemon(Pokemon party[6])
 {
 	cout << "Welcome to the Pokemon Center! We can heal your Pokemon to full health! One moment please..." << endl;
-	for (int i = 0; i < party.size(); ++i) {
-		party[i].changeCurrentHealth(party.[i].getHealth());
+	for (int i = 0; i < 6; ++i) {
+		party[i].changeCurrentHealth(party[i].getHealth());
 	}
 	cout << "Thank you for waiting! Your Pokemon are nice and healthy. Have a good day!" << endl;
 }

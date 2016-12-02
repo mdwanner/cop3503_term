@@ -192,7 +192,7 @@ Character::Character(std::string n, int g)
 	potions = 0;
 	pokeBalls = 0;
 	
-	for(int i = 0; i < party.size(); i++)
+	for(int i = 0; i < 6; i++)
 	{
 		party[i] = Pokemon();
 	}					
@@ -208,7 +208,7 @@ void Character::addPokemon(Pokemon p)
 	bool hasSlot = false;
 	bool allEmpty = true;
 	int indexOfFirstEmpty;
-	for(int i = 0; i < party.size(); i++)
+	for(int i = 0; i < 6; i++)
 	{
 		if (party[i].getName().compare("Empty") == 0)
 		{
@@ -234,11 +234,11 @@ void Character::addPokemon(Pokemon p)
 	{
 		cout << "No slots available. Which pokemon would you like to get ride of?" << endl;
 		
-		for(int i = 0; i < party.size(); i++)
+		for(int i = 0; i < 6; i++)
 		{
-		cout << " " << i + 1 << ". " << party[i].getName()
+			cout << " " << i + 1 << ". " << party[i].getName();
 		}
-		cout << " " << party.size() + 1 << ". None";
+		cout << " " << 7 << ". None";
 		
 		bool goodInput;
 		
@@ -251,43 +251,43 @@ void Character::addPokemon(Pokemon p)
 			{
 				case 0: 
 				{
-					cout << party[0].getName() << " was removed and " << p.getName() << " was added."
+					cout << party[0].getName() << " was removed and " << p.getName() << " was added.";
 					party[0] = p;
 					break;
 				}
 				case 1: 
 				{
-					cout << party[1].getName() << " was removed and " << p.getName() << " was added."
+					cout << party[1].getName() << " was removed and " << p.getName() << " was added.";
 					party[1] = p;
 					break;
 				}
 				case 2: 
 				{
-					cout << party[2].getName() << " was removed and " << p.getName() << " was added."
+					cout << party[2].getName() << " was removed and " << p.getName() << " was added.";
 					party[2] = p;
 					break;
 				}
 				case 3: 
 				{
-					cout << party[3].getName() << " was removed and " << p.getName() << " was added."
+					cout << party[3].getName() << " was removed and " << p.getName() << " was added.";
 					party[3] = p;
 					break;
 				}
 				case 4: 
 				{
-					cout << party[4].getName() << " was removed and " << p.getName() << " was added."
+					cout << party[4].getName() << " was removed and " << p.getName() << " was added.";
 					party[4] = p;
 					break;
 				}
 				case 5: 
 				{
-					cout << party[5].getName() << " was removed and " << p.getName() << " was added."
+					cout << party[5].getName() << " was removed and " << p.getName() << " was added.";
 					party[5] = p;
 					break;
 				}
 				case 6: 
 				{
-					cout << p.getName() << " was turned into candy."
+					cout << p.getName() << " was turned into candy.";
 					break;
 				}
 				default: 
@@ -297,7 +297,7 @@ void Character::addPokemon(Pokemon p)
 					break;
 				}
 			}
-		} while(!goodInput)
+		} while(!goodInput);
 		
 	}	
 }
@@ -329,9 +329,9 @@ void Character::usePotion(Pokemon *p) {
 	}
 	else {
 		--potions;
-		p.currentHealth += (int)(0.50 * p.health); // Potions restore 50% of max health
-		if (p.currentHealth > p.health) {
-			p.currentHealth = p.health;
+		p->currentHealth += (int)(0.50 * p->health); // Potions restore 50% of max health
+		if (p->currentHealth > p->health) {
+			p->currentHealth = p->health;
 		}
 	}
 }
@@ -345,8 +345,13 @@ void Character::addPotion() {
 	++potions;
 }
 
-void Character::addPokeBall() {
+void Character::addPokeball() {
 	++pokeBalls;
+}
+
+int Character::getBadges()
+{
+	return badges;
 }
 
 int Character::getPotionCount() {
