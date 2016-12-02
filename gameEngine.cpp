@@ -214,7 +214,7 @@ GameEngine::GameEngine()
 	
 	//top = north, left = east
 	//town 1, smallest
-	pew = Town("Pewter City");
+	pew = Town("Pewter City", 0);
 	for(int i = 0; i < 3; i++)
 	{
 		for(int j = 0; j < 3; j++)
@@ -225,7 +225,7 @@ GameEngine::GameEngine()
 	}
 		
 	//town 2, smaller
-	fuch = Town("Fuchsia City");
+	fuch = Town("Fuchsia City", 1);
 	for(int i = 0; i < 4; i++)
 	{
 		for(int j = 0; j < 4; j++)
@@ -236,7 +236,7 @@ GameEngine::GameEngine()
 	}
 		
 	//town 3, same size as 2
-	cer = Town("Cerulean City");
+	cer = Town("Cerulean City", 2);
 	for(int i = 0; i < 4; i++)
 	{
 		for(int j = 0; j < 4; j++)
@@ -247,7 +247,7 @@ GameEngine::GameEngine()
 	}
 		
 	//town 4, big town
-	Town cel("Celadon City");
+	Town cel("Celadon City", 3);
 	for(int i = 0; i < 7; i++)
 	{
 		for(int j = 0; j < 7; j++)
@@ -409,16 +409,16 @@ void Explore::foundTown(GameEngine *g, int x, int y)
 {
 	cout << "You have found a town!" << endl;
 	if ((x == 15 || x == 16 || x == 17) ^ (y == 15 || y == 16 || y == 17)) { // Pewter City
-		g->pew.visitTown();
+		g->pew.visitTown(g);
 	}
 	else if ((x == 57 || x == 58 || x == 59 || x == 60) ^ (y == 57 || y == 58 || y == 59 || y == 60)) { // Fuchsia City
-		g->fuch.visitTown();
+		g->fuch.visitTown(g);
 	}
 	else if ((x == 79 || x == 80 || x == 81 || x == 82) ^ (y == 20 || y == 21 || y == 22 || y == 23)) { // Cerulean City
-		g->cer.visitTown();
+		g->cer.visitTown(g);
 	}
 	else { // Celadon City
-		g->cel.visitTown();
+		g->cel.visitTown(g);
 	}
 }
 
@@ -435,12 +435,51 @@ Town::Town()
 	this->name = "DEFAULT";
 }
 
-Town::Town(string name)
+Town::Town(string name, int level) 
 {
 	this->name = name;
+	this->level = level;
+	int pokeLevel;
+	string gymLeaderName;
+	
+	switch(level)
+	{
+		case 0:
+		{
+			gymLeaderName = "Viscount Jeremiah Geoffrey";
+			pokeLevel = 20;
+			break;
+		}
+		case 1: 
+		{
+			gymLeaderName = "Earl Roland Percy";
+			pokeLevel = 40;
+			break;
+		}
+		case 2: 
+		{
+			gymLeaderName = "Count Humphrey Ridgewell";
+			pokeLevel = 60;
+			break;
+		}
+		case 3: 
+		{
+			gymLeaderName = "Baron Jonathan Jack";
+			pokeLevel = 80;
+		}
+	}
+		
+	int numberOfPokemon = 6;
+	Character joe = Character(gymLeaderName, 2);	
+	for(int i = 0; i < numberOfPokemon; i++)
+	{
+		joe.addPokemon(Pokemon(pokeLevel));
+	}
+		
+	gymLeader = joe; 
 }
 
-void Town::visitTown()
+void Town::visitTown(GameEngine* g)
 {
 	bool isVisiting = true;
 	cout << "You have entered " + name + ". What would you like to do?\n" << endl;
@@ -449,13 +488,13 @@ void Town::visitTown()
 		int choice = getInt();
 		switch (choice) {
 		case 1:
-			healPokemon(mainCharacter.getParty());
+			healPokemon(g->mainCharacter.getParty());
 			break;
 		case 2:
-			buyItems();
+			buyItems(GameEngine* g);
 			break;
 		case 3:
-			battleGym();
+			battleGym(GameEngine* g);
 			break;
 		case 4:
 			cout << "You leave for the wilderness" << endl;
@@ -466,15 +505,29 @@ void Town::visitTown()
 }
 
 // TODO: implement the gym battle
-void Town::battleGym()
+void Town::battleGym(GameEngine *g) 
 {
-	cout << "You're going to challenge the city's gym? Are you sure?\n\n\t1) Yes\t2) No" << endl;
-	int decision = getInt();
-	while (decision != 1 && decision != 2) {
-		decision = getInt();
+	if(g->mainCharacter.getBadges() >= level)
+	{
+		cout << "You have already beat this gym!";
 	}
-	if (decision == 1) {
-		// incorporate battle
+	else if (g->mainCharacter.getBadges() <= level - 1)
+	{
+		cout << "You have to beat " << level - g->mainCharacter.getBadges() << " gyms before you can do that!";
+	}
+	else
+	{
+		cout << "You're going to challenge the city's gym? Are you sure?\n\n\t1) Yes\t2) No" << endl;
+		int decision = getInt();
+		while (decision != 1 && decision != 2) 
+		{
+			cout << "Invalid choice" << endl;
+			decision = getInt();
+		}
+		if (decision == 1) 
+		{
+			Battle(g->mainCharacter, gymLeader); 
+		}
 	}
 }
 
@@ -487,34 +540,45 @@ void Town::healPokemon(Pokemon party[6])
 	cout << "Thank you for waiting! Your Pokemon are nice and healthy. Have a good day!" << endl;
 }
 
-void Town::buyItems()
+void Town::buyItems(GameEngine *g) 
 {
 	cout << "Welcome to the Pokemart! What would you like to buy?\n" << endl;
 	bool isShopping = true;
-	while (isShopping) {
+	int amount;
+	while (isShopping) 
+	{
 		cout << "\t1) Pokeball  [ $100 ]\n\t2) Potion  [ $200 ]\n\t3) EXIT" << endl;
-		choice = getInt();
-		switch (choice) {
-		case 1:
-			cout << "How many Pokeballs? ";
-			int amount = getInt();
-			for (int i = 0; i < amount; ++i) {
-				mainCharacter.addPokeBall();
+		int choice = getInt();
+		switch (choice) 
+		{
+			case 1:
+			{
+				cout << "How many Pokeballs? ";
+				amount = getInt();
+				for (int i = 0; i < amount; ++i) 
+				{
+					g->mainCharacter.addPokeball();
+				}
+				cout << "You purchased " << amount << " Pokeballs! Anything else?" << endl;
+				break;
 			}
-			cout << "You purchased " + amount + " Pokeballs! Anything else?" << endl;
-			break;
-		case 2:
-			cout << "How many Potions? ";
-			int amount = getInt();
-			for (int i = 0; i < amount; ++i) {
-				mainCharacter.addPotion();
+			case 2:
+			{
+				cout << "How many Potions? ";
+				amount = getInt();
+				for (int i = 0; i < amount; ++i) 
+				{
+					g->mainCharacter.addPotion();
+				}
+				cout << "You purchased " << amount << " Potions! Anything else?" << endl;
+				break;
 			}
-			cout << "You purchased " + amount + " Potions! Anything else?" << endl;
-			break;
-		case 3:
-			cout << "Goodbye, please come again!" << endl;
-			isShopping = false;
-			break;
+			case 3:
+			{
+				cout << "Goodbye, please come again!" << endl;
+				isShopping = false;
+				break;
+			}
 		}
 	}
 }
