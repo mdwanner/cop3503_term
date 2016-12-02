@@ -5,7 +5,7 @@
 int main() 
 {
 	GameEngine game;
-	cout << "\tWhat do you want to do now?\n\t\t1) Go exploring\n\t\t2) Veiw the Pokedex\n\t\t3) Veiw your Pokemon\n\t\t4) Veiw your bag\n\t\t5) Quit\n\n\tchoice: ";
+	cout << "\n\tWhat do you want to do now?\n\t\t1) Go exploring\n\t\t2) Veiw the Pokedex\n\t\t3) Veiw your Pokemon\n\t\t4) Veiw your bag\n\t\t5) Quit\n\n\tchoice: ";
 	int choice = getInt();
 	Explore ex = Explore();
 	while (choice != 5) 
@@ -21,7 +21,7 @@ int main()
 		case 4: game.viewBag();
 			break;
 		}
-		cout << "\tWhat do you want to do?\n\t\t1) Explore\n\t\t2) Pokedex\n\t\t3) Pokemon\n\t\t4) Bag\n\t\t5) Quit\n\n\tchoice: ";
+		cout << "\n\tWhat do you want to do now?\n\t\t1) Explore\n\t\t2) Pokedex\n\t\t3) Pokemon\n\t\t4) Bag\n\t\t5) Quit\n\n\tchoice: ";
 		choice = getInt();
 	}
 	cout << "Goodbye!" << endl;
@@ -113,16 +113,20 @@ GameEngine::GameEngine()
 	nameChoice = getString();
 	cout << "What is your gender?'\n Your gender (1. Female, 2. Male): ";
 	genderChoice = getInt();
+	while (genderChoice != 1 && genderChoice != 2) {
+		cout << "Invalid Input, try again" << endl;
+		genderChoice = getInt();
+	}
 	mainCharacter = Character(nameChoice, genderChoice);
 	cout << "'I see greatness in you, " << mainCharacter.getName() << ". Become the best, and I will speak with you again.'" << endl;
-	cout << "The voice disappeared and 3 pokeoballs appeared." << endl;
+	cout << "The voice disappeared and 3 Pokeballs appeared." << endl;
 	cout << "Grab the 1st, 2nd, or 3rd one? " << endl;
-	pokeChoice = getInt();
 	
 	bool valid = false;
 	
 	do
 	{
+		pokeChoice = getInt();
 		switch(pokeChoice)
 		{
 			case 1:
@@ -247,7 +251,7 @@ GameEngine::GameEngine()
 	}
 	
 	//town 4, big town
-	Town cel("Celadon City", 3);
+	cel = Town("Celadon City", 3);
 	for(int i = 0; i < 7; i++)
 	{
 		for(int j = 0; j < 7; j++)

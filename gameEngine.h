@@ -6,8 +6,8 @@
 #include <cctype>
 #include <stdlib.h>
 #include <time.h>
-#include "battle.h"
-#include "Pokemon.h"
+#include "battle.cpp"
+#include "Pokemon.cpp"
 #define MAP_SIZE 100
 #define WALL 1
 #define FOREST 2
@@ -23,7 +23,6 @@ until the game is exited
 */
 
 class GameEngine;
-
 
 class Town {
 
