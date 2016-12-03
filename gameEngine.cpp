@@ -406,22 +406,19 @@ void Explore::whatHappened(GameEngine *g)
 void Explore::foundForest(GameEngine *g)
 {
 	cout << "You are in a forest." << endl;
-	//whatHappened(g);
-	cout << "(" << g->mainCharacter.xPosition << "," << g->mainCharacter.yPosition << ")" << endl;
+	whatHappened(g);
 }
 
 void Explore::foundDesert(GameEngine *g)
 {
 	cout << "You are in a desert." << endl;
-	//whatHappened(g);
-	cout << "(" << g->mainCharacter.xPosition << "," << g->mainCharacter.yPosition << ")" << endl;
+	whatHappened(g);
 }
 
 void Explore::foundSwamp(GameEngine *g)
 {
 	cout << "You are in a Swamp." << endl;
-	//whatHappened(g);
-	cout << "(" << g->mainCharacter.xPosition << "," << g->mainCharacter.yPosition << ")" << endl;
+	whatHappened(g);
 }
 
 void Explore::foundTown(GameEngine *g, int y, int x) 

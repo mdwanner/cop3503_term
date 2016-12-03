@@ -187,7 +187,7 @@ Character::Character(std::string n, int g)
 	name = n;
 	gender = g;
 	xPosition = 50;								//From joey, needed in explore function
-	yPosition = 50;							//IMPORTANT!!! WHEN YOU POPULATE THE POKEMON ARRAY ON CREATION, FILL THE EMNTY SLOTS WITH A
+	yPosition = 50;							//IMPORTANT!!! WHEN YOU POPULATE THE POKEMON ARRAY ON CREATION, FILL THE EMPTY SLOTS WITH A
 
 	potions = 0;
 	pokeBalls = 0;
@@ -355,7 +355,12 @@ void Character::usePotion(Pokemon *p) {
 
 // TODO: vvv
 void Character::usePokeBall() {
-
+	if (pokeballs == 0) {
+		cout << "No pokeballs available" << endl;
+	}
+	else {
+		// stuff
+	}
 } // TODO: Incorporate catching a pokemon
 
 void Character::addPotion() {
