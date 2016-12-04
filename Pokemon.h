@@ -40,7 +40,8 @@ public:
 
 class Character {
 
-	friend class Explore;						//From joey, needed in explore function, wanted to limit access to 
+	friend class Explore;
+	friend class Battle;						//From joey, needed in explore function, wanted to limit access to 
 												//all other classes
 private:
 	
@@ -65,13 +66,15 @@ public:
 	Pokemon *getParty();
 	Pokemon getCurrentPokemon();				//Marco: for getting the currentPokemon the player has.
 	Pokemon setCurrentPokemon(int);			//Marco: for setting up the currentPokemon. 
+	void setCurrentPokemon(Pokemon);
 
 	void usePotion(Pokemon*);
 	void usePokeBall();
 	void addPotion();
-	void addPokeball();
+	void addPokeBall();
 	int getPotionCount();
 	int getPokeBallCount();
+	void setPos();
 	 											//might help to use getPokemon(numChange) in it to set the current Pokemon.
 	void addPokemon(Pokemon);
 	int getBadges();

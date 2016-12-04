@@ -37,11 +37,23 @@ void GameEngine::viewTeam()
 
 void GameEngine::viewPokedex()
 {
-	for(int i = 0; i < 151; i++)
+	int dex = 1;
+
+	for (int i=0; i<77; i++) 
 	{
-		cout << i << ": " << mainCharacter.getCurrentPokemon().getPokedexEntry(i, 0) << " of type " << mainCharacter.getCurrentPokemon().getPokedexEntry(i, 3) << endl;
+		for (int j = 0; j<3; j++) 
+		{
+			cout << dex++ << ": " << mainCharacter.getCurrentPokemon().getPokedexEntry(i, j) << ", " <<
+				mainCharacter.getCurrentPokemon().getPokedexEntry(i, 3) << " type" << endl;
+			if (mainCharacter.getCurrentPokemon().getPokedexEntry(i, j) == mainCharacter.getCurrentPokemon().getPokedexEntry(i, j+1)) 
+			{
+				break;
+			}
+
+		}
 	}
 }
+
 
 void GameEngine::viewBag()
 {
@@ -155,6 +167,16 @@ GameEngine::GameEngine()
 		
 		}
 	} while (!valid);
+	
+	for (int i = 0; i < 10; ++i) 
+	{
+		mainCharacter.addPotion();
+	}
+	
+	for (int i = 0; i < 10; ++i) 
+	{
+		mainCharacter.addPokeBall();
+	}
 	
 	cout << "You got a " << mainCharacter.getPokemon(0).getName() << "!" << endl;
 	cout << "The other pokeballs disappeared before you could grab another." << endl;
@@ -379,7 +401,7 @@ void Explore::whatHappened(GameEngine *g)
 		Pokemon joey = Pokemon(g->mainCharacter.getCurrentPokemon().getLevel());
 		cout << "A " << joey.getName() << " has appeared from seemingly nowhere to fight!" << endl;
 		freeSteps = 0;
-		Battle(g->mainCharacter, joey);
+		Battle(&g->mainCharacter, &joey);
 	}
 	else if (whatHappened > (100 - (freeSteps*1.4)))
 	{
@@ -395,7 +417,7 @@ void Explore::whatHappened(GameEngine *g)
 		}
 		
 		freeSteps = 0;
-		Battle(g->mainCharacter, joe); 
+		Battle(&g->mainCharacter, &joe); 
 	}
 	else
 	{
@@ -529,11 +551,11 @@ void Town::visitTown(GameEngine *g)
 // TODO: implement the gym battle
 void Town::battleGym(GameEngine *g) 
 {
-	if(g->mainCharacter.getBadges() >= level)
+	if(g->mainCharacter.getBadges() > level)
 	{
 		cout << "You have already beat this gym!" << endl;
 	}
-	else if (g->mainCharacter.getBadges() <= level - 1)
+	else if (g->mainCharacter.getBadges() < level - 1)
 	{
 		cout << "You have to beat " << level - g->mainCharacter.getBadges() << " gyms before you can do that!";
 	}
@@ -548,7 +570,7 @@ void Town::battleGym(GameEngine *g)
 		}
 		if (decision == 1) 
 		{
-			Battle(g->mainCharacter, gymLeader); 
+			Battle(&g->mainCharacter, &gymLeader); 
 		}
 	}
 }
@@ -556,8 +578,10 @@ void Town::battleGym(GameEngine *g)
 void Town::healPokemon(Pokemon* party)
 {
 	cout << "'Welcome to the Pokemon Center! We can heal your Pokemon to full health! One moment please...'" << endl;
-	for (int i = 0; i < 6; ++i) {
-		party[i].changeCurrentHealth(party[i].getHealth());
+	for (int i = 0; i < 6; ++i) 
+	{
+		party[i].changeCurrentHealth(999999);
+		cout << "Your  " << party[i].getName() << " has " << party[i].getCurrentHealth() << " hp. " << endl;
 	}
 	cout << "'Thank you for waiting! Your Pokemon are nice and healthy. Have a good day!'" << endl;
 }
@@ -579,7 +603,7 @@ void Town::buyItems(GameEngine *g)
 				amount = getInt();
 				for (int i = 0; i < amount; ++i) 
 				{
-					g->mainCharacter.addPokeball();
+					g->mainCharacter.addPokeBall();
 				}
 				cout << "You purchased " << amount << " Pokeballs! 'Anything else?'" << endl;
 				break;

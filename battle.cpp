@@ -11,9 +11,11 @@ using namespace std;
 // define functions in header (main() NOT located here)
 
 //todo: INVENTORY SECTION STILL NEEDS CREATION AND IMPLEMENTATION
-void Battle::attack(bool turns, Character* thePlayer, Character* theEnemyPlayer){
+void Battle::attack(int turns, Character* thePlayer, Character* theEnemyPlayer)
+{
 	Pokemon currEnemyPok = theEnemyPlayer->getCurrentPokemon();
 	Pokemon currMyPok = thePlayer->getCurrentPokemon();
+	
 	int dodgechance;
 	int damage;
 	if (turns == 0)
@@ -22,40 +24,61 @@ void Battle::attack(bool turns, Character* thePlayer, Character* theEnemyPlayer)
 		dodgechance = currEnemyPok.getDodge();
 	srand(time(NULL));
 	int dodgeroll = rand() % 100+1;
-	if (dodgeroll >= dodgechance) {
+	if (dodgeroll >= dodgechance) 
+	{
 		//attack
-		cout << "attack was successful!\n";
-		if (turns == 0) {
+		if (turns == 0) 
+		{
 			//Note: attacks have yet to be balanced.
 			//mypokemon attacks
-			damage = currMyPok.getAttack() * 0.5;
+			damage = currMyPok.getAttack() * (-0.5);
 			//The typeMultiplier represents a double array of gen 1 pokemon type chart multipliers.
 			//the pokemon.typenumber
 			//damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+			
+			currEnemyPok.changeCurrentHealth(damage);
+			cout << "Your attack was successful!\n";
 		}
-		else {
+		else 
+		{
 			//enemy pokemon attacks
-			damage = currEnemyPok.getAttack() * 0.5;
+			damage = currEnemyPok.getAttack() * (-0.5);
 			//damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+			currMyPok.changeCurrentHealth(damage);
+			cout << "Their attack was successful!\n";
 		}
 	}
 	else
 		//attack missed.
-		cout << " The attack missed!\n";
-	if (currMyPok.getCurrentHealth() <= 0) {
+		cout << "The attack missed!\n";
+	if (currMyPok.getCurrentHealth() <= 0) 
+	{
 		//forces a switch of pokemon if pokemon faints.
-		cout << "Your pokemon has fainted!";
-		//todo: make a loop that checks the next healthy pokemon.
+		cout << "Your pokemon has fainted!" << endl;
+		
+		thePlayer->setCurrentPokemon(currMyPok);
 		switchPokemon(thePlayer);
 	}
+	else
+	{
+		thePlayer->setCurrentPokemon(currMyPok);
+	}
+	
 	if (currEnemyPok.getCurrentHealth() <= 0) {
-		cout << "enemy pokemon has fainted!";
+		cout << "The enemy pokemon has fainted!";
 		//todo: make a loop that checks the next healthy pokemon (and maybe battle type).
+		theEnemyPlayer->setCurrentPokemon(currEnemyPok);
 		switchPokemon(theEnemyPlayer);
 	}
+	else
+	{
+		theEnemyPlayer->setCurrentPokemon(currEnemyPok);
+	}
+	
 };
 
-void Battle::attack(bool turns, Character* thePlayer, Pokemon* wildPokemon) {
+void Battle::attack(int turns, Character* thePlayer, Pokemon* wildPokemon) 
+{
 	//Pokemon currEnemyPok = wildPokemon;       			<--  Matt: These seem redundant and might be the reason the health isn't changing in battle,
 	//Pokemon currMyPok = thePlayer->getCurrentPokemon();        our pointer values were saved into local variables
 	int dodgechance;
@@ -66,59 +89,66 @@ void Battle::attack(bool turns, Character* thePlayer, Pokemon* wildPokemon) {
 		dodgechance = wildPokemon->getDodge();
 	srand(time(NULL));
 	int dodgeroll = rand() % 100+1;
-	if (dodgeroll >= dodgechance) {
+	if (dodgeroll >= dodgechance) 
+	{
 		//attack
-		cout << "attack was successful!\n";
-		if (turns == 0) {
+		cout << "Your attack was successful!\n";
+		if (turns == 0) 
+		{
 			//Note: attacks have yet to be balanced.
 			//mypokemon attacks
-			damage = thePlayer->getCurrentPokemon().getAttack() * 0.5;
+			damage = thePlayer->getCurrentPokemon().getAttack() * (-0.5);
 			//The typeMultiplier represents a double array of gen 1 pokemon type chart multipliers.
 			//the pokemon.typenumber
 			//damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+			
+			wildPokemon->changeCurrentHealth(damage);
 		}
-		else {
+		else 
+		{
 			//enemy pokemon attacks
-			damage = wildPokemon->getAttack() * 0.5;
+			damage = wildPokemon->getAttack() * (-0.5);
 			//damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
+			Pokemon temp = thePlayer->getCurrentPokemon();
+			temp.changeCurrentHealth(damage);
+			thePlayer->setCurrentPokemon(temp);
 		}
 	}
 	else
+	{
 		//attack missed.
 		cout << " The attack missed!\n";
-	if (thePlayer->getCurrentPokemon().getCurrentHealth() <= 0) {
-		//forces a switch of pokemon if pokemon faints.
-		cout << "Your pokemon has fainted!";
-		//todo: make a loop that checks the next healthy pokemon.
-		switchPokemon(thePlayer);
 	}
-	if (wildPokemon->getCurrentHealth() <= 0)
-		cout << "Wild pokemon has fainted!";
 };
 
 Pokemon Battle::switchPokemon(Character* trainer){ // !
 	//For forced pokemon switch.
-	//Pokemon currPokemon = trainer->getCurrentPokemon();
-	for (int i = 0; i < 6; i++){
-		if (trainer->getCurrentPokemon().getCurrentHealth() <= 0){
-			currPokemon = trainer->setCurrentPokemon(i);
-			cout << "switched to " << currPokemon.getName() << ".\n";
+
+	for (int i = 0; i < 6; i++)
+	{
+		Pokemon switchPokemon = trainer->getCurrentPokemon();
+		if (switchPokemon.getCurrentHealth() >= 0 && switchPokemon.getName().compare("Empty") != 0)
+		{
+			trainer->setCurrentPokemon(i);
+			cout << "Switched to " << switchPokemon.getName() << ".\n";
 			break;
 		}
 		
 	}
-	return currPokemon;
+	return trainer->getCurrentPokemon();
 };
 
 Pokemon Battle::switchPokemon(int numPokemon, Character* trainer){
 	//For user choice switch.
 	Pokemon currPokemon = trainer->getCurrentPokemon();
 	Pokemon switchPokemon = trainer->getPokemon(numPokemon);
-	if (switchPokemon.getCurrentHealth() >= 0){
+	if (switchPokemon.getCurrentHealth() >= 0 && switchPokemon.getName().compare("Empty") != 0)
+	{
 		trainer->setCurrentPokemon(numPokemon);
 		return switchPokemon;
 	}
-	else {
+	else 
+	{
 		cout << "You cannot switch to that pokemon!\n";
 			
 	}
@@ -131,7 +161,8 @@ Battle::Battle(Character* player, Pokemon* enemy)
 	int action = 0;
 	//turn decides who attacks: 0 = you, 1 = enemy.
 	bool turn = 0;
-	while (action != 4 || (enemy->getCurrentHealth()>0 && currPokemon.getCurrentHealth()>0)) {
+	while (action != 4 && (enemy->getCurrentHealth()>0 && currPokemon.getCurrentHealth()>0)) 
+	{
 		cout << "\nYou encountered a wild pokemon, what would you like to do?" << endl;
 		cout << "\t1) FIGHT\t2) BAG\n\t3) POKEMON\t4) RUN\n\n\tchoice: ";
 		action = getInt1();
@@ -160,7 +191,7 @@ Battle::Battle(Character* player, Pokemon* enemy)
 						//Matt: I have a function available in the Character class that handles the Potion calculations that
 						// we can use:
 
-						player->usePotion(currPokemon);
+						player->usePotion(&currPokemon);
 
 						//if (player.potions != 0) {
 						//	player.potions--;
@@ -231,24 +262,34 @@ Battle::Battle(Character* player, Pokemon* enemy)
 			}
 		}
 		
-		if (turn == 1) {
-			cout << "enemy pokemon attacks!";
+		if (turn == 1 && enemy->getCurrentHealth() > 0) 
+		{
+			cout << "The enemy pokemon attacks! ";
 			attack(1, player, enemy);
 			turn = 0;
 		}
-		cout << "Your pokemon has: " << currPokemon.getCurrentHealth() << " hp.";
+		
+		currPokemon = player->getCurrentPokemon();
+
+		cout << "Your pokemon has: " << currPokemon.getCurrentHealth() << " hp. ";
 		cout << "Enemy pokemon has: " << enemy->getCurrentHealth() << " hp.";
 
 	}
-	if (currPokemon.getCurrentHealth() <= 0) {
+	
+	if (currPokemon.getCurrentHealth() <= 0) 
+	{
 		cout << "You have lost the battle!\n";
+		lostMatch(player);
 	}
-	else if (enemy->getCurrentHealth() <=0) {
-		cout << "You have won the battle!";
+	else if (enemy->getCurrentHealth() <=0 && action != 4) 
+	{
+		cout << "You have won the battle!" << endl;
 		//award exp.
 	}
 	else
-	cout << "you ran away!";
+	{
+		cout << "You ran away!" << endl;
+	}
 }
 //Battle for a character essentially does the same thing but you cannot run away nor catch.
 Battle::Battle(Character* player, Character* opponent) 
@@ -259,11 +300,12 @@ Battle::Battle(Character* player, Character* opponent)
 	//turn decides who attacks: 0 = you, 1 = enemy.
 	bool turn = 0;
 	while (currEnemyPokemon.getCurrentHealth()>0 && currPokemon.getCurrentHealth()>0) 
-	{
+	{	
 		cout << "\nWhat would you like to do?" << endl;
 		cout << "\t1) FIGHT\t2) BAG\n\t3) POKEMON\n\n\tchoice: ";
 		action = getInt1();
-		switch (action) {
+		switch (action) 
+		{
 		case 1:
 			{
 				attack(0,player,opponent);
@@ -288,7 +330,7 @@ Battle::Battle(Character* player, Character* opponent)
 						//Matt: I have a function available in the Character class that handles the Potion calculations that
 						// we can use:
 
-						player->usePotion(currPokemon);
+						player->usePotion(&currPokemon);
 
 						//if (player.potions != 0) {
 						//	player.potions--;
@@ -348,29 +390,58 @@ Battle::Battle(Character* player, Character* opponent)
 					if (pokeswitch > 7 || pokeswitch < 1)
 						cout << "Invalid pokemon choice, please try again.\n";
 				}
-				//if (pokeswitch != 7) turn = 1; (replaced code)
+	
 				if (currPokemon.getName() != beforePokemon.getName()) {
 					turn = 1;
 				}
 				break;
 			}
 		}
-		if (turn == 1) {
-			cout << "enemy trainer attacks!";
+		
+		currEnemyPokemon = opponent->getCurrentPokemon();
+		
+		if (turn == 1 && currEnemyPokemon.getCurrentHealth() > 0) 
+		{
+			cout << "The enemy trainer attacks! " << endl;
 			attack(1, player, opponent);
 			turn = 0;
 		}
-		cout << "Your pokemon has: " << currPokemon.getCurrentHealth() << " hp.";
-		cout << "Enemy pokemon has: " << currEnemyPokemon.getCurrentHealth() << " hp.";
+		
+		currPokemon = player->getCurrentPokemon();
+		
+		cout << "Your pokemon has " << currPokemon.getCurrentHealth() << " hp. ";
+		cout << "The enemy pokemon has " << currEnemyPokemon.getCurrentHealth() << " hp.";
 	}
-	if (currPokemon.getCurrentHealth() <= 0) {
+	
+	currPokemon = player->getCurrentPokemon();
+	
+	if (currPokemon.getCurrentHealth() <= 0) 
+	{
 		cout << "You have lost the battle!\n";
+		lostMatch(player);
 	}
-	else if(currEnemyPokemon.getCurrentHealth() <= 0) {
+	else if(currEnemyPokemon.getCurrentHealth() <= 0) 
+	{
 		cout << "You won the battle!\n";
 		//award exp and gold (for trainers).
 	}
 	
+}
+
+void Battle::lostMatch(Character* c)
+{
+	cout << "You wake up dazed and confused in a forest." << endl;
+	cout << "The voice in your head returns. It says 'All is well. Continue your journey.'\n";
+	cout << "'Next time, try using a potion.'" << endl;
+	cout << "You find yourself where you first woke up. " << endl;
+	
+	c->setPos(); 
+	for (int i = 0; i < 6; ++i) 
+	{
+		c->party[i].changeCurrentHealth(999999);
+		cout << "Your  " << c->party[i].getName() << " has " << c->party[i].getCurrentHealth() << " hp. " << endl;
+	}
+	c->setCurrentPokemon(0);
 }
 
 int getInt1() {

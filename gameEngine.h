@@ -6,8 +6,8 @@
 #include <cctype>
 #include <stdlib.h>
 #include <time.h>
-#include "battle.cpp"
-#include "Pokemon.cpp"
+#include "battle.h"
+#include "Pokemon.h"
 #define MAP_SIZE 100
 #define WALL 1
 #define FOREST 2

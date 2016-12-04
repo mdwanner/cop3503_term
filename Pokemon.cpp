@@ -21,8 +21,8 @@ string Pokemon::pokeMen[151][4] = {{"Bulbasaur", "Ivysaur", "Venusaur", "grass"}
 	"Kingler","Kingler","water"},{"Voltorb","Electrode","Electrode","electric"},{"Exeggcute","Exeggutor","Exeggutor","psychic"},{"Cubone","Marowak","Marowak",
 	"ground"},{"Hitmonlee","Hitmonchan","Hitmonchan","fighting"},{"Lickitung","Lickiting","Lickitung","normal"},{"Koffing","Weezing","Weezing","poison"},
 	{"Rhyhorn","Rhydon","Rhydon","rock"},{"Chansey","Chansey","Chansey","normal"},{"Tangela","Tangela","Tangela","grass"},{"Kangaskhan","Kangaskhan","Kangaskhan",
-	"normal"},{"Horsea","Seadra","Seadra","water"},{"Goldeen","Seaking","Seaking","water"},{"Staryu","Starmie","Starmie","water"},{"Mr. Mime"," Mr. Mime"," Mr. Mime"
-	,"psychic"},{"Scyther"," Scyther"," Scyther","bug"},{"Jynx","Jynx","Jynx","psychic"},{"Electabuzz","Electabuzz","Electabuzz","electric"},{"Magmar","Magmar","Magmar",
+	"normal"},{"Horsea","Seadra","Seadra","water"},{"Goldeen","Seaking","Seaking","water"},{"Staryu","Starmie","Starmie","water"},{"Mr. Mime","Mr. Mime"," Mr. Mime"
+	,"psychic"},{"Scyther","Scyther","Scyther","bug"},{"Jynx","Jynx","Jynx","psychic"},{"Electabuzz","Electabuzz","Electabuzz","electric"},{"Magmar","Magmar","Magmar",
 	"fire"},{"Pinsir","Pinsir","Pinsir","bug"},{"Tauros","Tauros","Tauros","normal"},{"Magikarp","Gyarados","Gyarados","water"},{"Lapras","Lapras","Lapras",
 	"water"},{"Ditto","Ditto","Ditto","normal"},{"Eevee","Eevee","Eevee","normal"},{"Porygon","Porygon","Porygon","normal"},{"Omanyte","Omastar","Omastar","water"},
 	{"Kabuto","Kabutops","Kabutops","water"},{"Aerodactyl","Aerodactyl","Aerodactyl","rock"},{"Snorlax","Snorlax","Snorlax","normal"},{"Articuno","Articuno",
@@ -126,7 +126,8 @@ string Pokemon::getPokedexEntry(int i, int j)
 
 //not sure if this should print anything or not, depends on battles, also, note that this INCREASES health by healthChange.
 void Pokemon::changeCurrentHealth(int healthChange) {
-    if((currentHealth + healthChange) < health) {
+    if((currentHealth + healthChange) < health) 
+    {
         currentHealth += healthChange;
     }
     else {
@@ -178,16 +179,14 @@ Character::Character()
 Character::Character(std::string n)
 {
 	name = n;
-	xPosition = 50;								
-	yPosition = 50;	
+	setPos();	
 }					
 
 Character::Character(std::string n, int g)
 {
 	name = n;
 	gender = g;
-	xPosition = 50;								//From joey, needed in explore function
-	yPosition = 50;							//IMPORTANT!!! WHEN YOU POPULATE THE POKEMON ARRAY ON CREATION, FILL THE EMPTY SLOTS WITH A
+	setPos();						//IMPORTANT!!! WHEN YOU POPULATE THE POKEMON ARRAY ON CREATION, FILL THE EMPTY SLOTS WITH A
 
 	potions = 0;
 	pokeBalls = 0;
@@ -196,6 +195,12 @@ Character::Character(std::string n, int g)
 	{
 		party[i] = Pokemon();
 	}					
+}
+
+void Character::setPos()
+{
+	xPosition = 50;								//From joey, needed in explore function
+	yPosition = 50;	
 }
 
 string Character::getName()
@@ -334,6 +339,11 @@ Pokemon Character::setCurrentPokemon(int i)
 	
 }
 
+void Character::setCurrentPokemon(Pokemon c)
+{		
+	currentPokemon = c;
+}
+
 Pokemon *Character::getParty() {
 	return party;
 }
@@ -354,8 +364,9 @@ void Character::usePotion(Pokemon *p) {
 }
 
 // TODO: vvv
-void Character::usePokeBall() {
-	if (pokeballs == 0) {
+void Character::usePokeBall() 
+{
+	if (pokeBalls == 0) {
 		cout << "No pokeballs available" << endl;
 	}
 	else {
@@ -367,7 +378,7 @@ void Character::addPotion() {
 	++potions;
 }
 
-void Character::addPokeball() {
+void Character::addPokeBall() {
 	++pokeBalls;
 }
 
