@@ -11,9 +11,9 @@ using namespace std;
 // define functions in header (main() NOT located here)
 
 //todo: INVENTORY SECTION STILL NEEDS CREATION AND IMPLEMENTATION
-void Battle::attack(bool turns, Character &thePlayer, Character &theEnemyPlayer){
-	Pokemon currEnemyPok = theEnemyPlayer.getCurrentPokemon();
-	Pokemon currMyPok = thePlayer.getCurrentPokemon();
+void Battle::attack(bool turns, Character* thePlayer, Character* theEnemyPlayer){
+	Pokemon currEnemyPok = theEnemyPlayer->getCurrentPokemon();
+	Pokemon currMyPok = thePlayer->getCurrentPokemon();
 	int dodgechance;
 	int damage;
 	if (turns == 0)
@@ -55,15 +55,15 @@ void Battle::attack(bool turns, Character &thePlayer, Character &theEnemyPlayer)
 	}
 };
 
-void Battle::attack(bool turns, Character &thePlayer, Pokemon &wildPokemon) {
-	Pokemon currEnemyPok = wildPokemon;
-	Pokemon currMyPok = thePlayer.getCurrentPokemon();
+void Battle::attack(bool turns, Character* thePlayer, Pokemon* wildPokemon) {
+	//Pokemon currEnemyPok = wildPokemon;       			<--  Matt: These seem redundant and might be the reason the health isn't changing in battle,
+	//Pokemon currMyPok = thePlayer->getCurrentPokemon();        our pointer values were saved into local variables
 	int dodgechance;
 	int damage;
 	if (turns == 0)
-		dodgechance = currMyPok.getDodge();
+		dodgechance = thePlayer->getCurrentPokemon().getDodge();
 	else
-		dodgechance = currEnemyPok.getDodge();
+		dodgechance = wildPokemon->getDodge();
 	srand(time(NULL));
 	int dodgeroll = rand() % 100+1;
 	if (dodgeroll >= dodgechance) {
@@ -72,36 +72,36 @@ void Battle::attack(bool turns, Character &thePlayer, Pokemon &wildPokemon) {
 		if (turns == 0) {
 			//Note: attacks have yet to be balanced.
 			//mypokemon attacks
-			damage = currMyPok.getAttack() * 0.5;
+			damage = thePlayer->getCurrentPokemon().getAttack() * 0.5;
 			//The typeMultiplier represents a double array of gen 1 pokemon type chart multipliers.
 			//the pokemon.typenumber
 			//damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
 		}
 		else {
 			//enemy pokemon attacks
-			damage = currEnemyPok.getAttack() * 0.5;
+			damage = wildPokemon->getAttack() * 0.5;
 			//damage = damage*typeMultiplier[mypokemon.typeNumber][enemypokemon.typeNumber];
 		}
 	}
 	else
 		//attack missed.
 		cout << " The attack missed!\n";
-	if (currMyPok.getCurrentHealth() <= 0) {
+	if (thePlayer->getCurrentPokemon().getCurrentHealth() <= 0) {
 		//forces a switch of pokemon if pokemon faints.
 		cout << "Your pokemon has fainted!";
 		//todo: make a loop that checks the next healthy pokemon.
 		switchPokemon(thePlayer);
 	}
-	if (currEnemyPok.getCurrentHealth() <= 0) 
+	if (wildPokemon->getCurrentHealth() <= 0)
 		cout << "Wild pokemon has fainted!";
 };
 
-Pokemon Battle::switchPokemon(Character &trainer){
+Pokemon Battle::switchPokemon(Character* trainer){ // !
 	//For forced pokemon switch.
-	Pokemon currPokemon = trainer.getCurrentPokemon();
+	//Pokemon currPokemon = trainer->getCurrentPokemon();
 	for (int i = 0; i < 6; i++){
-		if (currPokemon.getCurrentHealth() <= 0){
-			currPokemon = trainer.setCurrentPokemon(i);
+		if (trainer->getCurrentPokemon().getCurrentHealth() <= 0){
+			currPokemon = trainer->setCurrentPokemon(i);
 			cout << "switched to " << currPokemon.getName() << ".\n";
 			break;
 		}
@@ -110,12 +110,12 @@ Pokemon Battle::switchPokemon(Character &trainer){
 	return currPokemon;
 };
 
-Pokemon Battle::switchPokemon(int numPokemon, Character &trainer){
+Pokemon Battle::switchPokemon(int numPokemon, Character* trainer){
 	//For user choice switch.
-	Pokemon currPokemon = trainer.getCurrentPokemon();
-	Pokemon switchPokemon = trainer.getPokemon(numPokemon);
+	Pokemon currPokemon = trainer->getCurrentPokemon();
+	Pokemon switchPokemon = trainer->getPokemon(numPokemon);
 	if (switchPokemon.getCurrentHealth() >= 0){
-		trainer.setCurrentPokemon(numPokemon);
+		trainer->setCurrentPokemon(numPokemon);
 		return switchPokemon;
 	}
 	else {
@@ -125,13 +125,13 @@ Pokemon Battle::switchPokemon(int numPokemon, Character &trainer){
 	return currPokemon;
 };
 
-Battle::Battle(Character &player, Pokemon &enemy) 
+Battle::Battle(Character* player, Pokemon* enemy) 
 {
-	Pokemon currPokemon = player.getCurrentPokemon();
+	Pokemon currPokemon = player->getCurrentPokemon();
 	int action = 0;
 	//turn decides who attacks: 0 = you, 1 = enemy.
 	bool turn = 0;
-	while (action != 4 || (enemy.getCurrentHealth()>0 && currPokemon.getCurrentHealth()>0)) {
+	while (action != 4 || (enemy->getCurrentHealth()>0 && currPokemon.getCurrentHealth()>0)) {
 		cout << "\nYou encountered a wild pokemon, what would you like to do?" << endl;
 		cout << "\t1) FIGHT\t2) BAG\n\t3) POKEMON\t4) RUN\n\n\tchoice: ";
 		action = getInt1();
@@ -148,19 +148,31 @@ Battle::Battle(Character &player, Pokemon &enemy)
 				int bagChoice = 5;//for now but open bag
 				int bagOption = 0;
 				while (bagChoice > 3 || bagChoice < 1) {
-					//cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
+					cout << "You have: \t1) " << player->getPokeBallCount() << " pokeballs\n\t2) " << player->getPotionCount() << " health potions";
 					cout << "\n\t3)RETURN\nWhat will you use?\n\t\tchoice: ";
 					bagChoice = getInt1();
 					if (bagChoice == 1) {
 						//use Pokeball
+						player->usePokeBall();
 					}
 					if (bagChoice == 2) {
 						//use health potion
-						currPokemon.changeCurrentHealth(currPokemon.getCurrentHealth()+currPokemon.getHealth()*0.5);
-						if (currPokemon.getCurrentHealth() > currPokemon.getHealth()) {
-							//Takes away the extra health if it exceeds maxhealth.
-							currPokemon.changeCurrentHealth(0-(currPokemon.getCurrentHealth() - currPokemon.getHealth()));
-						}
+						//Matt: I have a function available in the Character class that handles the Potion calculations that
+						// we can use:
+
+						player->usePotion(currPokemon);
+
+						//if (player.potions != 0) {
+						//	player.potions--;
+						//	currPokemon.changeCurrentHealth(currPokemon.getCurrentHealth() + currPokemon.getHealth()*0.5);
+						//	if (currPokemon.getCurrentHealth() > currPokemon.getHealth()) {
+						//		//Takes away the extra health if it exceeds maxhealth.
+						//		currPokemon.changeCurrentHealth(0 - (currPokemon.getCurrentHealth() - currPokemon.getHealth()));
+						//	}
+						//}
+						//else {
+						//	cout << "You have no potions!\n";
+						//}
 					}
 				}
 				break;
@@ -172,17 +184,17 @@ Battle::Battle(Character &player, Pokemon &enemy)
 				while (pokeswitch > 7 || pokeswitch < 1) 
 				{
 					cout << "Which pokemon would you like to switch to?";
-					Pokemon pok1 = player.getPokemon(1);
+					Pokemon pok1 = player->getPokemon(1);
 					cout << "\n\t1)" << pok1.getName();
-					Pokemon pok2 = player.getPokemon(2);
+					Pokemon pok2 = player->getPokemon(2);
 					cout << "\t2)" << pok2.getName();
-					Pokemon pok3 = player.getPokemon(3);
+					Pokemon pok3 = player->getPokemon(3);
 					cout << "\n\t3)" << pok3.getName();
-					Pokemon pok4 = player.getPokemon(4);
+					Pokemon pok4 = player->getPokemon(4);
 					cout << "\t4)" << pok4.getName();
-					Pokemon pok5 = player.getPokemon(5);
+					Pokemon pok5 = player->getPokemon(5);
 					cout << "\n\t5)" << pok5.getName();
-					Pokemon pok6 = player.getPokemon(6);
+					Pokemon pok6 = player->getPokemon(6);
 					cout << "\t6)" << pok6.getName();
 					cout << "\n\t\t7) Exit\n\n\tchoice: ";
 					pokeswitch = getInt1();
@@ -225,13 +237,13 @@ Battle::Battle(Character &player, Pokemon &enemy)
 			turn = 0;
 		}
 		cout << "Your pokemon has: " << currPokemon.getCurrentHealth() << " hp.";
-		cout << "Enemy pokemon has: " << enemy.getCurrentHealth() << " hp.";
+		cout << "Enemy pokemon has: " << enemy->getCurrentHealth() << " hp.";
 
 	}
 	if (currPokemon.getCurrentHealth() <= 0) {
 		cout << "You have lost the battle!\n";
 	}
-	else if (enemy.getCurrentHealth() <=0) {
+	else if (enemy->getCurrentHealth() <=0) {
 		cout << "You have won the battle!";
 		//award exp.
 	}
@@ -239,10 +251,10 @@ Battle::Battle(Character &player, Pokemon &enemy)
 	cout << "you ran away!";
 }
 //Battle for a character essentially does the same thing but you cannot run away nor catch.
-Battle::Battle(Character &player, Character &opponent) 
+Battle::Battle(Character* player, Character* opponent) 
 {
-	Pokemon currPokemon = player.getCurrentPokemon();
-	Pokemon currEnemyPokemon = opponent.getCurrentPokemon();
+	Pokemon currPokemon = player->getCurrentPokemon();
+	Pokemon currEnemyPokemon = opponent->getCurrentPokemon();
 	int action = 0;
 	//turn decides who attacks: 0 = you, 1 = enemy.
 	bool turn = 0;
@@ -263,7 +275,7 @@ Battle::Battle(Character &player, Character &opponent)
 				int bagChoice = 5; //open bag
 				int bagOption = 0;
 				while (bagChoice > 3 || bagChoice < 1) {
-					//cout << "You have: \t1) " << mainCharacter.numofPokeballs << " pokeballs\n\t2) " << mainCharacter.numofPotions << " health potions";
+					cout << "You have: \t1) " << player->getPokeBallCount() << " pokeballs\n\t2) " << player->getPotionCount() << " health potions";
 					cout << "\n\t3)RETURN\nWhat will you use?\n\n\tchoice: ";
 					bagChoice = getInt1();
 					if (bagChoice == 1){
@@ -273,11 +285,22 @@ Battle::Battle(Character &player, Character &opponent)
 					}
 					if (bagChoice == 2){
 						//use health potion
-						currPokemon.changeCurrentHealth(currPokemon.getCurrentHealth() + currPokemon.getHealth()*0.5);
-						if (currPokemon.getCurrentHealth() > currPokemon.getHealth()) {
-							//Takes away the extra health if it exceeds maxhealth.
-							currPokemon.changeCurrentHealth(0 - (currPokemon.getCurrentHealth() - currPokemon.getHealth()));
-						}
+						//Matt: I have a function available in the Character class that handles the Potion calculations that
+						// we can use:
+
+						player->usePotion(currPokemon);
+
+						//if (player.potions != 0) {
+						//	player.potions--;
+						//	currPokemon.changeCurrentHealth(currPokemon.getCurrentHealth() + currPokemon.getHealth()*0.5);
+						//	if (currPokemon.getCurrentHealth() > currPokemon.getHealth()) {
+						//		//Takes away the extra health if it exceeds maxhealth.
+						//		currPokemon.changeCurrentHealth(0 - (currPokemon.getCurrentHealth() - currPokemon.getHealth()));
+						//	}
+						//}
+						//else {
+						//	cout << "You have no potions!\n";
+						//}
 					}
 				}
 				break;
@@ -288,17 +311,17 @@ Battle::Battle(Character &player, Character &opponent)
 				Pokemon beforePokemon = currPokemon;
 				while (pokeswitch > 7 || pokeswitch < 1) {
 					cout << "Which pokemon would you like to switch to?";
-					Pokemon pok1 = player.getPokemon(1);
+					Pokemon pok1 = player->getPokemon(1);
 					cout << "\n\t1)" << pok1.getName();
-					Pokemon pok2 = player.getPokemon(2);
+					Pokemon pok2 = player->getPokemon(2);
 					cout << "\t2)" << pok2.getName();
-					Pokemon pok3 = player.getPokemon(3);
+					Pokemon pok3 = player->getPokemon(3);
 					cout << "\n\t3)" << pok3.getName();
-					Pokemon pok4 = player.getPokemon(4);
+					Pokemon pok4 = player->getPokemon(4);
 					cout << "\t4)" << pok4.getName();
-					Pokemon pok5 = player.getPokemon(5);
+					Pokemon pok5 = player->getPokemon(5);
 					cout << "\n\t5)" << pok5.getName();
-					Pokemon pok6 = player.getPokemon(6);
+					Pokemon pok6 = player->getPokemon(6);
 					cout << "\t6)" << pok6.getName();
 					cout << "\n\t\t7) Exit\n\n\tchoice: ";
 					pokeswitch = getInt1();
