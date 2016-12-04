@@ -12,7 +12,7 @@ void Battle::wait(int sec)
 	while(i++ < sec)
 	{
 		for(int j = 0; j < 100; j++) cout<<"";
-		usleep(1000000);
+		//usleep(1000000);
 	}
 	cout<<endl;
 }
@@ -163,7 +163,9 @@ Pokemon* Battle::switchPokemon(int numPokemon, Character* trainer){
 	//For user choice switch.
 	Pokemon* currPokemon = trainer->getCurrentPokemon();
 	Pokemon* switchPokemon = trainer->getPokemon(numPokemon);
-	if (switchPokemon->getCurrentHealth() >= 0 && switchPokemon->getName().compare("Empty") != 0)
+	cout << switchPokemon->getHealth();
+	cout << switchPokemon->getCurrentHealth();
+	if (switchPokemon->getCurrentHealth() > 0 && switchPokemon->getName().compare("Empty") != 0)
 	{
 		trainer->setCurrentPokemon(numPokemon);
 		return switchPokemon;
@@ -208,7 +210,9 @@ Battle::Battle(Character* player, Pokemon* enemy)
 					bagChoice = getInt1();
 					if (bagChoice == 1) {
 						//use Pokeball
-						player->usePokeBall();
+						bool caughtPokemon = player->usePokeBall(enemy);
+						if (caughtPokemon == true)
+							goto caughtPokemon;
 					}
 					if (bagChoice == 2) {
 						//use health potion
@@ -300,6 +304,7 @@ Battle::Battle(Character* player, Pokemon* enemy)
 	{
 		cout << "You ran away!" << endl;
 	}
+caughtPokemon:;
 }
 //Battle for a character essentially does the same thing but you cannot run away nor catch.
 Battle::Battle(Character* player, Character* opponent) 

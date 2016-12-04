@@ -216,7 +216,7 @@ string Character::getName()
 	return name;
 }
 
-void Character::addPokemon(Pokemon p)
+void Character::addPokemon(Pokemon* p)
 {
 	bool hasSlot = false;
 	bool allEmpty = true;
@@ -236,12 +236,12 @@ void Character::addPokemon(Pokemon p)
 	
 	if(allEmpty)
 	{
-		party[0] = p;
+		party[0] = *p;
 		setCurrentPokemon(0);
 	}
 	else if (hasSlot)
 	{
-		party[indexOfFirstEmpty] = p;
+		party[indexOfFirstEmpty] = *p;
 	}
 	else
 	{
@@ -264,43 +264,43 @@ void Character::addPokemon(Pokemon p)
 			{
 				case 0: 
 				{
-					cout << party[0].getName() << " was removed and " << p.getName() << " was added.";
-					party[0] = p;
+					cout << party[0].getName() << " was removed and " << p->getName() << " was added.";
+					party[0] = *p;
 					break;
 				}
 				case 1: 
 				{
-					cout << party[1].getName() << " was removed and " << p.getName() << " was added.";
-					party[1] = p;
+					cout << party[1].getName() << " was removed and " << p->getName() << " was added.";
+					party[1] =*p;
 					break;
 				}
 				case 2: 
 				{
-					cout << party[2].getName() << " was removed and " << p.getName() << " was added.";
-					party[2] = p;
+					cout << party[2].getName() << " was removed and " << p->getName() << " was added.";
+					party[2] = *p;
 					break;
 				}
 				case 3: 
 				{
-					cout << party[3].getName() << " was removed and " << p.getName() << " was added.";
-					party[3] = p;
+					cout << party[3].getName() << " was removed and " << p->getName() << " was added.";
+					party[3] = *p;
 					break;
 				}
 				case 4: 
 				{
-					cout << party[4].getName() << " was removed and " << p.getName() << " was added.";
-					party[4] = p;
+					cout << party[4].getName() << " was removed and " << p->getName() << " was added.";
+					party[4] = *p;
 					break;
 				}
 				case 5: 
 				{
-					cout << party[5].getName() << " was removed and " << p.getName() << " was added.";
-					party[5] = p;
+					cout << party[5].getName() << " was removed and " << p->getName() << " was added.";
+					party[5] = *p;
 					break;
 				}
 				case 6: 
 				{
-					cout << p.getName() << " was turned into candy.";
+					cout << p->getName() << " was turned into candy.";
 					break;
 				}
 				default: 
@@ -367,17 +367,28 @@ void Character::usePotion(Pokemon *p) {
 		p->changeCurrentHealth(0.50 * p->getHealth()); // Potions restore 50% of max health
 	}
 }
-
-// TODO: vvv
-void Character::usePokeBall() 
+bool Character::usePokeBall(Pokemon* enemy)
 {
 	if (pokeBalls == 0) {
 		cout << "No pokeballs available" << endl;
+		return false;
 	}
 	else {
-		// stuff
+		--pokeBalls;
+		srand(NULL);
+		int PokeChance = rand() % 100;
+		if (PokeChance >= (int)(enemy->getCurrentHealth() / enemy->getHealth())) {
+			cout << "Pokemon was caught!";
+			addPokemon(enemy);
+			return true;
+		}
+		else {
+			cout << "Pokemon escaped the Pokeball!";
+			return false;
+		}
+		
 	}
-} // TODO: Incorporate catching a pokemon
+}
 
 bool Character::spendMoney(int amount) {
 	if (money >= amount) {
@@ -409,10 +420,6 @@ void Character::addMoney(int amount) {
 	money += amount;
 }
 
-int Character::getBadges()
-{
-	return badges;
-}
 
 int Character::getPotionCount() {
 	return potions;

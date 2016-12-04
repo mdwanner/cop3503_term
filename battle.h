@@ -8,7 +8,6 @@
 #include <sstream>
 #include <time.h>
 #include <ctime>
-#include <unistd.h>
 
 
 #define WAIT 1
