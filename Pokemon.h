@@ -68,8 +68,9 @@ public:
 	Pokemon getCurrentPokemon();				//Marco: for getting the currentPokemon the player has.
 	Pokemon setCurrentPokemon(int);			//Marco: for setting up the currentPokemon. 
 	void setCurrentPokemon(Pokemon);
+	
 
-	void usePotion(Pokemon*);
+	Pokemon usePotion(Pokemon*);
 	void usePokeBall();
 	bool spendMoney(int);
 	void forfeitCash(int);
@@ -80,7 +81,6 @@ public:
 	int getPokeBallCount();
 	int getMoney();
 	void setPos();
-	 											//might help to use getPokemon(numChange) in it to set the current Pokemon.
 	void addPokemon(Pokemon);
 	int getBadges();
 };

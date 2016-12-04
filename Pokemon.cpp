@@ -327,7 +327,7 @@ Pokemon Character::getCurrentPokemon() //Marco: for getting the currentPokemon t
 	
 Pokemon Character::setCurrentPokemon(int i)
 {
-	if( i >= 0 && i < 6)
+	if ( i >= 0 && i < 6)
 	{		
 		currentPokemon = party[i];
 		return currentPokemon;
@@ -343,6 +343,7 @@ Pokemon Character::setCurrentPokemon(int i)
 void Character::setCurrentPokemon(Pokemon c)
 {		
 	currentPokemon = c;
+	
 }
 
 Pokemon *Character::getParty() {
@@ -351,17 +352,18 @@ Pokemon *Character::getParty() {
 
 // Matt: For bag functioning, healing, catching pokemon
 
-void Character::usePotion(Pokemon *p) {
+Pokemon Character::usePotion(Pokemon *p) {
 	if (potions == 0) {
 		cout << "No potions available" << endl;
 	}
 	else {
 		--potions;
-		p->currentHealth += (int)(0.50 * p->health); // Potions restore 50% of max health
-		if (p->currentHealth > p->health) {
-			p->currentHealth = p->health;
-		}
+		p->changeCurrentHealth(0.50 * p->getHealth()); // Potions restore 50% of max health
+		//if (p.getCurrentHealth > p.getHealth) {
+			//p.changeCurrentHealth(999);
+		//}
 	}
+	return *p;
 }
 
 // TODO: vvv
