@@ -48,7 +48,7 @@ private:
 	string name;
 	int gender;
 	Pokemon party[6];
-	Pokemon currentPokemon;						//Marco: The current pokemon the player holds.
+	Pokemon* currentPokemon;						//Marco: The current pokemon the player holds.
 	
 	int money;
 	int pokeBalls;
@@ -63,12 +63,11 @@ public:
 	Character(std::string);						// create accessors for the items
 	Character(std::string, int);
 	string getName();
-	Pokemon getPokemon(int);				// takes number 0-5 of desired Pokemon in party
+	Pokemon* getPokemon(int);				// takes number 0-5 of desired Pokemon in party
 	Pokemon *getParty();
-	Pokemon getCurrentPokemon();				//Marco: for getting the currentPokemon the player has.
+	Pokemon* getCurrentPokemon();				//Marco: for getting the currentPokemon the player has.
 	Pokemon setCurrentPokemon(int);			//Marco: for setting up the currentPokemon. 
-	void setCurrentPokemon(Pokemon);
-	
+	void setCurrentPokemon(Pokemon*);
 
 	void usePotion(Pokemon*);
 	void usePokeBall();

@@ -60,9 +60,9 @@ Pokemon::Pokemon(int level)
     this->level = level;
     
     //these numbers are obviously subject to change. also we will likely not use rand() in final version since it will create the same pokemon each time the game is run, but that may be useful for debugging
-    this->health = (level-1)*20 + (rand()%79 + 50);
+    this->health = (level)*15 + (rand()%79 + 50);
     this->currentHealth = health;
-    this->attack = (level-1)*3 + (rand()%15 + 8);
+    this->attack = (level)*3 + (rand()%15);
     
     //dodge is a value from 0-25 and is higher for lower health pokemon. i envisioned it being a chance to dodge (out of 100%) to help buff lower health pokemon.
     this->dodge = int((1.0/(health-((level-1)*20)))*1000 + (rand()%10-5));
@@ -86,9 +86,9 @@ Pokemon::Pokemon(int level, int choice)
     this->experience = 0;
     this->level = level;
     
-    this->health = (level-1)*20 + (rand()%151 + 50);
+    this->health = (level)*20 + (rand()%151 + 50);
     this->currentHealth = health;
-    this->attack = (level-1)*3 + (rand()%15 + 8);
+    this->attack = (level)*3 + (rand()%15 + 8);
     this->dodge = int((1.0/(health-((level-1)*20)))*1000 + (rand()%10-5));
 }
 
@@ -162,13 +162,13 @@ void Pokemon::giveExperience(int exp)
 		cout << "Your " << name << " is now level " << level << "! - Health: " << health << " - Attack: " << attack << " - Dodge: " << dodge << "." << endl;
 		if((level = 34)&&(pokeMen[choice][0]!=pokeMen[choice][1])) 
 		{
-		cout << "Your " << name << " has evolved into " << pokeMen[choice][1] << "!" << endl;
-		name = pokeMen[choice][1];
+			cout << "Your " << name << " has evolved into " << pokeMen[choice][1] << "!" << endl;
+			name = pokeMen[choice][1];
 		}
 		if((level = 67)&&(pokeMen[choice][1]!=pokeMen[choice][2])) 
 		{
-		cout << "Your " << name << " has evolved into " << pokeMen[choice][2] << "!" << endl;
-		name = pokeMen[choice][2];
+			cout << "Your " << name << " has evolved into " << pokeMen[choice][2] << "!" << endl;
+			name = pokeMen[choice][2];
 		}
     }
     else 
@@ -194,6 +194,7 @@ Character::Character(std::string n, int g)
 	gender = g;
 	setPos();						//IMPORTANT!!! WHEN YOU POPULATE THE POKEMON ARRAY ON CREATION, FILL THE EMPTY SLOTS WITH A
 
+	badges = 0;
 	money = 500;
 	potions = 0;
 	pokeBalls = 0;
@@ -313,11 +314,11 @@ void Character::addPokemon(Pokemon p)
 	}	
 }
 
-Pokemon Character::getPokemon(int i) // takes number 1-6 of desired Pokemon in party
+Pokemon* Character::getPokemon(int i) // takes number 1-6 of desired Pokemon in party
 {
 	if( i >= 0 && i < 6)
 	{		
-		return party[i];
+		return &party[i];
 	}
 	else 
 	{
@@ -326,7 +327,7 @@ Pokemon Character::getPokemon(int i) // takes number 1-6 of desired Pokemon in p
 	}
 }
 				
-Pokemon Character::getCurrentPokemon() //Marco: for getting the currentPokemon the player has.
+Pokemon* Character::getCurrentPokemon() //Marco: for getting the currentPokemon the player has.
 {
 	return currentPokemon;
 }		
@@ -335,21 +336,20 @@ Pokemon Character::setCurrentPokemon(int i)
 {
 	if ( i >= 0 && i < 6)
 	{		
-		currentPokemon = party[i];
-		return currentPokemon;
+		currentPokemon = &party[i];
+		return *currentPokemon;
 	}
 	else 
 	{
 		cout << "Error in setCurrentPokemon.";
-		return currentPokemon;
+		return *currentPokemon;
 	}
 	
 }
 
-void Character::setCurrentPokemon(Pokemon c)
+void Character::setCurrentPokemon(Pokemon* c)
 {		
 	currentPokemon = c;
-	
 }
 
 Pokemon *Character::getParty() {

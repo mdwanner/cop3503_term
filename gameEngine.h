@@ -38,7 +38,7 @@ public:
 	Town();
 	Town(string, int); // Initialize a new town, giving it a name
 	void visitTown(GameEngine*); // Enter and interact with a town's features
-	void battleGym(GameEngine*); // includes a call to the Battle class
+	bool battleGym(GameEngine*); // includes a call to the Battle class
 	void healPokemon(Pokemon*);
 	void buyItems(GameEngine*); // open store interface
 };
