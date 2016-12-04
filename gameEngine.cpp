@@ -143,19 +143,19 @@ GameEngine::GameEngine()
 		{
 			case 1:
 			{
-				mainCharacter.addPokemon(Pokemon(1,0));
+				mainCharacter.addPokemon(&Pokemon(1,0));
 				valid = true;
 				break;
 			}
 			case 2:
 			{
-				mainCharacter.addPokemon(Pokemon(1,1));
+				mainCharacter.addPokemon(&Pokemon(1,1));
 				valid = true;
 				break;
 			}
 			case 3:
 			{
-				mainCharacter.addPokemon(Pokemon(1,2));
+				mainCharacter.addPokemon(&Pokemon(1,2));
 				valid = true;
 				break;
 			}
@@ -409,11 +409,11 @@ void Explore::whatHappened(GameEngine *g)
 		Character joe = Character(people[name], (freeSteps%2) + 1);
 		cout << "Trainer " << joe.getName() << " has spotted you! They want to battle!" << endl;
 		
-		int numberOfPokemon = rand() % 6;
+		int numberOfPokemon = rand() % 6+1;
 		
 		for(int i = 0; i < numberOfPokemon; i++)
 		{
-			joe.addPokemon(Pokemon(g->mainCharacter.getCurrentPokemon()->getLevel()));
+			joe.addPokemon(&Pokemon(g->mainCharacter.getCurrentPokemon()->getLevel()));
 		}
 		
 		freeSteps = 0;
@@ -516,7 +516,7 @@ Town::Town(string name, int level)
 	Character joe = Character(gymLeaderName, 2);	
 	for(int i = 0; i < numberOfPokemon; i++)
 	{
-		joe.addPokemon(Pokemon(pokeLevel));
+		joe.addPokemon(&Pokemon(pokeLevel));
 	}
 		
 	gymLeader = joe;
@@ -551,7 +551,7 @@ void Town::visitTown(GameEngine *g)
 // TODO: implement the gym battle
 bool Town::battleGym(GameEngine *g) 
 {
-	Battle* bat;
+	/*Battle* bat;
 	
 	if(g->mainCharacter.getBadges() > level)
 	{
@@ -579,7 +579,7 @@ bool Town::battleGym(GameEngine *g)
 		{
 			return false;
 		}
-	}
+	}*/
 	
 	return true;
 }
