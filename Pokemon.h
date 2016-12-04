@@ -70,7 +70,7 @@ public:
 	void setCurrentPokemon(Pokemon);
 	
 
-	Pokemon usePotion(Pokemon*);
+	void usePotion(Pokemon*);
 	void usePokeBall();
 	bool spendMoney(int);
 	void forfeitCash(int);
