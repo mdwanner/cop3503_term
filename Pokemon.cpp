@@ -352,18 +352,14 @@ Pokemon *Character::getParty() {
 
 // Matt: For bag functioning, healing, catching pokemon
 
-Pokemon Character::usePotion(Pokemon *p) {
-	if (potions == 0) {
+void Character::usePotion(Pokemon *p) {
+	if (potions <= 0) {
 		cout << "No potions available" << endl;
 	}
 	else {
 		--potions;
 		p->changeCurrentHealth(0.50 * p->getHealth()); // Potions restore 50% of max health
-		//if (p.getCurrentHealth > p.getHealth) {
-			//p.changeCurrentHealth(999);
-		//}
 	}
-	return *p;
 }
 
 // TODO: vvv
