@@ -39,12 +39,12 @@ void GameEngine::viewPokedex()
 {
 	int dex = 1;
 
-	for (int i=0; i<77; i++) 
+	for (int i=0; i<79; i++) 
 	{
-		for (int j = 0; j<3; j++) 
+		for (int j = 0; j<4; j++) 
 		{
 			cout << dex++ << ": " << mainCharacter.getCurrentPokemon().getPokedexEntry(i, j) << ", " <<
-				mainCharacter.getCurrentPokemon().getPokedexEntry(i, 3) << " type" << endl;
+				mainCharacter.getCurrentPokemon().getPokedexEntry(i, 4) << " type" << endl;
 			if (mainCharacter.getCurrentPokemon().getPokedexEntry(i, j) == mainCharacter.getCurrentPokemon().getPokedexEntry(i, j+1)) 
 			{
 				break;
@@ -57,7 +57,7 @@ void GameEngine::viewPokedex()
 void GameEngine::viewBag()
 {
 	cout << "You have\n\t" << "$" << mainCharacter.getMoney() << "\n\t" << mainCharacter.getPokeBallCount() <<
-		" pokeball(s)\n\t" << mainCharacter.getPotionCount() << " potions" << endl;
+		" pokeball(s)\n\t" << mainCharacter.getPotionCount() << " potion(s)" << endl;
 }
 
 string getString()
@@ -194,7 +194,6 @@ GameEngine::GameEngine()
 	
 	//should be done now
 	newmap = new int*[MAP_SIZE];
-	
 	for(int i = 0; i < MAP_SIZE; i++)
 	{
 		newmap[i] = new int[MAP_SIZE];
@@ -237,10 +236,11 @@ GameEngine::GameEngine()
 		newmap[i][0] = WALL;
 		newmap[i][99] = WALL;
 	}
-	
+
 	//top = north, left = east
 	//town 1, smallest
 	pew = Town("Pewter City", 0);
+
 	for(int i = 0; i < 3; i++)
 	{
 		for(int j = 0; j < 3; j++)
@@ -249,7 +249,7 @@ GameEngine::GameEngine()
 			newmap[i + 15][j + 15] = TOWN;
 		}
 	}
-		
+	
 	//town 2, smaller
 	fuch = Town("Fuchsia City", 1);
 	for(int i = 0; i < 4; i++)
@@ -260,7 +260,7 @@ GameEngine::GameEngine()
 			newmap[i + 57][j + 57] = TOWN;
 		}
 	}
-		
+
 	//town 3, same size as 2
 	cer = Town("Cerulean City", 2);
 	for(int i = 0; i < 4; i++)
@@ -271,7 +271,7 @@ GameEngine::GameEngine()
 			newmap[i + 79][j + 20] = TOWN;
 		}
 	}
-	
+
 	//town 4, big town
 	cel = Town("Celadon City", 3);
 	for(int i = 0; i < 7; i++)
@@ -282,7 +282,7 @@ GameEngine::GameEngine()
 			newmap[i + 10][j + 60] = TOWN;
 		}
 	}
-	
+
 }
 
 void Explore::exploreNow(GameEngine *g)

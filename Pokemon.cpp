@@ -6,30 +6,36 @@ I have everything under control as far as generating randomized pokemon with var
 
 //NEED TO SET BADGES TO ZERO IN CONSTRUCOR, NOT IN HEADER FILE.
 
-string Pokemon::pokeMen[151][4] = {{"Bulbasaur", "Ivysaur", "Venusaur", "grass"},{"Charmander", "Charmeleon", "Charizard", "fire"},{"Squirtle", "Wartortle",
-	"Blastoise", "water"},{"Caterpie", "Metapod", "Butterfree", "bug"},{"Weedle", "Kakuna", "Beedrill", "bug"},{"Pidgey", "Pidgeotto", "Pidgeot",
-	"flying"},{"Rattata", "Raticate", "Raticate", "normal"},{"Spearow", "Fearow", "Fearow", "flying"},{"Ekans", "Arbok", "Arbok", "poison"},{"Pikachu",
-	"Raichu", "Raichu", "electric"},{"Sandshrew", "Sandslash", "Sandslash", "ground"},{"Nidoran","Nidorina","Nidoqueen","poison"},{"Nidoran","Nidorina",
-	"Nidoking","poison"},{"Clefairy","Clefable","Clefable","fairy"},{"Vulpix","Ninetales","Ninetales","fire"},{"Jigglypuff","Wigglytuff","Wigglytuff",
-	"fairy"},{"Zubat","Golbat","Golbat","poison"},{"Oddish","Gloom","Vileplume","grass"},{"Paras","Parasect","Parasect","grass"},{"Venonat","Venomoth",
-	"Venomoth","bug"},{"Diglet","Dugtrio","Dugtrio","ground"},{"Meowth","Persian","Persian","normal"},{"Psyduck","Golduck","Golduck","water"},{"Mankey",
-	"Primeape","Primeape","fighting"},{"Growlithe","Arcanine","Arcanine","fire"},{"Poliwag","Poliwhirl","Poliwrath","water"},{"Abra","Kadabra","Alakazam",
-	"psychic"},{"Machop","Machoke","Machomp","fighting"},{"Bellsprout","Weepinbell","Victreebel","grass"},{"Tentacool","Tentacruel","Tentacruel","water"},
-	{"Geodude","Graveler","Golem","rock"},{"Ponyta","Rapidash","Rapidash","fire"},{"Slowpoke","Slowbro","Slowbro","psychic"},{"Magnemite","Magneton",
-	"Magneton","electric"},{"Farfetch'd","Doduo","Dodrio","flying"},{"Seel","Dewdong","Dewdong","water"},{"Grimer","Mulk","Mulk","poison"},{"Shellder",
-	"Cloyster","Cloyster","water"},{"Gastly","Haunter","Gengar","ghost"},{"Onix","Onix","Onix","rock"},{"Drowzee","Hypno","Hypno","psychic"},{"Krabby",
-	"Kingler","Kingler","water"},{"Voltorb","Electrode","Electrode","electric"},{"Exeggcute","Exeggutor","Exeggutor","psychic"},{"Cubone","Marowak","Marowak",
-	"ground"},{"Hitmonlee","Hitmonchan","Hitmonchan","fighting"},{"Lickitung","Lickiting","Lickitung","normal"},{"Koffing","Weezing","Weezing","poison"},
-	{"Rhyhorn","Rhydon","Rhydon","rock"},{"Chansey","Chansey","Chansey","normal"},{"Tangela","Tangela","Tangela","grass"},{"Kangaskhan","Kangaskhan","Kangaskhan",
-	"normal"},{"Horsea","Seadra","Seadra","water"},{"Goldeen","Seaking","Seaking","water"},{"Staryu","Starmie","Starmie","water"},{"Mr. Mime","Mr. Mime"," Mr. Mime"
-	,"psychic"},{"Scyther","Scyther","Scyther","bug"},{"Jynx","Jynx","Jynx","psychic"},{"Electabuzz","Electabuzz","Electabuzz","electric"},{"Magmar","Magmar","Magmar",
-	"fire"},{"Pinsir","Pinsir","Pinsir","bug"},{"Tauros","Tauros","Tauros","normal"},{"Magikarp","Gyarados","Gyarados","water"},{"Lapras","Lapras","Lapras",
-	"water"},{"Ditto","Ditto","Ditto","normal"},{"Eevee","Eevee","Eevee","normal"},{"Porygon","Porygon","Porygon","normal"},{"Omanyte","Omastar","Omastar","water"},
-	{"Kabuto","Kabutops","Kabutops","water"},{"Aerodactyl","Aerodactyl","Aerodactyl","rock"},{"Snorlax","Snorlax","Snorlax","normal"},{"Articuno","Articuno",
-	"Articuno","ice"},{"Zapdos","Zapdos","Zapdos","electric"},{"Moltres","Moltres","Moltres","fire"},{"Dratini","Dragonair","Dragonite","dragon"},{"Mewtwo",
-	"Mewtwo","Mewtwo","psychic"},{"Mew","Mew","Mew","psychic"}};
+string Pokemon::pokeMen[79][5] = {{"Bulbasaur", "Ivysaur", "Venusaur", "Venusaur", "grass"},{"Charmander", "Charmeleon", "Charizard", "Charizard", "fire"},
+	{"Squirtle", "Wartortle", "Blastoise", "Blastoise", "water"},{"Caterpie", "Metapod", "Butterfree", "Butterfree", "bug"},{"Weedle", "Kakuna", "Beedrill",
+	"Beedrill", "bug"},{"Pidgey", "Pidgeotto", "Pidgeot", "Pidgeot", "flying"},{"Rattata", "Raticate", "Raticate", "Raticate", "normal"},{"Spearow", "Fearow",
+	"Fearow", "Fearow", "flying"},{"Ekans", "Arbok", "Arbok", "Arbok", "poison"},{"Pikachu", "Raichu", "Raichu", "Raichu", "electric"},{"Sandshrew", "Sandslash",
+	"Sandslash", "Sandslash", "ground"},{"Nidoran(f)", "Nidorina", "Nidoqueen", "Nidoqueen", "poison"},{"Nidoran(m)" ,"Nidorino", "Nidoking", "Nidoking", "poison"},
+	{"Clefairy", "Clefable", "Clefable", "Clefable", "fairy"},{"Vulpix", "Ninetales", "Ninetales", "Ninetales", "fire"},{"Jigglypuff", "Wigglytuff", "Wigglytuff",
+	"Wigglytuff", "fairy"},{"Zubat", "Golbat", "Golbat", "Golbat", "poison"},{"Oddish", "Gloom", "Vileplume", "Vileplume", "grass"},{"Paras", "Parasect", "Parasect",
+	"Parasect", "grass"},{"Venonat", "Venomoth", "Venomoth", "Venomoth", "bug"},{"Diglet", "Dugtrio", "Dugtrio", "Dugtrio", "ground"},{"Meowth", "Persian",
+	"Persian", "Persian", "normal"},{"Psyduck", "Golduck", "Golduck", "Golduck", "water"},{"Mankey", "Primeape", "Primeape", "Primeape", "fighting"},{"Growlithe",
+	"Arcanine", "Arcanine", "Arcanine", "fire"},{"Poliwag", "Poliwhirl", "Poliwrath", "Poliwrath", "water"},{"Abra", "Kadabra", "Alakazam", "Alakazam", "psychic"},
+	{"Machop", "Machoke", "Machamp", "Machamp", "fighting"},{"Bellsprout", "Weepinbell", "Victreebel", "Victreebel", "grass"},{"Tentacool", "Tentacruel", "Tentacruel",
+	"Tentacruel", "water"},{"Geodude", "Graveler", "Golem", "Golem", "rock"},{"Ponyta", "Rapidash", "Rapidash", "Rapidash", "fire"},{"Slowpoke", "Slowbro", "Slowbro",
+	"Slowbro", "psychic"},{"Magnemite", "Magneton", "Magneton", "Magneton", "electric"},{"Farfetch'd", "Farfetch'd", "Farfetch'd", "Farfetch'd", "flying"},{"Doduo",
+	"Dodrio", "Dodrio", "Dodrio", "flying"},{"Seel", "Dewgong", "Dewgong", "Dewgong", "water"},{"Grimer", "Muk", "Muk", "Muk", "poison"},{"Shellder", "Cloyster",
+	"Cloyster", "Cloyster", "water"},{"Gastly", "Haunter", "Gengar", "Gengar", "ghost"},{"Onix", "Onix", "Onix", "Onix", "rock"},{"Drowzee", "Hypno", "Hypno",
+	"Hypno", "psychic"},{"Krabby", "Kingler", "Kingler", "Kingler", "water"},{"Voltorb", "Electrode", "Electrode", "Electrode", "electric"},{"Exeggcute", "Exeggutor",
+	"Exeggutor", "Exeggutor", "psychic"},{"Cubone", "Marowak", "Marowak", "Marowak", "ground"},{"Hitmonlee", "Hitmonlee", "Hitmonlee", "Hitmonlee", "fighting"},
+	{"Hitmonchan", "Hitmonchan", "Hitmonchan", "Hitmonchan", "fighting"},{"Lickitung", "Lickitung", "Lickitung", "Lickitung", "normal"},{"Koffing", "Weezing",
+	"Weezing", "Weezing", "poison"},{"Rhyhorn", "Rhydon", "Rhydon", "Rhydon", "rock"},{"Chansey", "Chansey", "Chansey", "Chansey", "normal"},{"Tangela", "Tangela",
+	"Tangela", "Tangela", "grass"},{"Kangaskhan", "Kangaskhan", "Kangaskhan", "Kangaskhan", "normal"},{"Horsea", "Seadra", "Seadra", "Seadra", "water"},{"Goldeen",
+	"Seaking", "Seaking", "Seaking", "water"},{"Staryu", "Starmie", "Starmie", "Starmie", "water"},{"Mr. Mime", "Mr. Mime", "Mr. Mime", "Mr. Mime", "psychic"},
+	{"Scyther", "Scyther", "Scyther", "Scyther", "bug"},{"Jynx", "Jynx", "Jynx", "Jynx", "psychic"},{"Electabuzz", "Electabuzz", "Electabuzz", "Electabuzz", "electric"},
+	{"Magmar", "Magmar", "Magmar", "Magmar", "fire"},{"Pinsir", "Pinsir", "Pinsir", "Pinsir", "bug"},{"Tauros", "Tauros", "Tauros", "Tauros", "normal"},{"Magikarp",
+	"Gyarados", "Gyarados", "Gyarados", "water"},{"Lapras", "Lapras", "Lapras", "Lapras", "water"},{"Ditto", "Ditto", "Ditto", "Ditto", "normal"},{"Eevee", "Vaporeon",
+	"Jolteon", "Flareon", "normal"},{"Porygon", "Porygon", "Porygon", "Porygon", "normal"},{"Omanyte", "Omastar", "Omastar", "Omastar", "water"},{"Kabuto", "Kabutops",
+	"Kabutops", "Kabutops", "water"},{"Aerodactyl", "Aerodactyl", "Aerodactyl", "Aerodactyl", "rock"},{"Snorlax", "Snorlax", "Snorlax", "Snorlax", "normal"},{"Articuno",
+	"Articuno", "Articuno", "Articuno", "ice"},{"Zapdos", "Zapdos", "Zapdos", "Zapdos", "electric"},{"Moltres", "Moltres", "Moltres", "Moltres", "fire"},{"Dratini",
+	"Dragonair", "Dragonite", "Dragonite", "dragon"},{"Mewtwo", "Mewtwo", "Mewtwo", "Mewtwo", "psychic"},{"Mew", "Mew", "Mew", "Mew", "psychic"}};
 
-// this array contains all of the names and types for each pokemon. the evelution will be chosen during construction based on level.
+// this array contains all of the names and types for each pokemon. the evolution will be chosen during construction based on level.
 
 Pokemon::Pokemon()
 {
@@ -39,7 +45,7 @@ Pokemon::Pokemon()
 Pokemon::Pokemon(int level) 
 {
     //names are chosen based on level, so a level one will be squirtle, etc. i haven't yet implemented evelution for EXISTING pokemon on level up.
-    this-> choice = rand()%151;
+    this-> choice = rand()%79;
     if(level <= 33) {
         this->name = pokeMen[choice][0];
     }
@@ -54,7 +60,7 @@ Pokemon::Pokemon(int level)
     this->level = level;
     
     //these numbers are obviously subject to change. also we will likely not use rand() in final version since it will create the same pokemon each time the game is run, but that may be useful for debugging
-    this->health = (level-1)*20 + (rand()%151 + 50);
+    this->health = (level-1)*20 + (rand()%79 + 50);
     this->currentHealth = health;
     this->attack = (level-1)*3 + (rand()%15 + 8);
     

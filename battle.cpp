@@ -121,7 +121,7 @@ void Battle::attack(int turns, Character* thePlayer, Pokemon* wildPokemon)
 	}
 };
 
-Pokemon Battle::switchPokemon(Character* trainer){ // !
+Pokemon Battle::switchPokemon(Character* trainer){
 	//For forced pokemon switch.
 
 	for (int i = 0; i < 6; i++)

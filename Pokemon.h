@@ -20,7 +20,7 @@ private:
 	int level; //currently no level cap, i'll fix that.
 	int experience; //experience per level starts at 50 and increases by 10 per level.
 	int choice; //DONT FORGET TO DECLARE YOUR VARIABLES. 
-	static string pokeMen[151][4];//this is an array containing the names of all the pokemen in indexes 0-2, and type in index 3. Eventually it will be [150][4]
+	static string pokeMen[79][5];//this is an array containing the names of all the pokemen in indexes 0-3, and type in index 4. Eventually it will be [79][5]
 public:
 	Pokemon();
 	Pokemon(int); //creates randomized pokemon with stats/evolution based on level
