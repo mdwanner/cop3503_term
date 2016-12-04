@@ -50,6 +50,7 @@ private:
 	Pokemon party[6];
 	Pokemon currentPokemon;						//Marco: The current pokemon the player holds.
 	
+	int money;
 	int pokeBalls;
 	int potions;
 
@@ -70,10 +71,14 @@ public:
 
 	void usePotion(Pokemon*);
 	void usePokeBall();
+	bool spendMoney(int);
+	void forfeitCash(int);
 	void addPotion();
 	void addPokeBall();
+	void addMoney(int);
 	int getPotionCount();
 	int getPokeBallCount();
+	int getMoney();
 	void setPos();
 	 											//might help to use getPokemon(numChange) in it to set the current Pokemon.
 	void addPokemon(Pokemon);

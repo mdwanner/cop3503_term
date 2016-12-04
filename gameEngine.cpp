@@ -54,10 +54,10 @@ void GameEngine::viewPokedex()
 	}
 }
 
-
 void GameEngine::viewBag()
 {
-	cout << "You have\n\t" << mainCharacter.getPokeBallCount() << " pokeball(s)\n\t" << mainCharacter.getPotionCount() << " potions" << endl;
+	cout << "You have\n\t" << "$" << mainCharacter.getMoney() << "\n\t" << mainCharacter.getPokeBallCount() <<
+		" pokeball(s)\n\t" << mainCharacter.getPotionCount() << " potions" << endl;
 }
 
 string getString()
@@ -601,22 +601,26 @@ void Town::buyItems(GameEngine *g)
 			{
 				cout << "How many Pokeballs: ";
 				amount = getInt();
-				for (int i = 0; i < amount; ++i) 
-				{
-					g->mainCharacter.addPokeBall();
+				if (g->mainCharacter.spendMoney(100 * amount)) {
+					for (int i = 0; i < amount; ++i)
+					{
+						g->mainCharacter.addPokeBall();
+					}
+					cout << "You purchased " << amount << " Pokeballs! 'Anything else?'" << endl;
 				}
-				cout << "You purchased " << amount << " Pokeballs! 'Anything else?'" << endl;
 				break;
 			}
 			case 2:
 			{
 				cout << "How many Potions: ";
 				amount = getInt();
-				for (int i = 0; i < amount; ++i) 
-				{
-					g->mainCharacter.addPotion();
+				if (g->mainCharacter.spendMoney(200 * amount)) {
+					for (int i = 0; i < amount; ++i)
+					{
+						g->mainCharacter.addPotion();
+					}
+					cout << "You purchased " << amount << " Potions! 'Anything else?'" << endl;
 				}
-				cout << "You purchased " << amount << " Potions! 'Anything else?'" << endl;
 				break;
 			}
 			case 3:

@@ -188,6 +188,7 @@ Character::Character(std::string n, int g)
 	gender = g;
 	setPos();						//IMPORTANT!!! WHEN YOU POPULATE THE POKEMON ARRAY ON CREATION, FILL THE EMPTY SLOTS WITH A
 
+	money = 500;
 	potions = 0;
 	pokeBalls = 0;
 	
@@ -374,12 +375,34 @@ void Character::usePokeBall()
 	}
 } // TODO: Incorporate catching a pokemon
 
+bool Character::spendMoney(int amount) {
+	if (money >= amount) {
+		money -= amount;
+		return true;
+	}
+	else {
+		cout << "You don't have the cash for this!" << endl;
+		return false;
+	}
+}
+
+void Character::forfeitCash(int amount) {
+	money -= amount;
+	if (money < 0) {
+		money = 0;
+	}
+}
+
 void Character::addPotion() {
 	++potions;
 }
 
 void Character::addPokeBall() {
 	++pokeBalls;
+}
+
+void Character::addMoney(int amount) {
+	money += amount;
 }
 
 int Character::getBadges()
@@ -393,4 +416,8 @@ int Character::getPotionCount() {
 
 int Character::getPokeBallCount() {
 	return pokeBalls;
+}
+
+int Character::getMoney() {
+	return money;
 }

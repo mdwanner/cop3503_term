@@ -417,12 +417,14 @@ Battle::Battle(Character* player, Character* opponent)
 	
 	if (currPokemon.getCurrentHealth() <= 0) 
 	{
-		cout << "You have lost the battle!\n";
+		cout << "You have lost the battle! You give your opponent some money.\n";
+		player->forfeitCash(300);
 		lostMatch(player);
 	}
 	else if(currEnemyPokemon.getCurrentHealth() <= 0) 
 	{
-		cout << "You won the battle!\n";
+		cout << "You won the battle! Your opponent gives you $300.\n";
+		player->addMoney(300);
 		//award exp and gold (for trainers).
 	}
 	
