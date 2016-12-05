@@ -148,7 +148,6 @@ Pokemon* Battle::switchPokemon(Character* trainer)
 	for (int i = 0; i < 6; i++)
 	{
 		Pokemon* switchPokemon = trainer->getPokemon(i);
-		cout << switchPokemon->getCurrentHealth();
 		if (switchPokemon->getCurrentHealth() > 0 && switchPokemon->getName().compare("Empty") != 0)
 		{
 			trainer->setCurrentPokemon(i);
