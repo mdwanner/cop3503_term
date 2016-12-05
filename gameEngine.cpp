@@ -5,10 +5,10 @@
 int main() 
 {
 	GameEngine game;
-	cout << "\n\tWhat do you want to do now?\n\t\t1) Go exploring\n\t\t2) Veiw the Pokedex\n\t\t3) Veiw your Pokemon\n\t\t4) Veiw your bag\n\t\t5) Quit\n\n\tchoice: ";
+	cout << "\n\tWhat do you want to do now?\n\t\t1) Explore\n\t\t2) Veiw the Pokedex\n\t\t3) Veiw your Pokemon\n\t\t4) Veiw your bag\n\t\t5) View Map (Go Fullscreen)\n\t\t6) Quit\n\n\tchoice: ";
 	int choice = getInt();
 	Explore ex = Explore();
-	while (choice != 5) 
+	while (choice != 6) 
 	{
 		switch (choice) 
 		{
@@ -20,8 +20,11 @@ int main()
 			break;
 		case 4: game.viewBag();
 			break;
+		case 5: game.viewMap();
+			break;
+			
 		}
-		cout << "\n\tWhat do you want to do now?\n\t\t1) Explore\n\t\t2) Pokedex\n\t\t3) Pokemon\n\t\t4) Bag\n\t\t5) Quit\n\n\tchoice: ";
+		cout << "\n\tWhat do you want to do now?\n\t\t1) Explore\n\t\t2) Veiw the Pokedex\n\t\t3) Veiw your Pokemon\n\t\t4) Veiw your bag\n\t\t5) View Map\n\t\t6) Quit\n\n\tchoice: ";
 		choice = getInt();
 	}
 	cout << "Goodbye!" << endl;
@@ -58,6 +61,31 @@ void GameEngine::viewBag()
 {
 	cout << "You have\n\t" << "$" << mainCharacter.getMoney() << "\n\t" << mainCharacter.getPokeBallCount() <<
 		" pokeball(s)\n\t" << mainCharacter.getPotionCount() << " potion(s)" << endl;
+}
+
+void GameEngine::viewMap()
+{
+	cout << "\nOrigin at top left --- Domain of +x and -y" << endl;
+	cout << "Key: W = Wall     T = Town     @ = Player" << endl;
+	for (int i = 0; i < MAP_SIZE; ++i)
+	{
+		for (int j = 0; j < MAP_SIZE; ++j)
+		{
+			if ((j == mainCharacter.getX()) && (i == mainCharacter.getY())) {
+				cout << "@";
+			}
+			else if (newmap[i][j] == TOWN) {
+				cout << "T";
+			}
+			else if (newmap[i][j] == WALL) {
+				cout << "W";
+			}
+			else {
+				cout << ".";
+			}
+		}
+		cout << endl;
+	}
 }
 
 string getString()
