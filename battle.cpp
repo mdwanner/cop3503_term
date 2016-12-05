@@ -162,8 +162,6 @@ Pokemon* Battle::switchPokemon(int numPokemon, Character* trainer){
 	//For user choice switch.
 	Pokemon* currPokemon = trainer->getCurrentPokemon();
 	Pokemon* switchPokemon = trainer->getPokemon(numPokemon);
-	cout << switchPokemon->getHealth();
-	cout << switchPokemon->getCurrentHealth();
 	if (switchPokemon->getCurrentHealth() > 0 && switchPokemon->getName().compare("Empty") != 0)
 	{
 		trainer->setCurrentPokemon(numPokemon);
