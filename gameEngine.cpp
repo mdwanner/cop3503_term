@@ -24,7 +24,7 @@ int main()
 			break;
 			
 		}
-		cout << "\n\tWhat do you want to do now?\n\t\t1) Explore\n\t\t2) Veiw the Pokedex\n\t\t3) Veiw your Pokemon\n\t\t4) Veiw your bag\n\t\t5) View Map\n\t\t6) Quit\n\n\tchoice: ";
+		cout << "\n\tWhat do you want to do now?\n\t\t1) Explore\n\t\t2) Veiw the Pokedex\n\t\t3) Veiw your Pokemon\n\t\t4) Veiw your bag\n\t\t5) View Map (Go Fullscreen)\n\t\t6) Quit\n\n\tchoice: ";
 		choice = getInt();
 	}
 	cout << "Goodbye!" << endl;
