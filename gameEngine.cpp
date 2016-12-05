@@ -427,19 +427,19 @@ void Explore::whatHappened(GameEngine *g)
 
 void Explore::foundForest(GameEngine *g)
 {
-	cout << "You are in a forest." << endl;
+	cout << "(" << g->mainCharacter.xPosition << ",-" << g->mainCharacter.yPosition << ") " << "You are in a forest." << endl;
 	whatHappened(g);
 }
 
 void Explore::foundDesert(GameEngine *g)
 {
-	cout << "You are in a desert." << endl;
+	cout << "(" << g->mainCharacter.xPosition << ",-" << g->mainCharacter.yPosition << ") " << "You are in a desert." << endl;
 	whatHappened(g);
 }
 
 void Explore::foundSwamp(GameEngine *g)
 {
-	cout << "You are in a Swamp." << endl;
+	cout << "(" << g->mainCharacter.xPosition << ",-" << g->mainCharacter.yPosition << ") " << "You are in a Swamp." << endl;
 	whatHappened(g);
 }
 
@@ -475,6 +475,7 @@ string Explore::people[20] = {"Alex", "Jack", "Jamie", "Avery", "Blair", "Christ
 Town::Town()
 {
 	this->name = "DEFAULT";
+	this->level = 0;
 }
 
 Town::Town(string name, int level) 
@@ -551,15 +552,15 @@ void Town::visitTown(GameEngine *g)
 // TODO: implement the gym battle
 bool Town::battleGym(GameEngine *g) 
 {
-	/*Battle* bat;
+	Battle* bat;
 	
 	if(g->mainCharacter.getBadges() > level)
 	{
-		cout << "You have already beat this gym!" << endl;
+		cout << "You have already beat this gym!\n" << endl;
 	}
-	else if (g->mainCharacter.getBadges() < level - 1)
+	else if (g->mainCharacter.getBadges() < level)
 	{
-		cout << "You have to beat " << level - g->mainCharacter.getBadges() << " gyms before you can do that!";
+		cout << "You have to beat " << level - g->mainCharacter.getBadges() << " gym(s) before you can do that!\n" << endl;
 	}
 	else
 	{
@@ -579,7 +580,7 @@ bool Town::battleGym(GameEngine *g)
 		{
 			return false;
 		}
-	}*/
+	}
 	
 	return true;
 }
@@ -590,7 +591,7 @@ void Town::healPokemon(Pokemon* party)
 	for (int i = 0; i < 6; ++i) 
 	{
 		party[i].changeCurrentHealth(999999);
-		cout << "Your  " << party[i].getName() << " has " << party[i].getCurrentHealth() << " hp. " << endl;
+		//cout << "Your  " << party[i].getName() << " has " << party[i].getCurrentHealth() << " hp. " << endl;
 	}
 	cout << "'Thank you for waiting! Your Pokemon are nice and healthy. Have a good day!'" << endl;
 }
