@@ -160,12 +160,12 @@ void Pokemon::giveExperience(int exp)
 		currentHealth += 20;
 		attack += 3;
 		cout << "Your " << name << " is now level " << level << "! - Health: " << health << " - Attack: " << attack << " - Dodge: " << dodge << "." << endl;
-		if((level = 34)&&(pokeMen[choice][0]!=pokeMen[choice][1])) 
+		if((level == 12)&&(pokeMen[choice][0]!=pokeMen[choice][1])) 
 		{
 			cout << "Your " << name << " has evolved into " << pokeMen[choice][1] << "!" << endl;
 			name = pokeMen[choice][1];
 		}
-		if((level = 67)&&(pokeMen[choice][1]!=pokeMen[choice][2])) 
+		if((level == 25)&&(pokeMen[choice][1]!=pokeMen[choice][2])) 
 		{
 			cout << "Your " << name << " has evolved into " << pokeMen[choice][2] << "!" << endl;
 			name = pokeMen[choice][2];
