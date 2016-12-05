@@ -68,6 +68,9 @@ public:
 	Pokemon* getCurrentPokemon();				//Marco: for getting the currentPokemon the player has.
 	Pokemon setCurrentPokemon(int);			//Marco: for setting up the currentPokemon. 
 	void setCurrentPokemon(Pokemon*);
+	
+	int getX();
+	int getY();
 
 	void usePotion(Pokemon*);
 	bool usePokeBall(Pokemon*);
