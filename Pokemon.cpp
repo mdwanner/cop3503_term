@@ -46,10 +46,10 @@ Pokemon::Pokemon(int level)
 {
     //names are chosen based on level, so a level one will be squirtle, etc. i haven't yet implemented evelution for EXISTING pokemon on level up.
     this-> choice = rand()%79;
-    if(level <= 33) {
+    if(level <= 12) {
         this->name = pokeMen[choice][0];
     }
-    else if(level <= 66) {
+    else if(level <= 25) {
         this->name = pokeMen[choice][1];
     }
     else {
@@ -147,7 +147,7 @@ void Pokemon::changeCurrentHealth(int healthChange) {
 //handles leveling up and evolving
 void Pokemon::giveExperience(int exp) 
 {
-    if((experience + exp) < (50 + (10*level))) 
+    if((experience + exp) < (45 + (5*level))) 
 	{
         experience = experience + exp;
 		cout << "Your " << name << " has gained " << exp << " experience! - exp: " << experience << "/" << (50 + (10*level)) << "." << endl;
