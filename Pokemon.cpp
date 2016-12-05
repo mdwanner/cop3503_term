@@ -60,9 +60,9 @@ Pokemon::Pokemon(int level)
     this->level = level;
     
     //these numbers are obviously subject to change. also we will likely not use rand() in final version since it will create the same pokemon each time the game is run, but that may be useful for debugging
-    this->health = (level-1)*20 + (rand()%79 + 50);
+    this->health = (level)*15 + (rand()%79 + 50);
     this->currentHealth = health;
-    this->attack = (level-1)*3 + (rand()%15 + 8);
+    this->attack = (level)*3 + (rand()%15);
     
     //dodge is a value from 0-25 and is higher for lower health pokemon. i envisioned it being a chance to dodge (out of 100%) to help buff lower health pokemon.
     this->dodge = int((1.0/(health-((level-1)*20)))*1000 + (rand()%10-5));
@@ -86,9 +86,9 @@ Pokemon::Pokemon(int level, int choice)
     this->experience = 0;
     this->level = level;
     
-    this->health = (level-1)*20 + (rand()%151 + 50);
+    this->health = (level)*20 + (rand()%151 + 50);
     this->currentHealth = health;
-    this->attack = (level-1)*3 + (rand()%15 + 8);
+    this->attack = (level)*3 + (rand()%15 + 8);
     this->dodge = int((1.0/(health-((level-1)*20)))*1000 + (rand()%10-5));
 }
 
@@ -162,13 +162,13 @@ void Pokemon::giveExperience(int exp)
 		cout << "Your " << name << " is now level " << level << "! - Health: " << health << " - Attack: " << attack << " - Dodge: " << dodge << "." << endl;
 		if((level = 34)&&(pokeMen[choice][0]!=pokeMen[choice][1])) 
 		{
-		cout << "Your " << name << " has evolved into " << pokeMen[choice][1] << "!" << endl;
-		name = pokeMen[choice][1];
+			cout << "Your " << name << " has evolved into " << pokeMen[choice][1] << "!" << endl;
+			name = pokeMen[choice][1];
 		}
 		if((level = 67)&&(pokeMen[choice][1]!=pokeMen[choice][2])) 
 		{
-		cout << "Your " << name << " has evolved into " << pokeMen[choice][2] << "!" << endl;
-		name = pokeMen[choice][2];
+			cout << "Your " << name << " has evolved into " << pokeMen[choice][2] << "!" << endl;
+			name = pokeMen[choice][2];
 		}
     }
     else 
@@ -194,6 +194,7 @@ Character::Character(std::string n, int g)
 	gender = g;
 	setPos();						//IMPORTANT!!! WHEN YOU POPULATE THE POKEMON ARRAY ON CREATION, FILL THE EMPTY SLOTS WITH A
 
+	badges = 0;
 	money = 500;
 	potions = 0;
 	pokeBalls = 0;
@@ -214,6 +215,106 @@ string Character::getName()
 {
 	return name;
 }
+
+void Character::addPokemon(Pokemon* p)
+{
+	bool hasSlot = false;
+	bool allEmpty = true;
+	int indexOfFirstEmpty;
+	for(int i = 0; i < 6; i++)
+	{
+		if (party[i].getName().compare("Empty") == 0)
+		{
+			if(!hasSlot) indexOfFirstEmpty = i;
+			hasSlot = true;
+		}
+		else
+		{
+			allEmpty = false;
+		}
+	}	
+	
+	if(allEmpty)
+	{
+		party[0] = *p;
+		setCurrentPokemon(0);
+	}
+	else if (hasSlot)
+	{
+		party[indexOfFirstEmpty] = *p;
+	}
+	else
+	{
+		cout << "No slots available. Which pokemon would you like to get ride of?" << endl;
+
+		for(int i = 0; i < 6; i++)
+		{
+			cout << " " << i + 1 << ". " << party[i].getName();
+		}
+		cout << " " << 7 << ". None";
+		
+		bool goodInput;
+		
+		do
+		{
+			int choice = getInt1() - 1;
+			goodInput = true;
+			
+			switch(choice)
+			{
+				case 0: 
+				{
+					cout << party[0].getName() << " was removed and " << p->getName() << " was added.";
+					party[0] = *p;
+					break;
+				}
+				case 1: 
+				{
+					cout << party[1].getName() << " was removed and " << p->getName() << " was added.";
+					party[1] =*p;
+					break;
+				}
+				case 2: 
+				{
+					cout << party[2].getName() << " was removed and " << p->getName() << " was added.";
+					party[2] = *p;
+					break;
+				}
+				case 3: 
+				{
+					cout << party[3].getName() << " was removed and " << p->getName() << " was added.";
+					party[3] = *p;
+					break;
+				}
+				case 4: 
+				{
+					cout << party[4].getName() << " was removed and " << p->getName() << " was added.";
+					party[4] = *p;
+					break;
+				}
+				case 5: 
+				{
+					cout << party[5].getName() << " was removed and " << p->getName() << " was added.";
+					party[5] = *p;
+					break;
+				}
+				case 6: 
+				{
+					cout << p->getName() << " was turned into candy.";
+					break;
+				}
+				default: 
+				{
+					cout << "Invalid input" << endl;
+					goodInput = false;
+					break;
+				}
+			}
+		} while(!goodInput);
+	}	
+}
+
+// START HERE
 
 void Character::addPokemon(Pokemon p)
 {
@@ -313,11 +414,13 @@ void Character::addPokemon(Pokemon p)
 	}	
 }
 
-Pokemon Character::getPokemon(int i) // takes number 1-6 of desired Pokemon in party
+// END HERE
+
+Pokemon* Character::getPokemon(int i) // takes number 1-6 of desired Pokemon in party
 {
 	if( i >= 0 && i < 6)
 	{		
-		return party[i];
+		return &party[i];
 	}
 	else 
 	{
@@ -326,27 +429,27 @@ Pokemon Character::getPokemon(int i) // takes number 1-6 of desired Pokemon in p
 	}
 }
 				
-Pokemon Character::getCurrentPokemon() //Marco: for getting the currentPokemon the player has.
+Pokemon* Character::getCurrentPokemon() //Marco: for getting the currentPokemon the player has.
 {
 	return currentPokemon;
 }		
 	
 Pokemon Character::setCurrentPokemon(int i)
 {
-	if( i >= 0 && i < 6)
+	if ( i >= 0 && i < 6)
 	{		
-		currentPokemon = party[i];
-		return currentPokemon;
+		currentPokemon = &party[i];
+		return *currentPokemon;
 	}
 	else 
 	{
 		cout << "Error in setCurrentPokemon.";
-		return currentPokemon;
+		return *currentPokemon;
 	}
 	
 }
 
-void Character::setCurrentPokemon(Pokemon c)
+void Character::setCurrentPokemon(Pokemon* c)
 {		
 	currentPokemon = c;
 }
@@ -358,28 +461,36 @@ Pokemon *Character::getParty() {
 // Matt: For bag functioning, healing, catching pokemon
 
 void Character::usePotion(Pokemon *p) {
-	if (potions == 0) {
+	if (potions <= 0) {
 		cout << "No potions available" << endl;
 	}
 	else {
 		--potions;
-		p->currentHealth += (int)(0.50 * p->health); // Potions restore 50% of max health
-		if (p->currentHealth > p->health) {
-			p->currentHealth = p->health;
-		}
+		p->changeCurrentHealth(0.50 * p->getHealth()); // Potions restore 50% of max health
 	}
 }
-
-// TODO: vvv
-void Character::usePokeBall() 
+bool Character::usePokeBall(Pokemon* enemy)
 {
 	if (pokeBalls == 0) {
 		cout << "No pokeballs available" << endl;
+		return false;
 	}
 	else {
-		// stuff
+		--pokeBalls;
+		srand(NULL);
+		int PokeChance = rand() % 100;
+		if (PokeChance >= (int)(enemy->getCurrentHealth() / enemy->getHealth())) {
+			cout << "Pokemon was caught!\n" << endl;
+			addPokemon(enemy);
+			return true;
+		}
+		else {
+			cout << "Pokemon escaped the Pokeball!\n" << endl;
+			return false;
+		}
+		
 	}
-} // TODO: Incorporate catching a pokemon
+}
 
 bool Character::spendMoney(int amount) {
 	if (money >= amount) {
@@ -411,10 +522,6 @@ void Character::addMoney(int amount) {
 	money += amount;
 }
 
-int Character::getBadges()
-{
-	return badges;
-}
 
 int Character::getPotionCount() {
 	return potions;
@@ -426,4 +533,8 @@ int Character::getPokeBallCount() {
 
 int Character::getMoney() {
 	return money;
+}
+
+int Character::getBadges() {
+	return badges;
 }

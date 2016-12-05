@@ -31,7 +31,7 @@ void GameEngine::viewTeam()
 {
 	for(int i = 0; i < 6; i++)
 	{
-		cout << "Slot " << i << ": " << mainCharacter.getPokemon(i).getName() << endl;
+		cout << "Slot " << i << ": " << mainCharacter.getPokemon(i)->getName() << endl;
 	}
 }
 
@@ -43,9 +43,9 @@ void GameEngine::viewPokedex()
 	{
 		for (int j = 0; j<4; j++) 
 		{
-			cout << dex++ << ": " << mainCharacter.getCurrentPokemon().getPokedexEntry(i, j) << ", " <<
-				mainCharacter.getCurrentPokemon().getPokedexEntry(i, 4) << " type" << endl;
-			if (mainCharacter.getCurrentPokemon().getPokedexEntry(i, j) == mainCharacter.getCurrentPokemon().getPokedexEntry(i, j+1)) 
+			cout << dex++ << ": " << mainCharacter.getCurrentPokemon()->getPokedexEntry(i, j) << ", " <<
+				mainCharacter.getCurrentPokemon()->getPokedexEntry(i, 4) << " type" << endl;
+			if (mainCharacter.getCurrentPokemon()->getPokedexEntry(i, j) == mainCharacter.getCurrentPokemon()->getPokedexEntry(i, j+1)) 
 			{
 				break;
 			}
@@ -178,9 +178,9 @@ GameEngine::GameEngine()
 		mainCharacter.addPokeBall();
 	}
 	
-	cout << "You got a " << mainCharacter.getPokemon(0).getName() << "!" << endl;
+	cout << "You got a " << mainCharacter.getPokemon(0)->getName() << "!" << endl;
 	cout << "The other pokeballs disappeared before you could grab another." << endl;
-	cout << "Your " << mainCharacter.getPokemon(0).getName() << " is a pokemon." << endl;
+	cout << "Your " << mainCharacter.getPokemon(0)->getName() << " is a pokemon." << endl;
 	cout << "Use it to battle other trainers and other wild pokemon." << endl;
 	
 	/** The map will hold ints and the ints will represent as follows: 
@@ -237,7 +237,7 @@ GameEngine::GameEngine()
 		newmap[i][99] = WALL;
 	}
 
-	//top = north, left = east
+	//top = north, right = east
 	//town 1, smallest
 	pew = Town("Pewter City", 0);
 
@@ -393,12 +393,12 @@ void Explore::whatHappened(GameEngine *g)
 
 	int whatHappened = rand() % 100;
 	
-	//free steps works as a way to make it more and more likely to be stoped by a trainer or
+	//free steps works as a way to make it more and more likely to be stopped by a trainer or
 	//pokemon the more times the player has moved without fighting a player or pokemon
 	//we may need to adjust the frequency settings though
 	if (whatHappened < (freeSteps*1.7))
 	{
-		Pokemon joey = Pokemon(g->mainCharacter.getCurrentPokemon().getLevel());
+		Pokemon joey = Pokemon(g->mainCharacter.getCurrentPokemon()->getLevel());
 		cout << "A " << joey.getName() << " has appeared from seemingly nowhere to fight!" << endl;
 		freeSteps = 0;
 		Battle(&g->mainCharacter, &joey);
@@ -409,11 +409,11 @@ void Explore::whatHappened(GameEngine *g)
 		Character joe = Character(people[name], (freeSteps%2) + 1);
 		cout << "Trainer " << joe.getName() << " has spotted you! They want to battle!" << endl;
 		
-		int numberOfPokemon = rand() % 6;
+		int numberOfPokemon = rand() % 6+1;
 		
 		for(int i = 0; i < numberOfPokemon; i++)
 		{
-			joe.addPokemon(Pokemon(g->mainCharacter.getCurrentPokemon().getLevel()));
+			joe.addPokemon(Pokemon(g->mainCharacter.getCurrentPokemon()->getLevel()));
 		}
 		
 		freeSteps = 0;
@@ -538,7 +538,7 @@ void Town::visitTown(GameEngine *g)
 			buyItems(g);
 			break;
 		case 3:
-			battleGym(g);
+			isVisiting = battleGym(g);
 			break;
 		case 4:
 			cout << "You leave for the wilderness" << endl;
@@ -549,8 +549,10 @@ void Town::visitTown(GameEngine *g)
 }
 
 // TODO: implement the gym battle
-void Town::battleGym(GameEngine *g) 
+bool Town::battleGym(GameEngine *g) 
 {
+	/*Battle* bat;
+	
 	if(g->mainCharacter.getBadges() > level)
 	{
 		cout << "You have already beat this gym!" << endl;
@@ -561,18 +563,25 @@ void Town::battleGym(GameEngine *g)
 	}
 	else
 	{
-		cout << "You're going to challenge the city's gym? Are you sure?\n\n\t1) Yes\t2) No" << endl;
+		cout << "You're going to challenge the city's gym? Are you sure?\n\n1) Yes\n2) No" << endl;
 		int decision = getInt();
-		while (decision != 1 && decision != 2) 
+		while (decision != 1 && decision != 2)  
 		{
 			cout << "Invalid choice" << endl;
 			decision = getInt();
 		}
 		if (decision == 1) 
 		{
-			Battle(&g->mainCharacter, &gymLeader); 
+			bat = new Battle(&g->mainCharacter, &gymLeader); 
 		}
-	}
+		
+		if(!bat->result)
+		{
+			return false;
+		}
+	}*/
+	
+	return true;
 }
 
 void Town::healPokemon(Pokemon* party)

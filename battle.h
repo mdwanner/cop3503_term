@@ -9,9 +9,15 @@
 #include <time.h>
 #include <ctime>
 
+
+#define WAIT 1
+
 using namespace std;
 
 class Battle {
+	
+private: 
+	void wait(int sec);
 	
 public:
 	// public ones
@@ -19,9 +25,9 @@ public:
 	Battle(Character *player, Character *opponent); // for Trainer vs. Trainer scenarios
 	void attack(int turn,Character *thePlayer, Character *theEnemyPlayer);
 	void attack(int turn, Character *thePlayer, Pokemon *wildPokemon);
-	Pokemon switchPokemon(Character *trainer);
-	Pokemon switchPokemon(int num, Character *trainer);
-	
+	Pokemon* switchPokemon(Character *trainer);
+	Pokemon* switchPokemon(int num, Character *trainer);
+	bool result;
 	void lostMatch(Character*);
 };
 
