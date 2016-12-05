@@ -474,7 +474,7 @@ bool Character::usePokeBall(Pokemon* enemy)
 	else {
 		--pokeBalls;
 		srand(1337);
-		int PokeChance = rand() % 100;
+		int PokeChance = rand() % 50;
 		if (PokeChance >= (int)((enemy->getCurrentHealth()*100) / enemy->getHealth())) {
 			cout << "Pokemon was caught!\n" << endl;
 			addPokemon(enemy);
