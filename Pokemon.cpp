@@ -534,3 +534,11 @@ int Character::getMoney() {
 int Character::getBadges() {
 	return badges;
 }
+
+int Character::getX() {
+	return xPosition;
+}
+
+int Character::getY() {
+	return yPosition;
+}
