@@ -459,7 +459,6 @@ void Battle::lostMatch(Character* c)
 	for (int i = 0; i < 6; ++i) 
 	{
 		c->party[i].changeCurrentHealth(999999);
-		cout << "Your  " << c->party[i].getName() << " has " << c->party[i].getCurrentHealth() << " hp. " << endl;
 	}
 }
 
