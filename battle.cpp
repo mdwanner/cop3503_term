@@ -293,7 +293,7 @@ Battle::Battle(Character* player, Pokemon* enemy)
 	else if (enemy->getCurrentHealth() <=0 && action != 4) 
 	{
 		cout << "You have won the battle!" << endl;
-		currPokemon->giveExperience(rand()%40+25);
+		currPokemon->giveExperience(rand()%(29+4*currPokemon->getLevel())+24+4*currPokemon->getLevel());
 		//currPokemon = player->getCurrentPokemon();
 		//award exp.
 	}
@@ -440,7 +440,7 @@ Battle::Battle(Character* player, Character* opponent)
 	else if(currEnemyPokemon->getCurrentHealth() <= 0) 
 	{
 		cout << "You won the battle! Your opponent gives you $300.\n";
-		currPokemon->giveExperience(rand()%40+25);
+		currPokemon->giveExperience(rand()%(29+4*currPokemon->getLevel())+24+4*currPokemon->getLevel());
 		player->addMoney(300);
 		//award exp and gold (for trainers).
 	}
