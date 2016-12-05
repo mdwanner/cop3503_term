@@ -73,10 +73,10 @@ Pokemon::Pokemon(int level)
 Pokemon::Pokemon(int level, int choice) 
 {
 	this->choice = choice;
-    if(level <= 33) {
+    if(level <= 12) {
         this->name = pokeMen[choice][0];
     }
-    else if(level <= 66) {
+    else if(level <= 25) {
         this->name = pokeMen[choice][1];
     }
     else {
@@ -432,8 +432,8 @@ Pokemon* Character::getCurrentPokemon() //Marco: for getting the currentPokemon 
 	
 Pokemon Character::setCurrentPokemon(int i)
 {
-	if ( i >= 0 && i < 6)
-	{		
+	if ( i >= 0 && i < 6)	
+{		
 		currentPokemon = &party[i];
 		return *currentPokemon;
 	}
