@@ -60,7 +60,6 @@ class GameEngine {
 		void foundWildPokemon();
 		void foundTown();
 		void foundItem();
-		//int** createMap();
 
 	public:
 		//public ones
@@ -68,9 +67,7 @@ class GameEngine {
 		void viewPokedex();
 		void viewBag(); // calls accessors of player Character to see inventory counts
 		void viewTeam();
-		void help(); // get game guidance and tips
-					 // save game function if time allows
-					 // End game function to be added?
+		void viewMap();
 	};
 
 class Explore
