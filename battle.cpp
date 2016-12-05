@@ -249,22 +249,22 @@ Battle::Battle(Character* player, Pokemon* enemy)
 					switch (pokeswitch) 
 					{
 						case 1:
-							currPokemon = switchPokemon(1,player);
+							currPokemon = switchPokemon(0,player);
 							break;
 						case 2:
-							currPokemon = switchPokemon(2,player);
+							currPokemon = switchPokemon(1,player);
 							break;
 						case 3:
-							currPokemon = switchPokemon(3,player);
+							currPokemon = switchPokemon(2,player);
 							break;
 						case 4:
-							currPokemon = switchPokemon(4,player);
+							currPokemon = switchPokemon(3,player);
 							break;
 						case 5:
-						currPokemon = switchPokemon(5,player);
+						currPokemon = switchPokemon(4,player);
 						break;
 						case 6:
-							currPokemon = switchPokemon(6,player);
+							currPokemon = switchPokemon(5,player);
 							break;
 					}
 					if (pokeswitch > 7 || pokeswitch < 1)
@@ -390,22 +390,22 @@ Battle::Battle(Character* player, Character* opponent)
 					pokeswitch = getInt1();
 					switch (pokeswitch) {
 					case 1:
-						currPokemon = switchPokemon(1, player);
+						currPokemon = switchPokemon(0, player);
 						break;
 					case 2:
-						currPokemon = switchPokemon(2, player);
+						currPokemon = switchPokemon(1, player);
 						break;
 					case 3:
-						currPokemon = switchPokemon(3, player);
+						currPokemon = switchPokemon(2, player);
 						break;
 					case 4:
-						currPokemon = switchPokemon(4, player);
+						currPokemon = switchPokemon(3, player);
 						break;
 					case 5:
-						currPokemon = switchPokemon(5, player);
+						currPokemon = switchPokemon(4, player);
 						break;
 					case 6:
-						currPokemon = switchPokemon(6, player);
+						currPokemon = switchPokemon(5, player);
 						break;
 					}
 					if (pokeswitch > 7 || pokeswitch < 1)
