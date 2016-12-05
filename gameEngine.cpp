@@ -437,7 +437,7 @@ void Explore::whatHappened(GameEngine *g)
 		Character joe = Character(people[name], (freeSteps%2) + 1);
 		cout << "Trainer " << joe.getName() << " has spotted you! They want to battle!" << endl;
 		
-		int numberOfPokemon = rand() % 6+1;
+		int numberOfPokemon = rand() % 2+1;
 		
 		for(int i = 0; i < numberOfPokemon; i++)
 		{
