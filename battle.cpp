@@ -152,7 +152,11 @@ Pokemon* Battle::switchPokemon(Character* trainer)
 		if (switchPokemon->getCurrentHealth() > 0 && switchPokemon->getName().compare("Empty") != 0)
 		{
 			trainer->setCurrentPokemon(i);
+<<<<<<< HEAD
 			cout << "Switched to " << switchPokemon->getName() << ".\n";
+=======
+			cout << " Switched to " << switchPokemon->getName() << ".\n";
+>>>>>>> successor
 			break;
 		}	
 	}
@@ -458,19 +462,38 @@ void Battle::lostMatch(Character* c)
 	result = false;
 	c->setPos(); 
 	c->setCurrentPokemon(0);
+<<<<<<< HEAD
+=======
+	for (int i = 0; i < 6; ++i) 
+	{
+		c->party[i].changeCurrentHealth(999999);
+		cout << "Your  " << c->party[i].getName() << " has " << c->party[i].getCurrentHealth() << " hp. " << endl;
+	}
+>>>>>>> successor
 }
 
 int getInt1() {
-	//This method makes sure that the response is an int. 
-	int response;
-	string input = " ";
-	while (true) {
-		getline(cin, input);
-		// This code converts from string to number safely.
-		stringstream myStream(input);
-		if (myStream >> response)
-			break;
-		cout << "Invalid choice, please try again: ";
-	}
-	return response;
+	int item;
+	bool validInput = false;
+
+	do
+	{
+		std::cin >> item;
+
+		if (std::cin.fail())
+		{
+			std::cin.clear();
+			std::cin.ignore(256, '\n');
+			item = 0;
+			validInput = false;
+			std::cout << "Invalid Input, try again" << std::endl;
+		}
+		else
+		{
+			validInput = true;
+		}
+
+	} while (!validInput);
+
+	return item;
 }

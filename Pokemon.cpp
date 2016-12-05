@@ -217,6 +217,8 @@ string Character::getName()
 }
 
 void Character::addPokemon(Pokemon* p)
+<<<<<<< HEAD
+=======
 {
 	bool hasSlot = false;
 	bool allEmpty = true;
@@ -314,6 +316,112 @@ void Character::addPokemon(Pokemon* p)
 	}	
 }
 
+// START HERE
+
+void Character::addPokemon(Pokemon p)
+>>>>>>> successor
+{
+	bool hasSlot = false;
+	bool allEmpty = true;
+	int indexOfFirstEmpty;
+	for(int i = 0; i < 6; i++)
+	{
+		if (party[i].getName().compare("Empty") == 0)
+		{
+			if(!hasSlot) indexOfFirstEmpty = i;
+			hasSlot = true;
+		}
+		else
+		{
+			allEmpty = false;
+		}
+	}	
+	
+	if(allEmpty)
+	{
+		party[0] = *p;
+		setCurrentPokemon(0);
+	}
+	else if (hasSlot)
+	{
+		party[indexOfFirstEmpty] = *p;
+	}
+	else
+	{
+		cout << "No slots available. Which pokemon would you like to get ride of?" << endl;
+
+		for(int i = 0; i < 6; i++)
+		{
+			cout << " " << i + 1 << ". " << party[i].getName();
+		}
+		cout << " " << 7 << ". None";
+		
+		bool goodInput;
+		
+		do
+		{
+			int choice = getInt1() - 1;
+			goodInput = true;
+			
+			switch(choice)
+			{
+				case 0: 
+				{
+					cout << party[0].getName() << " was removed and " << p->getName() << " was added.";
+					party[0] = *p;
+					break;
+				}
+				case 1: 
+				{
+					cout << party[1].getName() << " was removed and " << p->getName() << " was added.";
+					party[1] =*p;
+					break;
+				}
+				case 2: 
+				{
+					cout << party[2].getName() << " was removed and " << p->getName() << " was added.";
+					party[2] = *p;
+					break;
+				}
+				case 3: 
+				{
+					cout << party[3].getName() << " was removed and " << p->getName() << " was added.";
+					party[3] = *p;
+					break;
+				}
+				case 4: 
+				{
+					cout << party[4].getName() << " was removed and " << p->getName() << " was added.";
+					party[4] = *p;
+					break;
+				}
+				case 5: 
+				{
+					cout << party[5].getName() << " was removed and " << p->getName() << " was added.";
+					party[5] = *p;
+					break;
+				}
+				case 6: 
+				{
+					cout << p->getName() << " was turned into candy.";
+					break;
+				}
+				default: 
+				{
+					cout << "Invalid input" << endl;
+					goodInput = false;
+					break;
+				}
+			}
+		} while(!goodInput);
+	}	
+}
+
+<<<<<<< HEAD
+=======
+// END HERE
+
+>>>>>>> successor
 Pokemon* Character::getPokemon(int i) // takes number 1-6 of desired Pokemon in party
 {
 	if( i >= 0 && i < 6)
@@ -378,12 +486,20 @@ bool Character::usePokeBall(Pokemon* enemy)
 		srand(NULL);
 		int PokeChance = rand() % 100;
 		if (PokeChance >= (int)(enemy->getCurrentHealth() / enemy->getHealth())) {
+<<<<<<< HEAD
 			cout << "Pokemon was caught!";
+=======
+			cout << "Pokemon was caught!\n" << endl;
+>>>>>>> successor
 			addPokemon(enemy);
 			return true;
 		}
 		else {
+<<<<<<< HEAD
 			cout << "Pokemon escaped the Pokeball!";
+=======
+			cout << "Pokemon escaped the Pokeball!\n" << endl;
+>>>>>>> successor
 			return false;
 		}
 		
@@ -431,4 +547,8 @@ int Character::getPokeBallCount() {
 
 int Character::getMoney() {
 	return money;
+}
+
+int Character::getBadges() {
+	return badges;
 }

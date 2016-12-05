@@ -80,6 +80,10 @@ public:
 	int getPokeBallCount();
 	int getMoney();
 	void setPos();
+<<<<<<< HEAD
+=======
+	void addPokemon(Pokemon);
+>>>>>>> successor
 	void addPokemon(Pokemon*);
 	int getBadges();
 };

@@ -237,7 +237,7 @@ GameEngine::GameEngine()
 		newmap[i][99] = WALL;
 	}
 
-	//top = north, left = east
+	//top = north, right = east
 	//town 1, smallest
 	pew = Town("Pewter City", 0);
 
@@ -393,7 +393,7 @@ void Explore::whatHappened(GameEngine *g)
 
 	int whatHappened = rand() % 100;
 	
-	//free steps works as a way to make it more and more likely to be stoped by a trainer or
+	//free steps works as a way to make it more and more likely to be stopped by a trainer or
 	//pokemon the more times the player has moved without fighting a player or pokemon
 	//we may need to adjust the frequency settings though
 	if (whatHappened < (freeSteps*1.7))
@@ -413,7 +413,11 @@ void Explore::whatHappened(GameEngine *g)
 		
 		for(int i = 0; i < numberOfPokemon; i++)
 		{
+<<<<<<< HEAD
 			joe.addPokemon(&Pokemon(g->mainCharacter.getCurrentPokemon()->getLevel()));
+=======
+			joe.addPokemon(Pokemon(g->mainCharacter.getCurrentPokemon()->getLevel()));
+>>>>>>> successor
 		}
 		
 		freeSteps = 0;
